@@ -45,7 +45,7 @@ const Home = () => {
 
               {/* item */}
               {isFetching ? (
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-[24px]'>
+                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-5'>
                   {skeletons.map((item, i) => (
                     <HostelCardSkeleton key={i} />
                   ))}
@@ -58,7 +58,7 @@ const Home = () => {
                   />
                 </div>
               ) : (
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-[24px]'>
+                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-5'>
                   {hostelData?.map((item: any, i: any) => (
                     <HostelCard key={i} hostelData={item} />
                   ))}
