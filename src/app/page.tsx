@@ -7,6 +7,8 @@ import { useMediaQuery } from 'react-responsive'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import HostelCardSkeleton from './components/HostelCardSkeleton'
 import { hostelData } from './utils/data'
+import NavBar from './components/NavBar'
+import Sort from './components/Sort'
 
 const Home = () => {
   const isLarge = useMediaQuery({
@@ -33,6 +35,8 @@ const Home = () => {
 
   return (
     <>
+    <NavBar/>
+    <Sort/>
       {/* {contextHolder} */}
       <div className='h-screen overflow-hidden bg-[#F5F5F5] pb-[150px]'>
         <div className='h-full'>

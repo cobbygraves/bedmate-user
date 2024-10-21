@@ -20,7 +20,7 @@ interface HostelCardProps {
 }
 
 export default function HostelCard({ hostelData }: HostelCardProps) {
-  const [isFavorite, setIsFavorite] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(true)
   const campusName = hostelData?.location.split('-')[0]
   const campusAddress = hostelData?.location.split('-')[1]
   const nbrFormat = new Intl.NumberFormat()
