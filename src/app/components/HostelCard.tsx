@@ -5,6 +5,7 @@ import { IoPricetags } from 'react-icons/io5'
 import { FaBed } from 'react-icons/fa'
 import { GoHeart, GoHeartFill } from 'react-icons/go'
 // import coverImg from '../../images/order_ride.png'
+import { IoLocation } from 'react-icons/io5'
 
 interface HostelCardProps {
   hostelData: {
@@ -14,11 +15,14 @@ interface HostelCardProps {
     rating: number
     image_url: string
     capacity: number
+    location: string
   }
 }
 
 export default function HostelCard({ hostelData }: HostelCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
+  const campusName = hostelData?.location.split('-')[0]
+  const campusAddress = hostelData?.location.split('-')[1]
   const nbrFormat = new Intl.NumberFormat()
   return (
     <div className='relative'>
@@ -48,27 +52,27 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
           />
         </div>
 
-        <div className='mt-[11px] px-[10px] text-black' onClick={() => {}}>
+        <div className='mt-2 px-2 text-black' onClick={() => {}}>
           <div className=''>
-            <div className='flex gap-[17px] items-center w-full'>
-              <p className='font-[700] text-[24px] capitalize truncate w-[99%]'>
+            <div className='flex gap-4 items-center w-full'>
+              <p className='font-bold text-[24px] capitalize truncate w-full'>
                 {hostelData?.name}
               </p>
             </div>
           </div>
 
-          <div className='space-y-1 w-full mt-5 text-gray-500'>
+          <div className='space-y-1 w-full text-gray-500'>
             <div className='flex justify-between items-center'>
               <div className='flex gap-1'>
                 <FaBed size={23} color='#808080' />
 
-                <p className='font-[400]'>
+                <p className=''>
                   {hostelData?.capacity} Bed{hostelData?.capacity > 1 && 's'}
                 </p>
               </div>
               <div className='flex gap-1'>
                 <IoPricetags size={23} color='#808080' />
-                <p className='font-[400]'>
+                <p className=''>
                   &#8373;{' '}
                   {hostelData?.price
                     ? nbrFormat.format(hostelData?.price)
@@ -76,7 +80,19 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
                 </p>
               </div>
             </div>
+            <div>
+              <div className='flex -ml-1'>
+                <IoLocation size={23} color='#808080' />
+                <p className=' text-[#808080] truncate pr-1'>
+                  <span className='font-semibold'>{campusName}</span> -{' '}
+                  <span>{campusAddress}</span>
+                </p>
+              </div>
+            </div>
           </div>
+          <button className='py-2 rounded-lg w-full bg-hostel-yellow font-semibold mt-2 text-lg'>
+            View Details
+          </button>
         </div>
       </div>
     </div>
