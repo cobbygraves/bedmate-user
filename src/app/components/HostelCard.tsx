@@ -20,7 +20,7 @@ interface HostelCardProps {
 }
 
 export default function HostelCard({ hostelData }: HostelCardProps) {
-  const [isFavorite, setIsFavorite] = useState(true)
+  const [isFavorite, setIsFavorite] = useState(false)
   const campusName = hostelData?.location.split('-')[0]
   const campusAddress = hostelData?.location.split('-')[1]
   const nbrFormat = new Intl.NumberFormat()
@@ -90,9 +90,9 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
               </div>
             </div>
           </div>
-          <button className='py-2 rounded-lg w-full bg-hostel-yellow font-semibold mt-2 text-lg'>
+          {/* <button className='py-2 rounded-lg w-full bg-hostel-yellow font-semibold mt-2 text-lg'>
             View Details
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

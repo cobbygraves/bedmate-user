@@ -45,3 +45,95 @@ export const hostelData = [
     location: 'KNUST - 5km from the central park'
   }
 ]
+
+export const campusList = [
+  {
+    name: 'UCC',
+    label: 'University of Cape-Coast'
+  },
+  {
+    name: 'UG',
+    label: 'University of Ghana'
+  },
+  {
+    name: 'TTU',
+    label: 'Takoradi Technical University'
+  },
+  {
+    name: 'KNUST',
+    label: 'KNUST'
+  },
+  {
+    name: 'Valley View University',
+    label: 'Valley View University'
+  },
+  {
+    name: 'Methodist University',
+    label: 'Methodist University'
+  }
+]
+
+export const availableRooms = [
+  {
+    name: 'One in a room',
+    label: 'One in a room'
+  },
+  {
+    name: 'Two in a room',
+    label: 'Two in a room'
+  },
+  {
+    name: 'Three in a room',
+    label: 'Three in a room'
+  },
+  {
+    name: 'Four in a room',
+    label: 'Four in a room'
+  },
+  {
+    name: 'Self-Contained Room',
+    label: 'Self-Contained Room'
+  }
+]
+
+export const availableFacilities = [
+  {
+    name: 'Air-conditioning',
+    label: 'Air-conditioning'
+  },
+  {
+    name: 'Wifi',
+    label: 'Wifi'
+  },
+  {
+    name: 'DSTV',
+    label: 'DSTV'
+  },
+  {
+    name: 'Hot tab',
+    label: 'Hot tab'
+  },
+  {
+    name: 'CCTV',
+    label: 'CCTV'
+  }
+]
+
+export const availablePrices = [
+  {
+    name: 'GH 1,000 - GH 2,000',
+    label: 'GH 1,000 - GH 2,000'
+  },
+  {
+    name: 'GH 3,000 - GH 5,000',
+    label: 'GH 3,000 - GH 5,000'
+  },
+  {
+    name: 'GH 6,000 - GH 10,000',
+    label: 'GH 6,000 - GH 10,000'
+  },
+  {
+    name: 'GH 11,000 - GH 15,000',
+    label: 'GH 11,000 - GH 15,000'
+  }
+]

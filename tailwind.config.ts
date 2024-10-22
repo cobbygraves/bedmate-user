@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'hostel-yellow': '#fae541'
+        'hostel-yellow': 'yellow'
       }
     }
   },

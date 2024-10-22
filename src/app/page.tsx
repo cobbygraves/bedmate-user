@@ -8,7 +8,10 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import HostelCardSkeleton from './components/HostelCardSkeleton'
 import { hostelData } from './utils/data'
 import NavBar from './components/NavBar'
-import Sort from './components/Sort'
+import FacilitiesFilters from './components/FacilitiesFilters'
+import CampusFilter from './components/CampusFilter'
+import RoomsFilter from './components/RoomsFilter'
+import PriceFilter from './components/PriceFilter'
 
 const Home = () => {
   const isLarge = useMediaQuery({
@@ -35,18 +38,26 @@ const Home = () => {
 
   return (
     <>
-    <NavBar/>
-    <Sort/>
+      {/* <Sort onSort={}/> */}
       {/* {contextHolder} */}
-      <div className='h-screen overflow-hidden bg-[#F5F5F5] pb-[150px]'>
+      <div className='h-screen overflow-hidden bg-[#F5F5F5]'>
         <div className='h-full'>
-          <div className='h-full overflow-y-auto pb-[50px]'>
+          <div className='h-full overflow-y-auto'>
+            <NavBar />
             {/* item list */}
-            <div className='lg:px-[3rem] px-[1.5rem] pt-5'>
-              <p className=' font-semibold text-lg mt-8 mb-5'>
-                Available hostels
-              </p>
-
+            <div className='lg:px-[3rem] px-[1.5rem]'>
+              <div className=' font-semibold text-xl my-5 text-gray-500 w-full flex justify-between items-center'>
+                <p>Available hostels</p>
+                <div className='flex gap-1 items-center'>
+                  <PriceFilter handleClick={(v: any) => {}} value={''} />
+                  <FacilitiesFilters handleClick={(v: any) => {}} value={''} />
+                  <RoomsFilter handleClick={(v: any) => {}} value={''} />
+                  <CampusFilter
+                    handleSelectedCampus={(v: string[]) => {}}
+                    isLarge={true}
+                  />
+                </div>
+              </div>
               {/* item */}
               {isFetching ? (
                 <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-5'>
@@ -91,14 +102,14 @@ const Home = () => {
                       }}
                       prevIcon={
                         <div
-                          className={`bg-gray-200 rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow hover:text-white gap-x-1 py-[3px] px-2 mr-2`}
+                          className={`bg-gray-200 rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow  gap-x-1 py-[3px] px-2 mr-2`}
                         >
                           <IoIosArrowBack className='w-5 h-6' />
                           {isLarge && <p>Prev</p>}
                         </div>
                       }
                       nextIcon={
-                        <div className='bg-gray-200 rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow hover:text-white gap-x-1 py-[3px] px-2 ml-1'>
+                        <div className='bg-gray-200 rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow gap-x-1 py-[3px] px-2 ml-1'>
                           {isLarge && <p>Next</p>}
 
                           <IoIosArrowForward className='w-5 h-6' />
@@ -110,9 +121,9 @@ const Home = () => {
                             <div
                               className={`${
                                 pageNumber === pagination.pageIndex + 1
-                                  ? 'bg-hostel-yellow text-white'
+                                  ? 'bg-hostel-yellow'
                                   : 'bg-gray-200'
-                              } w-10 font-bold rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow hover:text-white mr-1 py-1`}
+                              } w-10 font-bold rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow mr-1 py-1`}
                             >
                               <p>{pageNumber}</p>
                             </div>
