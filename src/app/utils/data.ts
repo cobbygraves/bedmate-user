@@ -3,28 +3,28 @@ export const hostelData = [
     image_url:
       'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     name: 'Elizabeth Seifert',
-    price: 1175,
+    price: 3175,
     rating: 4.5,
     capacity: 2,
-    location: ' UCC - Behind the library'
+    location: ' UCC - Behind the gateway library'
   },
   {
     image_url:
       'https://images.unsplash.com/photo-1600077625345-f401f4ba2fde?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     name: 'Pentagon',
-    price: 4700,
+    price: 3700,
     rating: 5,
     capacity: 1,
-    location: 'Legon - Along the CS road'
+    location: 'Legon - Along the computer science department.'
   },
   {
     image_url:
       'https://images.unsplash.com/photo-1531576788337-610fa9c67107?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     name: 'Evandy',
-    price: 1250,
+    price: 3250,
     rating: 4,
     capacity: 2,
-    location: 'Legon - Adjacent pentagon hostel'
+    location: 'Legon - Adjacent pentagon hostel.'
   },
   {
     image_url:
@@ -33,16 +33,16 @@ export const hostelData = [
     price: 3500,
     rating: 3.5,
     capacity: 1,
-    location: 'TTU - Before mr. Clotey building'
+    location: 'TTU - Opposite cocoa board height.'
   },
   {
     image_url:
       'https://images.unsplash.com/photo-1574716236621-87d2be17b3a3?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     name: 'Hillside',
-    price: 900,
+    price: 2900,
     rating: 3,
     capacity: 3,
-    location: 'KNUST - 5km from the central park'
+    location: 'KNUST - 300m from the central park.'
   }
 ]
 
@@ -75,31 +75,31 @@ export const campusList = [
 
 export const availableRooms = [
   {
-    name: 'One in a room',
-    label: 'One in a room'
+    name: '1 bed',
+    label: '1 bed'
   },
   {
-    name: 'Two in a room',
-    label: 'Two in a room'
+    name: '2 beds',
+    label: '2 beds'
   },
   {
-    name: 'Three in a room',
-    label: 'Three in a room'
+    name: '3 beds',
+    label: '3 beds'
   },
   {
-    name: 'Four in a room',
-    label: 'Four in a room'
+    name: '4 beds',
+    label: '4 beds'
   },
   {
-    name: 'Self-Contained Room',
-    label: 'Self-Contained Room'
+    name: 'Self-Contained',
+    label: 'Self-Contained'
   }
 ]
 
 export const availableFacilities = [
   {
-    name: 'Air-conditioning',
-    label: 'Air-conditioning'
+    name: 'Air-condition',
+    label: 'Air-condition'
   },
   {
     name: 'Wifi',
@@ -110,8 +110,8 @@ export const availableFacilities = [
     label: 'DSTV'
   },
   {
-    name: 'Hot tab',
-    label: 'Hot tab'
+    name: 'Heater',
+    label: 'Heater'
   },
   {
     name: 'CCTV',

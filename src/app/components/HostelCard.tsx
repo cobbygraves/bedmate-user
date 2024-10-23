@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { IoPricetags } from 'react-icons/io5'
 import { FaBed } from 'react-icons/fa'
 import { GoHeart, GoHeartFill } from 'react-icons/go'
-// import coverImg from '../../images/order_ride.png'
+import { TiArrowSortedDown } from 'react-icons/ti'
+import BedSelect from './BedSelect'
+
 import { IoLocation } from 'react-icons/io5'
 
 interface HostelCardProps {
@@ -25,8 +27,8 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
   const campusAddress = hostelData?.location.split('-')[1]
   const nbrFormat = new Intl.NumberFormat()
   return (
-    <div className='relative'>
-      <div className='rounded-[12px] w-full shadow-xl mb-5 lg:mb-0 bg-white hover:bg-gray-200 cursor-pointer pb-5'>
+    <>
+      <div className='rounded-[12px] w-full shadow-xl lg:mb-0 bg-white hover:bg-gray-200 pb-3'>
         {/* heart */}
 
         <div className='h-[36px] w-[36px] rounded-[8px] bg-white shadow-sm flex justify-center items-center absolute right-3 top-3 z-30'>
@@ -41,7 +43,7 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
           )}
         </div>
 
-        <div className='h-[202px] rounded-t-[12px] w-full object-cover relative'>
+        <div className='h-[202px] rounded-t-[12px] w-full object-cover relative cursor-pointer'>
           <Image
             src={hostelData?.image_url}
             alt='hostel-image'
@@ -52,41 +54,40 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
           />
         </div>
 
-        <div className='mt-2 px-2 text-black' onClick={() => {}}>
-          <div className=''>
-            <div className='flex gap-4 items-center w-full'>
-              <p className='font-bold text-[24px] capitalize truncate w-full'>
-                {hostelData?.name}
-              </p>
-            </div>
+        <div className='mt-2 px-2 ' onClick={() => {}}>
+          <div className='flex gap-4 items-center w-full'>
+            <p className='font-bold text-[24px] capitalize truncate w-full'>
+              {hostelData?.name}
+            </p>
           </div>
-
-          <div className='space-y-1 w-full text-gray-500'>
-            <div className='flex justify-between items-center'>
-              <div className='flex gap-1'>
+          <div className='space-y-1 mt-1'>
+            <div className='flex items-center justify-between'>
+              <div className='flex gap-x-2 items-center'>
                 <FaBed size={23} color='#808080' />
-
-                <p className=''>
-                  {hostelData?.capacity} Bed{hostelData?.capacity > 1 && 's'}
-                </p>
+                <div>
+                  <BedSelect />
+                </div>
               </div>
-              <div className='flex gap-1'>
-                <IoPricetags size={23} color='#808080' />
-                <p className=''>
-                  &#8373;{' '}
-                  {hostelData?.price
-                    ? nbrFormat.format(hostelData?.price)
-                    : 'Price Not Set'}
+              <div className='flex items-center gap-x-1'>
+                <IoPricetags size={20} color='#808080' />
+                <p className='font-bold'>
+                  <span>
+                    &#8373;{' '}
+                    {hostelData?.price
+                      ? nbrFormat.format(hostelData?.price)
+                      : 'Price Not Set'}
+                  </span>
+                  <span className='text-gray-500 font-normal'>/year</span>
                 </p>
               </div>
             </div>
-            <div>
-              <div className='flex -ml-1'>
-                <IoLocation size={23} color='#808080' />
-                <p className=' text-[#808080] truncate pr-1'>
-                  <span className='font-semibold'>{campusName}</span> -{' '}
-                  <span>{campusAddress}</span>
-                </p>
+            <div className='space-y-1 w-full text-gray-500'>
+              <div className='flex gap-x-1'>
+                <div className='flex -ml-1'>
+                  <IoLocation size={23} color='#808080' />
+                  <p className=' pr-1  text-black font-bold'>{campusName}</p>
+                </div>
+                <p className='line-clamp-1'>{campusAddress}</p>
               </div>
             </div>
           </div>
@@ -95,6 +96,6 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
           </button> */}
         </div>
       </div>
-    </div>
+    </>
   )
 }

@@ -14,8 +14,8 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Hostels',
-  description: '- A platform to access all your school accommodation needs'
+  title: 'BedMate',
+  description: '- Find hostels near you -'
 }
 
 export default function RootLayout({

@@ -9,7 +9,8 @@ import HostelCardSkeleton from './components/HostelCardSkeleton'
 import { hostelData } from './utils/data'
 import NavBar from './components/NavBar'
 import FacilitiesFilters from './components/FacilitiesFilters'
-import CampusFilter from './components/CampusFilter'
+//import CampusFilter from './components/CampusFilter'
+import { FiFilter } from 'react-icons/fi'
 import RoomsFilter from './components/RoomsFilter'
 import PriceFilter from './components/PriceFilter'
 
@@ -43,24 +44,35 @@ const Home = () => {
       <div className='h-screen overflow-hidden bg-[#F5F5F5]'>
         <div className='h-full'>
           <div className='h-full overflow-y-auto'>
-            <NavBar />
-            {/* item list */}
-            <div className='lg:px-[3rem] px-[1.5rem]'>
-              <div className=' font-semibold text-xl my-5 text-gray-500 w-full flex justify-between items-center'>
-                <p>Available hostels</p>
-                <div className='flex gap-1 items-center'>
-                  <PriceFilter handleClick={(v: any) => {}} value={''} />
-                  <FacilitiesFilters handleClick={(v: any) => {}} value={''} />
-                  <RoomsFilter handleClick={(v: any) => {}} value={''} />
-                  <CampusFilter
+            <div className='sticky top-0 z-40 bg-white'>
+              <NavBar />
+              <div className=' font-semibold text-xl text-gray-500 w-full border-b-2 my-3 pb-3'>
+                <div className='lg:px-[3rem] px-[1.5rem] flex justify-between items-center'>
+                  <p>Available hostels</p>
+                  <div className='hidden sm:flex gap-1 items-center'>
+                    {/* <CampusFilter
                     handleSelectedCampus={(v: string[]) => {}}
                     isLarge={true}
-                  />
+                  /> */}
+                    <PriceFilter handleClick={(v: any) => {}} value={''} />
+                    <FacilitiesFilters
+                      handleClick={(v: any) => {}}
+                      value={''}
+                    />
+                    <RoomsFilter handleClick={(v: any) => {}} value={''} />
+                  </div>
+                  <div className='flex items-center gap-x-1 sm:hidden cursor-pointer'>
+                    <p>Filters</p>
+                    <FiFilter size={30} />
+                  </div>
                 </div>
               </div>
+            </div>
+            {/* item list */}
+            <div className='lg:px-[3rem] px-[1.5rem]'>
               {/* item */}
               {isFetching ? (
-                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-5'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
                   {skeletons.map((item, i) => (
                     <HostelCardSkeleton key={i} />
                   ))}
@@ -73,7 +85,7 @@ const Home = () => {
                   />
                 </div>
               ) : (
-                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-5'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
                   {hostelData?.map((item: any, i: any) => (
                     <HostelCard key={i} hostelData={item} />
                   ))}

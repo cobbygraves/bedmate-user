@@ -10,6 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         'hostel-yellow': 'yellow'
+      },
+      screens: {
+        lg: '1280px',
+        xl: '1440px'
       }
     }
   },

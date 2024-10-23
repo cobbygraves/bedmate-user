@@ -23,10 +23,10 @@ export default function RoomsFilter({ value, handleClick }: typeProp) {
     <div className='text-[#484442] hidden sm:block'>
       <Menu>
         <MenuButton
-          className={`inline-flex justify-between items-center gap-x-2 rounded-md py-2 px-2 text-lg border shadow-lg  bg-hostel-yellow w-fit`}
+          className={`inline-flex justify-between items-center gap-x-2 rounded-md py-1 px-2 text-lg border shadow  bg-hostel-yellow w-fit`}
         >
           <span className={`${value ? 'text-white' : 'text-black'}`}>{`${
-            value ? value.label : 'Room filter'
+            value ? value.label : 'Rooms'
           }`}</span>
           {value ? (
             <LiaTimesCircle
@@ -42,7 +42,7 @@ export default function RoomsFilter({ value, handleClick }: typeProp) {
         <MenuItems
           transition
           anchor='bottom end'
-          className='origin-top-left rounded border bg-white  p-1 transition duration-100 ease-out z-40 mt-1'
+          className='origin-top-left rounded border bg-white  p-1 transition duration-100 ease-out mt-1 z-50'
         >
           {availableRooms.map((room: any) => (
             <MenuItem key={room.label}>

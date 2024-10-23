@@ -63,7 +63,7 @@ const CampusFilter = ({
         mode='multiple'
         showSearch={false}
         placeholder={
-          <span className='text-black text-lg'>School campus filter </span>
+          <span className='text-black text-lg'>Select Hostel Campus</span>
         }
         value={selectedCampus}
         onChange={setSelectedCampus}
