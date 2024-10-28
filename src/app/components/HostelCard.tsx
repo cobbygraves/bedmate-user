@@ -14,6 +14,7 @@ interface HostelCardProps {
     id: number
     name: string
     price: number
+    rooms: { name: string; price: number; capacity: number }[]
     rating: number
     image_url: string
     capacity: number
@@ -23,9 +24,17 @@ interface HostelCardProps {
 
 export default function HostelCard({ hostelData }: HostelCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
+
+  const [rooms, setRooms] = useState(hostelData?.rooms)
+  const [selectedRoom, setSelectedRoom] = useState(0)
   const campusName = hostelData?.location.split('-')[0]
   const campusAddress = hostelData?.location.split('-')[1]
   const nbrFormat = new Intl.NumberFormat()
+
+  const roomsData = hostelData?.rooms.map((room) => ({
+    value: room.name,
+    lable: room.name
+  }))
   return (
     <>
       <div className='rounded-[12px] w-full shadow-xl lg:mb-0 bg-white hover:bg-gray-200 pb-3'>
@@ -65,17 +74,22 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
               <div className='flex gap-x-2 items-center'>
                 <FaBed size={23} color='#808080' />
                 <div>
-                  <BedSelect />
+                  <BedSelect
+                    onSelect={(value: string) => {
+                      const index = rooms.findIndex(
+                        (room) => room.name === value
+                      )
+                      setSelectedRoom(index || 0)
+                    }}
+                    rooms={roomsData}
+                  />
                 </div>
               </div>
               <div className='flex items-center gap-x-1'>
                 <IoPricetags size={20} color='#808080' />
                 <p className='font-bold'>
                   <span>
-                    &#8373;{' '}
-                    {hostelData?.price
-                      ? nbrFormat.format(hostelData?.price)
-                      : 'Price Not Set'}
+                    &#8373; {nbrFormat.format(rooms[selectedRoom]?.price)}
                   </span>
                   <span className='text-gray-500 font-normal'>/year</span>
                 </p>
