@@ -1,6 +1,8 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
-  "no-unused-vars": "off",
-  "@typescript-eslint/no-explicit-any": "off"
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  }
 }
