@@ -40,8 +40,11 @@ export default function NavBar() {
           <FaRegUserCircle size={35} color='black' />
         </div>
       ) : (
-        <Link href='/login' className='font-bold text-xl cursor-pointer'>
-          Login
+        <Link
+          href='/login'
+          className='font-bold text-xl cursor-pointer hover:underline'
+        >
+          Sign in
         </Link>
       )}
       {/* <div onClick={toggleMenu} className=' cursor-pointer'>

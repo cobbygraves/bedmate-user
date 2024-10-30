@@ -5,6 +5,8 @@ import { FaLock } from 'react-icons/fa'
 import illustration from '../images/illustration.png'
 import logo from '../images/hostelimage.png' // Import your logo here
 import PhoneInput from 'react-phone-number-input'
+import { BsArrowLeft } from 'react-icons/bs'
+import Link from 'next/link'
 
 const LoginPage: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -118,6 +120,13 @@ const LoginPage: React.FC = () => {
                 Sign Up
               </a>
             </p>
+            <Link
+              href='/'
+              className='flex gap-x-2 items-center mt-5 justify-center cursor-pointer hover:underline'
+            >
+              <BsArrowLeft />
+              <p>Back home</p>
+            </Link>
           </form>
         </div>
 
