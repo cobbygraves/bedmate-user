@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { FaRegUserCircle } from 'react-icons/fa'
 import hostelImage from '../images/hostelimage.png'
 import UserMenu from '../components/UserMenu'
+import Link from 'next/link'
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -39,7 +40,9 @@ export default function NavBar() {
           <FaRegUserCircle size={35} color='black' />
         </div>
       ) : (
-        <p className='font-bold text-xl cursor-pointer'>Login</p>
+        <Link href='/login' className='font-bold text-xl cursor-pointer'>
+          Login
+        </Link>
       )}
       {/* <div onClick={toggleMenu} className=' cursor-pointer'>
         <FaRegUserCircle size={35} color='black' />
