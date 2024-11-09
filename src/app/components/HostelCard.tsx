@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { IoPricetags } from 'react-icons/io5'
 import { FaBed } from 'react-icons/fa'
 import { GoHeart, GoHeartFill } from 'react-icons/go'
-import { TiArrowSortedDown } from 'react-icons/ti'
 import BedSelect from './BedSelect'
 
 import { IoLocation } from 'react-icons/io5'

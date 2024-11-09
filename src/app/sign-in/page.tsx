@@ -8,7 +8,7 @@ import PhoneInput from 'react-phone-number-input'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
 
-const LoginPage: React.FC = () => {
+const SignIn: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [pin, setPin] = useState('')
   const [loading, setLoading] = useState(false)
@@ -35,11 +35,14 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-100'>
-      <div className='flex flex-col lg:flex-row bg-white shadow-lg rounded-lg overflow-hidden lg:max-w-4xl relative'>
+      <div className='flex flex-col-reverse sm:flex-row bg-white shadow-lg rounded-lg overflow-hidden sm:max-w-2xl lg:max-w-4xl relative'>
         {/* Left Section: Login Form */}
-        <div className='w-full lg:w-1/2 p-8 flex flex-col justify-center'>
+        <div className='w-full lg:w-1/2 p-8 flex flex-col justify-center bg-white'>
           <h2 className='text-3xl font-bold text-black'>Welcome....</h2>
-          <p className='mt-2 text-gray-600'>Sign in to continue with ease</p>
+          <p className='mt-2 text-gray-600'>
+            Sign in to continue with{' '}
+            <span className='font-medium'>BedMate</span>
+          </p>
           <form onSubmit={handleSignIn} className='mt-8 space-y-4'>
             {/* Mobile Number Field */}
             <div>
@@ -50,7 +53,7 @@ const LoginPage: React.FC = () => {
                 Mobile Number
               </label>
 
-              <div className='border border-gray-500 rounded-lg px-2 py-1 mt-1'>
+              <div className='border border-gray-500 rounded-lg px-2 py-1 mt-1 bg-white'>
                 <PhoneInput
                   inputclassname='input'
                   defaultCountry='GH'
@@ -117,7 +120,7 @@ const LoginPage: React.FC = () => {
             <p className='text-center text-gray-600 text-sm mt-4'>
               Don&apos;t have an account?{' '}
               <a href='#' className='text-black font-semibold hover:underline'>
-                Sign Up
+                Sign up
               </a>
             </p>
             <Link
@@ -131,24 +134,24 @@ const LoginPage: React.FC = () => {
         </div>
 
         {/* Right Section: Image and Welcome Text */}
-        <div className='relative hidden lg:flex w-full lg:w-1/2 flex-col items-center justify-center p-8 bg-hostel-yellow'>
+        <div className='relative sm:flex w-full lg:w-1/2 flex-col items-center justify-center p-8 bg-hostel-yellow'>
           {/* Illustration Image */}
           <Image
             src={illustration}
             alt='Illustration'
             layout='responsive'
-            className='object-contain'
+            className='object-contain mt-7 sm:mt-0'
           />
 
           {/* Logo */}
-          <div className='absolute top-4 right-[35%]'>
+          <div className='absolute top-2 sm:top-4 right-[25%] sm:right-[35%]'>
             <Image src={logo} alt='Logo' width={150} height={150} />
           </div>
 
-          <h3 className='text-xl font-semibold text-gray-800 mt-4'>
+          <h3 className='text-xl hidden sm:block font-semibold text-gray-800 mt-4'>
             Get started in one, two, three…
           </h3>
-          <p className='text-center text-gray-600 mt-2'>
+          <p className='text-center text-gray-600 mt-2 hidden sm:block'>
             Staying at a hostel allows for a greater sense of connection! You
             immerse yourself in the vibrant atmosphere, meet fellow students,
             and share stories that enrich your experience, creating memories
@@ -160,4 +163,4 @@ const LoginPage: React.FC = () => {
   )
 }
 
-export default LoginPage
+export default SignIn

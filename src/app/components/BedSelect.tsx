@@ -1,5 +1,12 @@
 import React from 'react'
-import { Select } from 'antd'
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 
 const BedSelect = ({
   onSelect,
@@ -15,17 +22,18 @@ const BedSelect = ({
 
   return (
     <>
-      <Select
-        defaultValue={rooms[0].value}
-        style={{
-          width: 'fit-content',
-          backgroundColor: 'transparent',
-          color: 'black',
-          height: 25
-        }}
-        onChange={handleChange}
-        options={rooms}
-      />
+      <Select defaultValue={rooms[0].value} onValueChange={handleChange}>
+        <SelectTrigger className='w-full border border-gray-500 bg-white h-7'>
+          <SelectValue placeholder='Select Room' />
+        </SelectTrigger>
+        <SelectContent>
+          {rooms.map((room) => (
+            <SelectItem key={room.value} value={room.value}>
+              {room.lable}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </>
   )
 }

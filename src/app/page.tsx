@@ -1,10 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { Empty, Pagination } from 'antd'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious
+} from '@/components/ui/pagination'
+
+// import { Pagination } from 'antd'
 import HostelCard from './components/HostelCard'
 import { useMediaQuery } from 'react-responsive'
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import HostelCardSkeleton from './components/HostelCardSkeleton'
 import { hostelData } from './utils/data'
 import NavBar from './components/NavBar'
@@ -38,8 +46,6 @@ const Home = () => {
 
   return (
     <>
-      {/* <Sort onSort={}/> */}
-      {/* {contextHolder} */}
       <div className='h-screen overflow-hidden bg-[#F5F5F5]'>
         <div className='h-full'>
           <div className='h-full overflow-y-auto'>
@@ -49,10 +55,6 @@ const Home = () => {
                 <div className='lg:px-[3rem] px-[1.5rem] flex justify-between items-center'>
                   <p>Available hostels</p>
                   <div className='hidden sm:flex gap-1 items-center'>
-                    {/* <CampusFilter
-                    handleSelectedCampus={(v: string[]) => {}}
-                    isLarge={true}
-                  /> */}
                     <PriceFilter handleClick={(v: any) => {}} value={''} />
                     <FacilitiesFilters
                       handleClick={(v: any) => {}}
@@ -78,10 +80,7 @@ const Home = () => {
                 </div>
               ) : hostels?.length === 0 && !isFetching ? (
                 <div className='flex justify-center items-center h-full'>
-                  <Empty
-                    description='No results found'
-                    className='text-center'
-                  />
+                  <p className='text-2xl font-extralight'>No result found</p>
                 </div>
               ) : (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
@@ -102,47 +101,21 @@ const Home = () => {
                   }`}
                 >
                   {hostelData?.length > 0 && (
-                    <Pagination
-                      current={pagination.pageIndex + 1}
-                      total={total}
-                      pageSize={pagination.pageSize}
-                      showSizeChanger={false}
-                      responsive
-                      onChange={(page, pageSize) => {
-                        handlePaginationChange(page, pageSize)
-                      }}
-                      prevIcon={
-                        <div
-                          className={`bg-gray-200 rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow  gap-x-1 py-[3px] px-2 mr-2`}
-                        >
-                          <IoIosArrowBack className='w-5 h-6' />
-                          {isLarge && <p>Prev</p>}
-                        </div>
-                      }
-                      nextIcon={
-                        <div className='bg-gray-200 rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow gap-x-1 py-[3px] px-2 ml-1'>
-                          {isLarge && <p>Next</p>}
-
-                          <IoIosArrowForward className='w-5 h-6' />
-                        </div>
-                      }
-                      itemRender={(pageNumber, type, originalElement) => {
-                        if (type === 'page') {
-                          return (
-                            <div
-                              className={`${
-                                pageNumber === pagination.pageIndex + 1
-                                  ? 'bg-hostel-yellow'
-                                  : 'bg-gray-200'
-                              } w-10 font-bold rounded-[6px] flex justify-center items-center hover:bg-hostel-yellow mr-1 py-1`}
-                            >
-                              <p>{pageNumber}</p>
-                            </div>
-                          )
-                        }
-                        return originalElement
-                      }}
-                    />
+                    <Pagination>
+                      <PaginationContent>
+                        <PaginationItem className='cursor-pointer'>
+                          <PaginationPrevious href='#' />
+                        </PaginationItem>
+                        {hostelData.map((item: any, i: any) => (
+                          <PaginationItem key={i} className='cursor-pointer'>
+                            <PaginationLink href='#'>{i + 1}</PaginationLink>
+                          </PaginationItem>
+                        ))}
+                        <PaginationItem className='cursor-pointer'>
+                          <PaginationNext href='#' />
+                        </PaginationItem>
+                      </PaginationContent>
+                    </Pagination>
                   )}
                 </div>
               )}

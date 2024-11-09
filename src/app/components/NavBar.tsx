@@ -41,7 +41,7 @@ export default function NavBar() {
         </div>
       ) : (
         <Link
-          href='/login'
+          href='/sign-in'
           className='font-bold text-xl cursor-pointer hover:underline'
         >
           Sign in
