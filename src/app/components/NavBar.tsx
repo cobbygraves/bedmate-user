@@ -4,10 +4,14 @@ import { FaRegUserCircle } from 'react-icons/fa'
 import hostelImage from '../images/hostelimage.png'
 import UserMenu from '../components/UserMenu'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import path from 'path'
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [user, setUser] = useState<any | null>(null)
+
+  const pathname = usePathname()
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev)
@@ -26,17 +30,19 @@ export default function NavBar() {
       </div>
 
       {/* Search Bar */}
-      <div className='flex-1 mx-4 text-lg'>
-        <input
-          type='text'
-          placeholder='Search hostel by name or campus'
-          className='w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none text-gray-500'
-        />
-      </div>
+      {pathname === '/' && (
+        <div className='flex-1 mx-4 text-lg'>
+          <input
+            type='text'
+            placeholder='Search hostel by name or campus'
+            className='w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none text-gray-500'
+          />
+        </div>
+      )}
 
       {/* User Icon */}
       {user ? (
-        <div className='cursor-pointer'>
+        <div className='cursor-pointer' onClick={toggleMenu}>
           <FaRegUserCircle size={35} color='black' />
         </div>
       ) : (

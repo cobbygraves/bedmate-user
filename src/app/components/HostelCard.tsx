@@ -5,6 +5,7 @@ import { IoPricetags } from 'react-icons/io5'
 import { FaBed } from 'react-icons/fa'
 import { GoHeart, GoHeartFill } from 'react-icons/go'
 import BedSelect from './BedSelect'
+import Link from 'next/link'
 
 import { IoLocation } from 'react-icons/io5'
 
@@ -36,7 +37,10 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
   }))
   return (
     <>
-      <div className='rounded-[12px] w-full shadow-xl lg:mb-0 bg-white hover:bg-gray-200 pb-3'>
+      <Link
+        href={`/hostel/${hostelData?.id}`}
+        className='rounded-[12px] w-full shadow-xl lg:mb-0 bg-white hover:bg-gray-200 pb-3'
+      >
         {/* heart */}
 
         <div className='h-[36px] w-[36px] rounded-[8px] bg-white shadow-sm flex justify-center items-center absolute right-3 top-3 z-30'>
@@ -100,6 +104,7 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
                   <IoLocation size={23} color='#808080' />
                   <p className=' pr-1  text-black font-bold'>{campusName}</p>
                 </div>
+                <span className='font-bold'>-</span>
                 <p className='line-clamp-1'>{campusAddress}</p>
               </div>
             </div>
@@ -108,7 +113,7 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
             View Details
           </button> */}
         </div>
-      </div>
+      </Link>
     </>
   )
 }

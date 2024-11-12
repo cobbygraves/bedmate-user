@@ -85,7 +85,7 @@ const Home = () => {
               ) : (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
                   {hostelData?.map((item: any, i: any) => (
-                    <HostelCard key={i} hostelData={item} />
+                    <HostelCard key={item.id} hostelData={item} />
                   ))}
                 </div>
               )}
