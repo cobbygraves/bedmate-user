@@ -1,11 +1,12 @@
 'use client'
 import React, { useState } from 'react'
-import Image from 'next/image'
+
 import { FaLock } from 'react-icons/fa'
-import illustration from '../images/illustration.png'
+
 import PhoneInput from 'react-phone-number-input'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
+import { RiHomeOfficeLine } from 'react-icons/ri'
 
 const SignIn: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -135,14 +136,10 @@ const SignIn: React.FC = () => {
         {/* Right Section: Image and Welcome Text */}
         <div className='relative sm:flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:bg-hostel-yellow'>
           {/* Illustration Image */}
-          <Image
-            src={illustration}
-            alt='Illustration'
-            objectFit='contain'
-            objectPosition='center'
-          />
-
-          <h3 className='text-xl hidden sm:block font-semibold text-gray-800'>
+          <div className='flex items-center justify-center w-full'>
+            <RiHomeOfficeLine size={250} />
+          </div>
+          <h3 className='text-xl hidden sm:block font-semibold text-gray-800 mt-5'>
             Get started in one, two, three…
           </h3>
           <p className='text-center text-gray-600 mt-2 hidden sm:block'>

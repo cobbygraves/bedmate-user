@@ -1,11 +1,10 @@
 import React, { useState } from 'react' // Ensure useState is imported
 import Image from 'next/image'
 import { FaRegUserCircle } from 'react-icons/fa'
-import hostelImage from '../images/hostelimage.png'
+import { RiHomeOfficeLine } from 'react-icons/ri'
 import UserMenu from '../components/UserMenu'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import path from 'path'
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,7 +24,7 @@ export default function NavBar() {
     <nav className='flex items-center justify-between px-4 py-2 bg-hostel-yellow relative'>
       {/* Hostel Image (Logo) */}
       <div className='flex items-center gap-2'>
-        <Image src={hostelImage} alt='Hostel Logo' height={50} width={50} />
+        <RiHomeOfficeLine size={50} />
         <p className='text-xl font-bold'>BedMate</p>
       </div>
 
