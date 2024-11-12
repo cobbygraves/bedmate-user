@@ -54,7 +54,7 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
 
         <div
           className='h-[202px] rounded-t-[12px] w-full object-cover relative cursor-pointer'
-          onClick={() => router.push(`/hostels/${hostelData?.id}`)}
+          onClick={() => router.push(`/hostel/${hostelData?.id}`)}
         >
           <Image
             src={hostelData?.image_url}
