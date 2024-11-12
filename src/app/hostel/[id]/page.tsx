@@ -23,7 +23,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
@@ -34,6 +33,13 @@ const HostelDetails: React.FC = () => {
   const [isFavorited, setIsFavorited] = useState(false)
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
+  const [fullname, setFullname] = useState('')
+  const [checkIn, setCheckIn] = useState<
+    string | number | readonly string[] | undefined
+  >('')
+  const [checkOut, setCheckOut] = useState<
+    string | number | readonly string[] | undefined
+  >('')
 
   useEffect(() => {
     if (!api) {
@@ -58,6 +64,8 @@ const HostelDetails: React.FC = () => {
   const toggleFavorite = () => {
     setIsFavorited(!isFavorited) // Toggle favorite state
   }
+
+  console.log(checkIn)
 
   return (
     <div>
@@ -214,6 +222,8 @@ const HostelDetails: React.FC = () => {
                 <input
                   className='block w-full mt-1 border rounded-md shadow-sm h-10 px-3'
                   placeholder='Enter your full name'
+                  value={fullname}
+                  onChange={(e) => setFullname(e.target.value)}
                 />
               </label>
 
@@ -226,6 +236,8 @@ const HostelDetails: React.FC = () => {
                   <input
                     type='date'
                     className='block w-full mt-1 border border-gray-300 rounded-md shadow-sm h-10 px-3 cursor-pointer'
+                    value={checkIn}
+                    onChange={(e) => setCheckIn(e.target.value)}
                   />
                 </label>
                 <label className='block w-full'>
@@ -236,6 +248,7 @@ const HostelDetails: React.FC = () => {
                     type='date'
                     className='block w-full mt-1 border border-gray-300 rounded-md shadow-sm h-10 px-3 disabled:bg-gray-300'
                     disabled
+                    value={checkOut}
                   />
                 </label>
               </div>
@@ -247,7 +260,10 @@ const HostelDetails: React.FC = () => {
               </div>
 
               {/* Booking Button */}
-              <button className='w-full bg-gray-500 text-white py-3 rounded-md shadow-md hover:bg-black text-2xl font-bold'>
+              <button
+                className='w-full disabled:bg-gray-500 text-white py-3 rounded-md shadow-md bg-black text-2xl font-bold'
+                disabled={!roomType || fullname === '' || !checkIn}
+              >
                 Book Now
               </button>
             </div>
