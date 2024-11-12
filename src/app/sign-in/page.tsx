@@ -111,7 +111,8 @@ const SignIn: React.FC = () => {
             {/* Sign In Button */}
             <button
               type='submit'
-              className='w-full bg-gray-500 hover:bg-black text-white py-2 rounded-lg transition-all duration-300'
+              className='w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300'
+              disabled={!phoneNumber || !pin}
             >
               Sign In
             </button>
