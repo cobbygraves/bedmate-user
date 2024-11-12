@@ -33,7 +33,7 @@ export default function NavBar() {
         <div className='flex-1 mx-4 text-lg'>
           <input
             type='text'
-            placeholder='Search hostel by name or campus'
+            placeholder='Enter campus or hostel name'
             className='w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none text-gray-500'
           />
         </div>
