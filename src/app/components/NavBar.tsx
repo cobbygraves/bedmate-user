@@ -25,7 +25,7 @@ export default function NavBar() {
       {/* Hostel Image (Logo) */}
       <div className='flex items-center gap-2'>
         <RiHomeOfficeLine size={50} />
-        <p className='text-xl font-bold'>BedMate</p>
+        <p className='text-xl font-bold hidden sm:block'>BedMate</p>
       </div>
 
       {/* Search Bar */}
