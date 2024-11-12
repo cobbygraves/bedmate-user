@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { FaLock } from 'react-icons/fa'
 import illustration from '../images/illustration.png'
-import logo from '../images/hostelimage.png' // Import your logo here
 import PhoneInput from 'react-phone-number-input'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
@@ -37,7 +36,7 @@ const SignIn: React.FC = () => {
     <div className='min-h-screen flex items-center justify-center bg-hostel-yellow sm:bg-white'>
       <div className='flex w-full flex-col-reverse sm:flex-row bg-hostel-yellow sm:bg-white sm:shadow-xl rounded-lg overflow-hidden  sm:max-w-2xl lg:max-w-4xl relative'>
         {/* Left Section: Login Form */}
-        <div className='w-full lg:w-1/2 p-3 sm:p-8 flex flex-col justify-center bg-hostel-yellow  sm:bg-white relative bottom-16 sm:bottom-0'>
+        <div className='w-full lg:w-1/2 p-3 sm:p-8 flex flex-col justify-center bg-hostel-yellow  sm:bg-white'>
           <h2 className='text-3xl font-bold text-black'>Welcome....</h2>
           <p className='mt-2 text-gray-600'>
             Sign in to continue with{' '}
@@ -139,16 +138,11 @@ const SignIn: React.FC = () => {
           <Image
             src={illustration}
             alt='Illustration'
-            layout='responsive'
-            className='object-contain'
+            objectFit='contain'
+            objectPosition='center'
           />
 
-          {/* Logo */}
-          <div className='hidden sm:flex justify-center sm:absolute top-2 sm:top-4 sm:right-[35%]'>
-            <Image src={logo} alt='Logo' width={150} height={150} />
-          </div>
-
-          <h3 className='text-xl hidden sm:block font-semibold text-gray-800 mt-4'>
+          <h3 className='text-xl hidden sm:block font-semibold text-gray-800'>
             Get started in one, two, three…
           </h3>
           <p className='text-center text-gray-600 mt-2 hidden sm:block'>
