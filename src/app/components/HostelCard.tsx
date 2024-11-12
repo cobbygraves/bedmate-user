@@ -5,7 +5,7 @@ import { IoPricetags } from 'react-icons/io5'
 import { FaBed } from 'react-icons/fa'
 import { GoHeart, GoHeartFill } from 'react-icons/go'
 import BedSelect from './BedSelect'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { IoLocation } from 'react-icons/io5'
 
@@ -24,12 +24,12 @@ interface HostelCardProps {
 
 export default function HostelCard({ hostelData }: HostelCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
-
   const [rooms, setRooms] = useState(hostelData?.rooms)
   const [selectedRoom, setSelectedRoom] = useState(0)
   const campusName = hostelData?.location.split('-')[0]
   const campusAddress = hostelData?.location.split('-')[1]
   const nbrFormat = new Intl.NumberFormat()
+  const router = useRouter()
 
   const roomsData = hostelData?.rooms.map((room) => ({
     value: room.name,
@@ -37,10 +37,7 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
   }))
   return (
     <>
-      <Link
-        href={`/hostel/${hostelData?.id}`}
-        className='rounded-[12px] w-full shadow-xl lg:mb-0 bg-white hover:bg-gray-200 pb-3'
-      >
+      <div className='rounded-[12px] w-full shadow-xl lg:mb-0 bg-white hover:bg-gray-200 pb-3'>
         {/* heart */}
 
         <div className='h-[36px] w-[36px] rounded-[8px] bg-white shadow-sm flex justify-center items-center absolute right-3 top-3 z-30'>
@@ -55,7 +52,10 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
           )}
         </div>
 
-        <div className='h-[202px] rounded-t-[12px] w-full object-cover relative cursor-pointer'>
+        <div
+          className='h-[202px] rounded-t-[12px] w-full object-cover relative cursor-pointer'
+          onClick={() => router.push(`/hostels/${hostelData?.id}`)}
+        >
           <Image
             src={hostelData?.image_url}
             alt='hostel-image'
@@ -113,7 +113,7 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
             View Details
           </button> */}
         </div>
-      </Link>
+      </div>
     </>
   )
 }
