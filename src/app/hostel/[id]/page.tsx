@@ -5,9 +5,13 @@ import React, { useState, useEffect } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import room1 from '../../images/room1.png'
 import roomImg from '../../images/room2.png'
+import userImg from '@/app/images/userImg.webp'
 import { IoLocation } from 'react-icons/io5'
 import NavBar from '../../components/NavBar'
-// import Autoplay from 'embla-carousel-autoplay'
+import HostelFacilities from '@/app/components/HostelFacilities'
+import moment from 'moment'
+import Rate from '@/app/components/Rate'
+import { vehicleRatings } from '@/app/utils/data'
 import {
   Carousel,
   CarouselContent,
@@ -34,6 +38,7 @@ const HostelDetails: React.FC = () => {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [fullname, setFullname] = useState('')
+  const [readMoreReview, setReadMoreReviews] = useState(false)
   const [checkIn, setCheckIn] = useState<
     string | number | readonly string[] | undefined
   >('')
@@ -65,7 +70,10 @@ const HostelDetails: React.FC = () => {
     setIsFavorited(!isFavorited) // Toggle favorite state
   }
 
-  console.log(checkIn)
+  let reviews = vehicleRatings
+  if (!readMoreReview) {
+    reviews = vehicleRatings?.slice(0, 2)
+  }
 
   return (
     <div>
@@ -178,7 +186,7 @@ const HostelDetails: React.FC = () => {
           {/*Description */}
           <div>
             <h3 className='text-xl font-semibold'>Description</h3>
-            <p className='text-gray-600'>
+            <p>
               This is a detailed description of the hostel, providing insights
               into the amenities available for guests. The hostel features
               comfortable dormitory-style rooms, as well as private
@@ -192,11 +200,79 @@ const HostelDetails: React.FC = () => {
             </p>
           </div>
           <hr className='border-[2px] border-gray-300' />
+          {/* Facilities */}
+          <HostelFacilities />
+          <hr className='border-[2px] border-gray-300' />
+          {vehicleRatings?.length > 0 && (
+            <>
+              {/* reviews */}
+              <div className='w-full bg-white rounded-[12px]'>
+                <h3 className='text-xl font-semibold'>Reviews</h3>
+                <div className='mt-2 grid grid-cols-1 sm:grid-cols-2'>
+                  {reviews ? (
+                    reviews.map((item: any, i: number) => (
+                      <div
+                        key={i}
+                        className={`flex gap-[16px] w-full pb-3 mb-5 ${
+                          i === reviews.length - 1 && 'mb-0'
+                        }`}
+                      >
+                        <div>
+                          <Image
+                            className='object-cover rounded-[16px]'
+                            src={userImg}
+                            alt='user'
+                            height={48}
+                            width={48}
+                          />
+                        </div>
+
+                        <div className='w-full'>
+                          <p className='text-base font-semibold text-black'>
+                            {item?.creator?.name}
+                          </p>
+
+                          <div className='mt-y flex gap-2'>
+                            <Rate rating={item?.ratings} />
+                          </div>
+
+                          <p className=' text-base font-[400] text-defaultGray'>
+                            {item?.comment}
+                          </p>
+
+                          <p className='text-base font-[700] text-grayLight'>
+                            {moment(item?.created_at).format('DD/MM/YYYY')}
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className='flex justify-center items-center h-full'>
+                      <p className='text-2xl font-extralight'>
+                        No result found
+                      </p>
+                    </div>
+                  )}
+                </div>
+                {vehicleRatings?.length >= 3 ? (
+                  <button
+                    className='rounded-lg text-defaultRed px-2'
+                    onClick={() => setReadMoreReviews((prev) => !prev)}
+                  >
+                    {readMoreReview ? 'View less' : 'Read more'}
+                  </button>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </>
+          )}
+          <hr className='border-[2px] border-gray-300 sm:hidden' />
         </div>
 
         {/* Right Section with Booking */}
         <div className='lg:w-1/3 space-y-4 z-10'>
-          <div className='p-4 border border-gray-200 rounded-lg shadow-md bg-hostel-yellow lg:fixed min-h-[400px] lg:right-5 lg:w-1/3'>
+          <div className='hidden lg:block p-4 border border-gray-200 rounded-lg shadow-md bg-hostel-yellow min-h-[400px] mt-5 sm:mt-0'>
             <h3 className='text-2xl font-bold'>Complete Your Booking</h3>
             <div className='space-y-4 mt-4'>
               {/* Room Type Selection */}
@@ -267,6 +343,34 @@ const HostelDetails: React.FC = () => {
                 Book Now
               </button>
             </div>
+          </div>
+          {/* Recommended Hostels */}
+          <div>
+            <h3 className='text-xl font-semibold mt-0 sm:mt-3 mb-3'>
+              Recommended Hostels
+            </h3>
+            <p>
+              consectetur esse reprehenderit. Mollit elit aliquip cillum eiusmod
+              et do pariatur enim eiusmod ipsum. Consequat reprehenderit
+              voluptate aliquip non amet laborum fugiat officia occaecat
+              adipisicing. Eu mollit cupidatat officia ullamco sit in. Cupidatat
+              reprehenderit duis veniam sint. Incididunt officia velit fugiat
+              dolore dolor. Eu qui Lorem eu exercitation laborum ex adipisicing
+              ullamco eiusmod nostrud consequat duis id. Ullamco exercitation
+              esse in aute ad sit duis sint do do cupidatat sint enim
+              incididunt. Excepteur exercitation ut laboris in nulla minim
+              magna. Enim excepteur incididunt aliqua aliqua do proident.
+              Cupidatat pariatur anim qui dolor incididunt ipsum cupidatat
+              magna. Eu voluptate et quis nisi laboris reprehenderit pariatur ex
+              laborum adipisicing reprehenderit dolor. Lorem adipisicing nulla
+              amet laborum cupidatat do ad esse. Fugiat excepteur incididunt eu
+              tempor do fugiat dolore eu nostrud magna. Et fugiat esse Lorem eu
+              adipisicing officia aute est aliquip officia ad. Laborum minim ut
+              enim consequat dolor deserunt ea mollit exercitation. Incididunt
+              esse sunt adipisicing labore consequat id incididunt.
+              Reprehenderit id cillum commodo eiusmod id tempor ad do anim
+              cillum fugiat magna. Labore et quis quis sunt ex aute.
+            </p>
           </div>
         </div>
       </div>
