@@ -30,6 +30,9 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
+import { hostelData } from '@/app/utils/data'
+import RecommendedCard from '@/app/components/RecommendedCard'
+import { BookNow } from '@/app/components/BookNow'
 
 const HostelDetails: React.FC = () => {
   const [roomType, setRoomType] = useState('1')
@@ -39,6 +42,7 @@ const HostelDetails: React.FC = () => {
   const [current, setCurrent] = useState(0)
   const [fullname, setFullname] = useState('')
   const [readMoreReview, setReadMoreReviews] = useState(false)
+  const [showBooking, setShowBooking] = useState(false)
   const [checkIn, setCheckIn] = useState<
     string | number | readonly string[] | undefined
   >('')
@@ -146,7 +150,7 @@ const HostelDetails: React.FC = () => {
             {isFavorited ? (
               <button
                 onClick={() => toggleFavorite()}
-                className='border-[1px] rounded-[8px] border-gray-500 text-hostel-yeborder-gray-500 py-[4px] px-[12px] flex gap-2 items-center'
+                className='border-[1px] rounded-[8px] border-gray-500 text-hostel-yellow py-[4px] px-[12px] flex gap-2 items-center'
               >
                 <AiFillHeart className='text-hostel-yellow text-[25px]' />
                 <p className='hidden sm:block text-[16px] font-[400]'>
@@ -156,7 +160,7 @@ const HostelDetails: React.FC = () => {
             ) : (
               <button
                 onClick={() => toggleFavorite()}
-                className='border-[1px] rounded-[8px] border-gray-500 text-hostel-yeborder-gray-500 py-[4px] px-[12px] flex gap-2 items-center'
+                className='border-[1px] rounded-[8px] border-gray-500 text-hostel-yellow  py-[4px] px-[12px] flex gap-2 items-center'
               >
                 <AiOutlineHeart className='text-gray-500 text-[25px]' />
 
@@ -349,31 +353,31 @@ const HostelDetails: React.FC = () => {
             <h3 className='text-xl font-semibold mt-0 sm:mt-3 mb-3'>
               Recommended Hostels
             </h3>
-            <p>
-              consectetur esse reprehenderit. Mollit elit aliquip cillum eiusmod
-              et do pariatur enim eiusmod ipsum. Consequat reprehenderit
-              voluptate aliquip non amet laborum fugiat officia occaecat
-              adipisicing. Eu mollit cupidatat officia ullamco sit in. Cupidatat
-              reprehenderit duis veniam sint. Incididunt officia velit fugiat
-              dolore dolor. Eu qui Lorem eu exercitation laborum ex adipisicing
-              ullamco eiusmod nostrud consequat duis id. Ullamco exercitation
-              esse in aute ad sit duis sint do do cupidatat sint enim
-              incididunt. Excepteur exercitation ut laboris in nulla minim
-              magna. Enim excepteur incididunt aliqua aliqua do proident.
-              Cupidatat pariatur anim qui dolor incididunt ipsum cupidatat
-              magna. Eu voluptate et quis nisi laboris reprehenderit pariatur ex
-              laborum adipisicing reprehenderit dolor. Lorem adipisicing nulla
-              amet laborum cupidatat do ad esse. Fugiat excepteur incididunt eu
-              tempor do fugiat dolore eu nostrud magna. Et fugiat esse Lorem eu
-              adipisicing officia aute est aliquip officia ad. Laborum minim ut
-              enim consequat dolor deserunt ea mollit exercitation. Incididunt
-              esse sunt adipisicing labore consequat id incididunt.
-              Reprehenderit id cillum commodo eiusmod id tempor ad do anim
-              cillum fugiat magna. Labore et quis quis sunt ex aute.
-            </p>
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+              {hostelData
+                ?.slice(0, hostelData?.length - 1)
+                .map((item: any, i: any) => (
+                  <RecommendedCard key={item.id} hostelData={item} />
+                ))}
+            </div>
           </div>
         </div>
       </div>
+
+      <BookNow
+        {...{
+          showBooking,
+          handleShowBooking: setShowBooking,
+          checkIn,
+          checkOut,
+          fullname,
+          roomType,
+          price,
+          onCheckInChange: setCheckIn,
+          onCheckOutChange: setCheckOut,
+          onFullnameChange: setFullname
+        }}
+      />
     </div>
   )
 }

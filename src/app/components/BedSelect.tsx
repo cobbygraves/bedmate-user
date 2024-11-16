@@ -10,8 +10,10 @@ import {
 
 const BedSelect = ({
   onSelect,
-  rooms
+  rooms,
+  selectHeight = '22px'
 }: {
+  selectHeight?: string
   onSelect: (value: string) => void
   rooms: { value: string; lable: string }[]
 }) => {
@@ -19,11 +21,12 @@ const BedSelect = ({
     console.log(`selected ${value}`)
     onSelect(value)
   }
-
   return (
     <>
       <Select defaultValue={rooms[0].value} onValueChange={handleChange}>
-        <SelectTrigger className='w-full border border-gray-500 bg-white h-7'>
+        <SelectTrigger
+          className={`w-full border border-gray-500 bg-white h-[${selectHeight}]`}
+        >
           <SelectValue placeholder='Select Room' />
         </SelectTrigger>
         <SelectContent>

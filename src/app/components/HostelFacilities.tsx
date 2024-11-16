@@ -21,35 +21,35 @@ const HostelFacilities = ({ hostelId }: { hostelId?: string }) => {
             switch (facility) {
               case 'WIFI':
                 return (
-                  <div className='flex gap-3 items-center'>
+                  <div key={facility} className='flex gap-3 items-center'>
                     <CiWifiOn />
                     <p>Wifi</p>
                   </div>
                 )
               case 'AC':
                 return (
-                  <div className='flex gap-3 items-center'>
+                  <div key={facility} className='flex gap-3 items-center'>
                     <TbAirConditioning />
                     <p>Air Condition</p>
                   </div>
                 )
               case 'DSTV':
                 return (
-                  <div className='flex gap-3 items-center'>
+                  <div key={facility} className='flex gap-3 items-center'>
                     <ImTv />
                     <p>DSTV</p>
                   </div>
                 )
               case 'HOT_TAB':
                 return (
-                  <div className='flex gap-3 items-center'>
+                  <div key={facility} className='flex gap-3 items-center'>
                     <FaHotTub />
                     <p>Hot Tab</p>
                   </div>
                 )
               case 'CCTV':
                 return (
-                  <div className='flex gap-3 items-center'>
+                  <div key={facility} className='flex gap-3 items-center'>
                     <BiCctv />
                     <p>Security Camera</p>
                   </div>

@@ -23,10 +23,10 @@ export default function NavBar() {
   return (
     <nav className='flex items-center justify-between px-4 py-2 bg-hostel-yellow relative'>
       {/* Hostel Image (Logo) */}
-      <div className='flex items-center gap-2'>
+      <Link href='/' className='flex items-center gap-2'>
         <RiHomeOfficeLine size={50} />
         <p className='text-xl font-bold hidden sm:block'>BedMate</p>
-      </div>
+      </Link>
 
       {/* Search Bar */}
       {pathname === '/' && (
