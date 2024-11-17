@@ -85,7 +85,7 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
                       setSelectedRoom(index || 0)
                     }}
                     rooms={roomsData}
-                    selectHeight='20px'
+                    selectHeight='21px'
                   />
                 </div>
               </div>

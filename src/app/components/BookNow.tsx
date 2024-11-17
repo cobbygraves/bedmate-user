@@ -24,7 +24,7 @@ export function BookNow({
   onFullnameChange: (value: string) => void
 }) {
   return (
-    <div className='flex flex-col bg-hostel-yellow shadow-[0_5px_10px_black] size-[60px]  sticky bottom-[3vh] text-black left-[80%] sm:left-[85%] lg:hidden z-50 p-2 rounded-[50%] cursor-pointer font-bold'>
+    <div className='flex flex-col items-center justify-center bg-hostel-yellow shadow-[0_5px_10px_black] size-[75px]  sticky bottom-[3vh] text-black left-[80%] sm:left-[85%] lg:hidden z-50 p-2 rounded-[50%] cursor-pointer font-bold'>
       <BookingDialog
         checkIn={checkIn}
         checkOut={checkOut}

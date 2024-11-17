@@ -150,21 +150,21 @@ const HostelDetails: React.FC = () => {
             {isFavorited ? (
               <button
                 onClick={() => toggleFavorite()}
-                className='border-[1px] rounded-[8px] border-gray-500 text-hostel-yellow py-[4px] px-[12px] flex gap-2 items-center'
+                className='border-[1px] rounded-[8px] border-hostel-yellow text-gray-700 py-[4px] px-[12px] flex gap-2 items-center'
               >
                 <AiFillHeart className='text-hostel-yellow text-[25px]' />
-                <p className='hidden sm:block text-[16px] font-[400]'>
+                <p className='hidden sm:block text-[16px] font-medium'>
                   Remove from favorites
                 </p>
               </button>
             ) : (
               <button
                 onClick={() => toggleFavorite()}
-                className='border-[1px] rounded-[8px] border-gray-500 text-hostel-yellow  py-[4px] px-[12px] flex gap-2 items-center'
+                className='border-[1px] rounded-[8px] border-hostel-yellow text-gray-700  py-[4px] px-[12px] flex gap-2 items-center'
               >
-                <AiOutlineHeart className='text-gray-500 text-[25px]' />
+                <AiOutlineHeart className='text-hostel-yellow text-[25px]' />
 
-                <p className='hidden sm:block text-[16px] font-[400]'>
+                <p className='hidden sm:block text-[16px] font-medium'>
                   Add to favorites
                 </p>
               </button>

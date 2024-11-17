@@ -8,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { on } from 'events'
 
 export default function BookingDialog({
   roomType,
@@ -38,10 +37,10 @@ export default function BookingDialog({
   return (
     <Dialog open={showBooking} onOpenChange={handleShowBooking}>
       <DialogTrigger asChild>
-        <Button className='bg-transparent flex text-black items-center font-bold mt-1'>
+        <button className='bg-hostel-yellow flex text-black items-center font-bold'>
           Book
           <br /> Now!
-        </Button>
+        </button>
       </DialogTrigger>
       <DialogContent className='w-[90vw] rounded-lg bg-hostel-yellow'>
         <div className='bg-hostel-yellow min-h-[400px] mt-5 sm:mt-0'>
