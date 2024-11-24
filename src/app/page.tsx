@@ -9,6 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious
 } from '@/components/ui/pagination'
+import MobileFilter from './components/MobileFilter'
 
 // import { Pagination } from 'antd'
 import HostelCard from './components/HostelCard'
@@ -17,7 +18,7 @@ import HostelCardSkeleton from './components/HostelCardSkeleton'
 import { hostelData } from './utils/data'
 import NavBar from './components/NavBar'
 import FacilitiesFilters from './components/FacilitiesFilters'
-import { FiFilter } from 'react-icons/fi'
+// import { FiFilter } from 'react-icons/fi'
 import RoomsFilter from './components/RoomsFilter'
 import PriceFilter from './components/PriceFilter'
 
@@ -53,19 +54,26 @@ const Home = () => {
               <NavBar />
               <div className=' font-semibold text-xl text-gray-500 w-full border-b-2 my-3 pb-3'>
                 <div className='lg:px-[3rem] px-[1.5rem] flex justify-between items-center'>
-                  <p>Available hostels</p>
-                  <div className='hidden sm:flex gap-1 items-center'>
-                    <PriceFilter handleClick={(v: any) => {}} value={''} />
+                  <p className='w-full'>Available hostels</p>
+                  <div className='hidden sm:flex w-full justify-end gap-1 items-center'>
+                    <PriceFilter
+                      handleClick={(v: any) => {}}
+                      value={''}
+                      background='#f9e10f'
+                    />
                     <FacilitiesFilters
                       handleClick={(v: any) => {}}
                       value={''}
+                      background='#f9e10f'
                     />
-                    <RoomsFilter handleClick={(v: any) => {}} value={''} />
+                    <RoomsFilter
+                      handleClick={(v: any) => {}}
+                      value={''}
+                      background='#f9e10f'
+                    />
                   </div>
-                  <div className='flex items-center gap-x-1 sm:hidden cursor-pointer'>
-                    <p>Filters</p>
-                    <FiFilter size={30} />
-                  </div>
+
+                  <MobileFilter />
                 </div>
               </div>
             </div>

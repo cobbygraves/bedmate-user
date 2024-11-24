@@ -14,9 +14,16 @@ import {
 interface typeProp {
   value?: any
   handleClick: (data: any) => void
+  background?: string
+  border?: string
 }
 
-export default function PriceFilter({ value, handleClick }: typeProp) {
+export default function PriceFilter({
+  value,
+  handleClick,
+  background,
+  border
+}: typeProp) {
   const [selectedPrice, setSelectedPrice] = useState<any>(null)
 
   useEffect(() => {
@@ -28,7 +35,10 @@ export default function PriceFilter({ value, handleClick }: typeProp) {
   return (
     <div className='text-[#484442] hidden sm:block'>
       <DropdownMenu>
-        <DropdownMenuTrigger className='flex items-center gap-x-2 bg-hostel-yellow rounded-md py-1 px-2 text-lg'>
+        <DropdownMenuTrigger
+          className='flex items-center gap-x-2  rounded-md py-1 px-2 text-lg'
+          style={{ background: background, border: border }}
+        >
           <span>Prices</span> <IoIosArrowDown size={20} color='#484442' />
         </DropdownMenuTrigger>
         <DropdownMenuContent>

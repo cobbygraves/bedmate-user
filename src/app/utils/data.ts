@@ -176,11 +176,7 @@ export const vehicleRatings = [
     },
     ratings: 4,
     created_at: '2024-10-19 15:35:43.000000',
-    updated_at: '2024-10-19 15:35:43.000000',
-    vehicle_id: {
-      id: '8c198ba0-8a17-11ef-a064-3b699b6b5b73',
-      reg_number: 'GY 5464-24'
-    }
+    updated_at: '2024-10-19 15:35:43.000000'
   },
   {
     id: 'bb12e700-8e2f-11ef-b94a-33bd7cad33be',
@@ -192,10 +188,6 @@ export const vehicleRatings = [
     },
     ratings: 5,
     created_at: '2024-10-19 15:35:12.000000',
-    updated_at: '2024-10-19 15:35:12.000000',
-    vehicle_id: {
-      id: '8c198ba0-8a17-11ef-a064-3b699b6b5b73',
-      reg_number: 'GY 5403-24'
-    }
+    updated_at: '2024-10-19 15:35:12.000000'
   }
 ]

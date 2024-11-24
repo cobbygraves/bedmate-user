@@ -13,9 +13,16 @@ import { availableRooms } from '../utils/data'
 interface typeProp {
   value?: any
   handleClick: (data: any) => void
+  background?: string
+  border?: string
 }
 
-export default function RoomsFilter({ value, handleClick }: typeProp) {
+export default function RoomsFilter({
+  value,
+  handleClick,
+  background,
+  border
+}: typeProp) {
   const [selectedRoom, setSelectedRoom] = useState<any>(null)
 
   useEffect(() => {
@@ -27,7 +34,10 @@ export default function RoomsFilter({ value, handleClick }: typeProp) {
   return (
     <div className='text-[#484442] hidden sm:block'>
       <DropdownMenu>
-        <DropdownMenuTrigger className='flex items-center gap-x-2 bg-hostel-yellow rounded-md py-1 px-2 text-lg'>
+        <DropdownMenuTrigger
+          className='flex items-center gap-x-2  rounded-md py-1 px-2 text-lg'
+          style={{ border, background }}
+        >
           <span>Rooms</span> <IoIosArrowDown size={20} color='#484442' />
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
