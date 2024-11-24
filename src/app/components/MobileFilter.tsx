@@ -33,7 +33,7 @@ export default function MobileFilter() {
         <SheetTrigger asChild>
           {/* <Button variant="outline">{side}</Button> */}
           <div className='flex justify-end items-center gap-x-1 sm:hidden cursor-pointer'>
-            <p>Filters</p>
+            <h3 className='font-extrabold'>Filters</h3>
             <FiFilter size={30} />
           </div>
         </SheetTrigger>
