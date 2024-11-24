@@ -1,12 +1,12 @@
 'use client'
 import React, { useState } from 'react'
-import Image from 'next/image'
+
 import { FaLock } from 'react-icons/fa'
-import illustration from '../images/illustration.png'
-import logo from '../images/hostelimage.png' // Import your logo here
+
 import PhoneInput from 'react-phone-number-input'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
+import { RiHomeOfficeLine } from 'react-icons/ri'
 
 const SignIn: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -34,10 +34,10 @@ const SignIn: React.FC = () => {
   }
 
   return (
-    <div className='min-h-screen flex items-center justify-center bg-gray-100'>
-      <div className='flex flex-col-reverse sm:flex-row bg-white shadow-lg rounded-lg overflow-hidden sm:max-w-2xl lg:max-w-4xl relative'>
+    <div className='min-h-screen flex items-center justify-center bg-hostel-yellow sm:bg-white'>
+      <div className='flex w-full flex-col-reverse sm:flex-row bg-hostel-yellow sm:bg-white sm:shadow-xl rounded-lg overflow-hidden  sm:max-w-2xl lg:max-w-4xl relative'>
         {/* Left Section: Login Form */}
-        <div className='w-full lg:w-1/2 p-8 flex flex-col justify-center bg-white'>
+        <div className='w-full lg:w-1/2 p-3 sm:p-8 flex flex-col justify-center bg-hostel-yellow  sm:bg-white'>
           <h2 className='text-3xl font-bold text-black'>Welcome....</h2>
           <p className='mt-2 text-gray-600'>
             Sign in to continue with{' '}
@@ -111,7 +111,8 @@ const SignIn: React.FC = () => {
             {/* Sign In Button */}
             <button
               type='submit'
-              className='w-full bg-gray-500 hover:bg-black text-white py-2 rounded-lg transition-all duration-300'
+              className='w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300'
+              disabled={!phoneNumber || !pin}
             >
               Sign In
             </button>
@@ -134,21 +135,12 @@ const SignIn: React.FC = () => {
         </div>
 
         {/* Right Section: Image and Welcome Text */}
-        <div className='relative sm:flex w-full lg:w-1/2 flex-col items-center justify-center p-8 bg-hostel-yellow'>
+        <div className='relative sm:flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:bg-hostel-yellow'>
           {/* Illustration Image */}
-          <Image
-            src={illustration}
-            alt='Illustration'
-            layout='responsive'
-            className='object-contain mt-7 sm:mt-0'
-          />
-
-          {/* Logo */}
-          <div className='absolute top-2 sm:top-4 right-[25%] sm:right-[35%]'>
-            <Image src={logo} alt='Logo' width={150} height={150} />
+          <div className='flex items-center justify-center w-full'>
+            <RiHomeOfficeLine size={250} />
           </div>
-
-          <h3 className='text-xl hidden sm:block font-semibold text-gray-800 mt-4'>
+          <h3 className='text-xl hidden sm:block font-semibold text-gray-800 mt-5'>
             Get started in one, two, three…
           </h3>
           <p className='text-center text-gray-600 mt-2 hidden sm:block'>
