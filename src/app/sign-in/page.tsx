@@ -120,9 +120,9 @@ const SignIn: React.FC = () => {
             {/* Sign Up Link */}
             <p className='text-center text-gray-600 text-sm mt-4'>
               Don&apos;t have an account?{' '}
-              <a href='#' className='text-black font-semibold hover:underline'>
+              <Link href='/sign-up' className='text-black font-semibold hover:underline'>
                 Sign up
-              </a>
+              </Link>
             </p>
             <Link
               href='/'
