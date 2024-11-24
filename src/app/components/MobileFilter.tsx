@@ -51,7 +51,7 @@ export default function MobileFilter() {
             </SheetTitle>
           </SheetHeader>
           <div>
-            <h3>Rooms</h3>
+            <h3 className='mb-2'>Rooms</h3>
             <RadioGroup defaultValue='1 bed' className='grid grid-cols-2'>
               {availableRooms.map((price: any) => (
                 <div className='flex items-center space-x-2' key={price.label}>
@@ -63,7 +63,7 @@ export default function MobileFilter() {
             <hr className='border border-black mt-5 mb-2' />
           </div>
           <div>
-            <h3 className='mb-3'>Facilities</h3>
+            <h3 className='mb-2'>Facilities</h3>
             <RadioGroup
               defaultValue='Air-condition'
               className='grid grid-cols-2'
@@ -81,7 +81,7 @@ export default function MobileFilter() {
             <hr className='border border-black my-5' />
           </div>
           <div>
-            <h3 className='mb-3'>Prices</h3>
+            <h3 className='mb-2'>Prices</h3>
             <RadioGroup
               defaultValue='GH 1,000 - GH 2,000'
               className='grid grid-cols-1'
