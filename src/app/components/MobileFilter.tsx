@@ -39,7 +39,7 @@ export default function MobileFilter() {
         </SheetTrigger>
         <SheetContent
           side='bottom'
-          className=' rounded-t-xl bg-hostel-yellow h-[60vh]'
+          className=' rounded-t-xl bg-hostel-yellow h-[75vh]'
         >
           <SheetHeader>
             <SheetTitle>
