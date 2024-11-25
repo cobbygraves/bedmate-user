@@ -7,7 +7,7 @@ import PhoneInput from 'react-phone-number-input'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
 import { RiHomeOfficeLine } from 'react-icons/ri'
-import { Pin } from 'lucide-react'
+// import { Pin } from 'lucide-react'
 
 const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
   const [phoneNumber, setPhoneNumber] = useState<any>(null)
@@ -42,9 +42,11 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
           <div className='w-full lg:w-1/2 flex flex-col justify-center bg-hostel-yellow  sm:bg-white py-5 px-5'>
             {/* Forms and inputs */}
 
-            <div className=' w-full grid grid-cols-1 sm:grid-cols-2 gap-x-3 my-5'>
+            <div className=' w-full grid grid-cols-1 sm:grid-cols-2 gap-3'>
               <div className='w-full'>
-                <label className='text-gray-500'>*Name</label>
+                <label className='text-sm font-medium text-gray-500'>
+                  *Name
+                </label>
 
                 <input
                   className='w-full border border-[#939291] rounded-md h-[40px] px-2'
@@ -54,7 +56,9 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
               </div>
 
               <div className='w-full'>
-                <label className='text-gray-500'>*Email</label>
+                <label className='text-sm font-medium text-gray-500'>
+                  *Email
+                </label>
 
                 <input
                   className='w-full border border-[#939291] rounded-md h-[40px] px-2'
@@ -64,10 +68,10 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
               </div>
             </div>
             {/* Mobile Number Field */}
-            <div className='w-full'>
+            <div className='w-full my-5'>
               <label
                 htmlFor='phone-number'
-                className='block text-sm font-medium text-gray-500'
+                className='text-sm font-medium text-gray-500'
               >
                 Mobile Number
               </label>
@@ -96,12 +100,12 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
               </div>
             </div>
             {/* PIN */}
-            <div className='w-full grid-cols-1 sm:grid-cols-2 my-5 gap-3'>
+            <div className='w-full grid  grid-cols-1 sm:grid-cols-2 gap-3'>
               <div className='w-full'>
-                <label className='text-gray-500'>
+                <label className='text-sm font-medium text-gray-500'>
                   *PIN(Enter a 4 digit Pin)
                 </label>
-                <br />
+
                 <input
                   value={pin}
                   onChange={handlePinChange}
@@ -112,8 +116,10 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
               </div>
               {/* Confirm Pin */}
               <div className='w-full'>
-                <label className='text-gray-500'>*Confirm PIN</label>
-                <br />
+                <label className='text-sm font-medium text-gray-500'>
+                  *Confirm PIN
+                </label>
+
                 <input
                   value={pin}
                   onChange={handlePinChange}
@@ -125,19 +131,21 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
             </div>
             <button
               type='submit'
-              className='w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300'
+              className='w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300 mt-5'
               disabled={!phoneNumber || !pin}
             >
               Continue
             </button>
             {/* Already have an account */}
-            <div className='flex'>
-              <p>Already Have An Account ?</p>
+            <div className='flex items-center gap-x-2'>
+              <span className='text-center text-gray-600 text-sm'>
+                Already have an account ?
+              </span>
               <button
                 onClick={onSignIn}
-                className='cursor-pointer hover:underline flex px-2'
+                className='text-black font-semibold hover:underline'
               >
-                Sign-In
+                Sign-in
               </button>
             </div>
             {/* Back Home button */}
