@@ -103,12 +103,13 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
             <div className='w-full grid  grid-cols-1 sm:grid-cols-2 gap-3'>
               <div className='w-full'>
                 <label className='text-sm font-medium text-gray-500'>
-                  *PIN(Enter a 4 digit Pin)
+                  *PIN
                 </label>
 
                 <input
                   value={pin}
                   onChange={handlePinChange}
+                  placeholder='Enter a 4 digit pin'
                   className='border border-[#939291]  rounded-md h-[40px] px-2 w-full'
                   type='password'
                   name='pin'
