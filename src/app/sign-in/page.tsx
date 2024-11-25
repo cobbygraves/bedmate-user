@@ -120,7 +120,7 @@ const SignIn = () => {
             </button>
 
             {/* Sign Up Link */}
-            <p className='text-center text-gray-600 text-sm mt-2'>
+            <p className='text-end text-gray-600 text-sm'>
               Don&apos;t have an account?{' '}
               <button
                 onClick={() => setSignup(true)}
