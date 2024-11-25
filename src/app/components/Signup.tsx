@@ -10,8 +10,8 @@ import { RiHomeOfficeLine } from 'react-icons/ri'
 import { Pin } from 'lucide-react'
 
 const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [pin, setPin] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState<any>(null)
+  const [pin, setPin] = useState<any>(null)
   const [loading, setLoading] = useState(false)
 
   const handlePinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,6 +126,7 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
             <button
               type='submit'
               className='w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300'
+              disabled={!phoneNumber || !pin}
             >
               Continue
             </button>
