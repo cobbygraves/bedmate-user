@@ -45,9 +45,9 @@ const SignIn = () => {
             Sign in to continue with{' '}
             <span className='font-medium'>BedMate</span>
           </p>
-          <form onSubmit={handleSignIn} className='mt-8 space-y-4'>
+          <form onSubmit={handleSignIn} className='mt-8'>
             {/* Mobile Number Field */}
-            <div>
+            <div className='mb-5'>
               <label
                 htmlFor='phone-number'
                 className='block text-sm font-medium text-gray-500'
@@ -80,7 +80,7 @@ const SignIn = () => {
             </div>
 
             {/* PIN Field */}
-            <div>
+            <div className='mb-5'>
               <label
                 htmlFor='pin'
                 className='block text-sm font-medium text-gray-500'
@@ -101,7 +101,7 @@ const SignIn = () => {
             </div>
 
             {/* Forgot PIN Link */}
-            <div className='text-sm text-right'>
+            <div className='text-sm text-right relative bottom-4'>
               <a href='#' className='text-gray-500'>
                 Did you forget your pin?{' '}
                 <span className='text-black font-semibold hover:underline'>
@@ -120,14 +120,14 @@ const SignIn = () => {
             </button>
 
             {/* Sign Up Link */}
-            <p className='text-end text-gray-600 text-sm'>
-              Don&apos;t have an account?{' '}
-              <button
+            <p className='text-right text-gray-600 text-sm space-x-1 mt-1'>
+              <span>Don&apos;t have an account?</span>
+              <span
                 onClick={() => setSignup(true)}
                 className='text-black font-semibold hover:underline'
               >
                 Sign up
-              </button>
+              </span>
             </p>
             <Link
               href='/'

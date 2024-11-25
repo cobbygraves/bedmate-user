@@ -73,7 +73,7 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
                 htmlFor='phone-number'
                 className='text-sm font-medium text-gray-500'
               >
-                Mobile Number
+                *Mobile Number
               </label>
 
               <div className='border border-gray-500 rounded-lg px-2 py-1 mt-1 bg-white w-full'>
@@ -138,7 +138,7 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
             </button>
             {/* Already have an account */}
             <div className='flex items-center gap-x-2 mt-1 justify-end'>
-              <span className='text-center text-gray-600 text-sm'>
+              <span className='text-gray-600 text-sm'>
                 Already have an account ?
               </span>
               <button
