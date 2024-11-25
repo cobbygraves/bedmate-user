@@ -102,7 +102,7 @@ import { Pin } from 'lucide-react';
                             <input value={pin} onChange={handlePinChange} className='border-2 border-black rounded-md ' type="password" name="confirm"/>
                         </div>
                     </div>
-                    <button type='submit' className="bg-hostel-yellow hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg w-full">
+                    <button type='submit' className="bg-hostel-yellow hover:bg-yellow-700 text-white  font-bold py-2 px-4 rounded-lg w-full">
                         Continue
                     </button>
                     {/* Already have an account */}
