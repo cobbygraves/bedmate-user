@@ -116,7 +116,7 @@ const SignIn = () => {
               className='w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300'
               disabled={!phoneNumber || !pin}
             >
-              Sign In
+              Login
             </button>
 
             {/* Sign Up Link */}
