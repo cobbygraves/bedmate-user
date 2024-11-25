@@ -1,17 +1,19 @@
 'use client'
 import React, { useState } from 'react'
-
+import SignUp from '../components/Signup'
 import { FaLock } from 'react-icons/fa'
 
 import PhoneInput from 'react-phone-number-input'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
 import { RiHomeOfficeLine } from 'react-icons/ri'
+import { sign } from 'crypto'
 
-const SignIn: React.FC = () => {
+const SignIn = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [pin, setPin] = useState('')
   const [loading, setLoading] = useState(false)
+  const [signup, setSignup] = useState(false)
 
   const handlePinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPin(event.target.value)
@@ -33,13 +35,13 @@ const SignIn: React.FC = () => {
     }, 2000) // Simulate loading for 2 seconds
   }
 
-  return (
+  let content = (
     <div className='min-h-screen flex items-center justify-center bg-hostel-yellow sm:bg-white'>
       <div className='flex w-full flex-col-reverse sm:flex-row bg-hostel-yellow sm:bg-white sm:shadow-xl rounded-lg overflow-hidden  sm:max-w-2xl lg:max-w-4xl relative'>
         {/* Left Section: Login Form */}
         <div className='w-full lg:w-1/2 p-3 sm:p-8 flex flex-col justify-center bg-hostel-yellow  sm:bg-white'>
           <h2 className='text-3xl font-bold text-black'>Welcome....</h2>
-          <p className='mt-2 text-gray-600'>
+          <p className='mt-2 text-gray-500'>
             Sign in to continue with{' '}
             <span className='font-medium'>BedMate</span>
           </p>
@@ -120,9 +122,12 @@ const SignIn: React.FC = () => {
             {/* Sign Up Link */}
             <p className='text-center text-gray-600 text-sm mt-4'>
               Don&apos;t have an account?{' '}
-              <Link href='/sign-up' className='text-black font-semibold hover:underline'>
+              <button
+                onClick={() => setSignup(true)}
+                className='text-black font-semibold hover:underline'
+              >
                 Sign up
-              </Link>
+              </button>
             </p>
             <Link
               href='/'
@@ -153,6 +158,11 @@ const SignIn: React.FC = () => {
       </div>
     </div>
   )
+
+  if (signup) {
+    content = <SignUp onSignIn={() => setSignup(false)} />
+  }
+  return <>{content}</>
 }
 
 export default SignIn
