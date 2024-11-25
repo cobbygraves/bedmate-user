@@ -137,7 +137,7 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
               Continue
             </button>
             {/* Already have an account */}
-            <div className='flex items-center gap-x-2'>
+            <div className='flex items-center gap-x-2 mt-2'>
               <span className='text-center text-gray-600 text-sm'>
                 Already have an account ?
               </span>
