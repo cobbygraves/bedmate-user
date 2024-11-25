@@ -40,10 +40,6 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
         <div className='flex w-full gap-5 flex-col-reverse sm:flex-row bg-hostel-yellow sm:bg-white sm:shadow-xl rounded-lg overflow-hidden  sm:max-w-2xl lg:max-w-4xl relative'>
           {/* Left Section of Sign Up */}
           <div className='w-full lg:w-1/2 flex flex-col justify-center bg-hostel-yellow  sm:bg-white py-5 px-5'>
-            <h3 className='mt-2 text-gray-500 font-bold'>
-              Provide your details in the form below
-            </h3>
-
             {/* Forms and inputs */}
 
             <div className=' w-full grid grid-cols-1 sm:grid-cols-2 gap-x-3 my-5'>
@@ -159,7 +155,7 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
           <div className='relative sm:flex w-full lg:w-1/2 flex-col items-center justify-center sm:p-8 sm:bg-hostel-yellow'>
             {/* Illustration Image */}
             <div className='flex items-center justify-center w-full'>
-              <RiHomeOfficeLine size={250} />
+              <RiHomeOfficeLine size={200} />
             </div>
             <div className=''>
               <h3 className='text-xl text-center sm:block font-semibold text-gray-800'>
