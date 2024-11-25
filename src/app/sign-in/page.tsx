@@ -143,7 +143,7 @@ const SignIn = () => {
         <div className='relative sm:flex w-full lg:w-1/2 flex-col items-center justify-center p-8 sm:bg-hostel-yellow'>
           {/* Illustration Image */}
           <div className='flex items-center justify-center w-full'>
-            <RiHomeOfficeLine size={250} />
+            <RiHomeOfficeLine size={200} />
           </div>
           <h3 className='text-xl hidden sm:block font-semibold text-gray-800 mt-5'>
             Get started in one, two, three…
