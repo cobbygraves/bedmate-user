@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 // import { Input } from '@/components/ui/input'
 // import { Label } from '@/components/ui/label'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import {
@@ -33,7 +34,7 @@ export default function MobileFilter() {
         <SheetTrigger asChild>
           {/* <Button variant="outline">{side}</Button> */}
           <div className='flex justify-end items-center gap-x-1 sm:hidden cursor-pointer'>
-            <h3 className='font-extrabold'>Filters</h3>
+            <h3>Filters</h3>
             <FiFilter size={30} />
           </div>
         </SheetTrigger>
@@ -52,7 +53,10 @@ export default function MobileFilter() {
           </SheetHeader>
           <div>
             <h3 className='mb-2'>Rooms</h3>
-            <RadioGroup defaultValue='1 bed' className='grid grid-cols-2'>
+            <RadioGroup
+              // defaultValue='1 bed'
+              className='grid grid-cols-2'
+            >
               {availableRooms.map((price: any) => (
                 <div className='flex items-center space-x-2' key={price.label}>
                   <RadioGroupItem value={price.name} id={price.label} />
@@ -65,15 +69,12 @@ export default function MobileFilter() {
           <div>
             <h3 className='mb-2'>Facilities</h3>
             <RadioGroup
-              defaultValue='Air-condition'
+              // defaultValue='Air-condition'
               className='grid grid-cols-2'
             >
               {availableFacilities.map((facility: any) => (
-                <div
-                  className='flex items-center space-x-2'
-                  key={facility.label}
-                >
-                  <RadioGroupItem value={facility.name} id={facility.label} />
+                <div className='flex items-center gap-2' key={facility.label}>
+                  <Checkbox id={facility.label} />
                   <Label htmlFor={facility.label}>{facility.label}</Label>
                 </div>
               ))}
@@ -83,7 +84,7 @@ export default function MobileFilter() {
           <div>
             <h3 className='mb-2'>Prices</h3>
             <RadioGroup
-              defaultValue='GH 1,000 - GH 2,000'
+              // defaultValue='GH 1,000 - GH 2,000'
               className='grid grid-cols-1'
             >
               {availablePrices.map((price: any) => (
