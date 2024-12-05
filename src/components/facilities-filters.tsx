@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-
-import { availablePrices } from '../utils/data'
+import { availableFacilities } from '@/app/utils/data'
 import { IoIosArrowDown } from 'react-icons/io'
 import {
   DropdownMenu,
@@ -18,17 +17,17 @@ interface typeProp {
   border?: string
 }
 
-export default function PriceFilter({
+export default function FacilitiesFilter({
   value,
   handleClick,
   background,
   border
 }: typeProp) {
-  const [selectedPrice, setSelectedPrice] = useState<any>(null)
+  const [selectedFacilites, setSelectedFacilites] = useState<any>(null)
 
   useEffect(() => {
     if (!value) {
-      setSelectedPrice(null)
+      setSelectedFacilites(null)
     }
   }, [value])
 
@@ -36,13 +35,13 @@ export default function PriceFilter({
     <div className='text-[#484442] hidden sm:block'>
       <DropdownMenu>
         <DropdownMenuTrigger
-          className='flex items-center gap-x-2  rounded-md py-1 px-2 text-lg'
+          className='flex items-center gap-x-2 rounded-md py-1 px-2 text-lg'
           style={{ background: background, border: border }}
         >
-          <span>Prices</span> <IoIosArrowDown size={20} color='#484442' />
+          <span>Facilities</span> <IoIosArrowDown size={20} color='#484442' />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {availablePrices.map((price: any) => (
+          {availableFacilities.map((price: any) => (
             <DropdownMenuItem
               key={price.label}
               onClick={() => handleClick(price)}

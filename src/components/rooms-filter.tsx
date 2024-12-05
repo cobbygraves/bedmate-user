@@ -1,7 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react'
-
-import { availableFacilities } from '../utils/data'
 import { IoIosArrowDown } from 'react-icons/io'
 import {
   DropdownMenu,
@@ -10,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import { availableRooms } from '@/app/utils/data'
 
 interface typeProp {
   value?: any
@@ -18,17 +17,17 @@ interface typeProp {
   border?: string
 }
 
-export default function FacilitiesFilter({
+export default function RoomsFilter({
   value,
   handleClick,
   background,
   border
 }: typeProp) {
-  const [selectedFacilites, setSelectedFacilites] = useState<any>(null)
+  const [selectedRoom, setSelectedRoom] = useState<any>(null)
 
   useEffect(() => {
     if (!value) {
-      setSelectedFacilites(null)
+      setSelectedRoom(null)
     }
   }, [value])
 
@@ -36,13 +35,13 @@ export default function FacilitiesFilter({
     <div className='text-[#484442] hidden sm:block'>
       <DropdownMenu>
         <DropdownMenuTrigger
-          className='flex items-center gap-x-2 rounded-md py-1 px-2 text-lg'
-          style={{ background: background, border: border }}
+          className='flex items-center gap-x-2  rounded-md py-1 px-2 text-lg'
+          style={{ border, background }}
         >
-          <span>Facilities</span> <IoIosArrowDown size={20} color='#484442' />
+          <span>Rooms</span> <IoIosArrowDown size={20} color='#484442' />
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {availableFacilities.map((price: any) => (
+        <DropdownMenuContent align='end'>
+          {availableRooms.map((price: any) => (
             <DropdownMenuItem
               key={price.label}
               onClick={() => handleClick(price)}

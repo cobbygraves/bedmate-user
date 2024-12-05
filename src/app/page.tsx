@@ -9,18 +9,19 @@ import {
   PaginationNext,
   PaginationPrevious
 } from '@/components/ui/pagination'
-import MobileFilter from './components/MobileFilter'
+
+import MobileFilter from '@/components/mobile-filter'
 
 // import { Pagination } from 'antd'
-import HostelCard from './components/HostelCard'
+import HostelCard from '@/components/hostel-card'
 import { useMediaQuery } from 'react-responsive'
-import HostelCardSkeleton from './components/HostelCardSkeleton'
+import HostelCardSkeleton from '@/components/hostel-card-skeleton'
 import { hostelData } from './utils/data'
-import NavBar from './components/NavBar'
-import FacilitiesFilters from './components/FacilitiesFilters'
+import NavBar from '@/components/nav-bar'
+import FacilitiesFilters from '@/components/facilities-filters'
 // import { FiFilter } from 'react-icons/fi'
-import RoomsFilter from './components/RoomsFilter'
-import PriceFilter from './components/PriceFilter'
+import RoomsFilter from '@/components/rooms-filter'
+import PriceFilter from '@/components/price-filter'
 
 const Home = () => {
   const isLarge = useMediaQuery({

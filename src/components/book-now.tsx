@@ -1,4 +1,4 @@
-import BookingDialog from './BookingDialog'
+import BookingDialog from './booking-dialog'
 
 export function BookNow({
   checkIn,

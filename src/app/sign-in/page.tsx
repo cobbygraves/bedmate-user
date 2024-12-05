@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-import SignUp from '../components/Signup'
+
+import SignUp from '@/components/sign-up'
 import { FaLock } from 'react-icons/fa'
 
 import PhoneInput from 'react-phone-number-input'

@@ -7,10 +7,10 @@ import room1 from '../../images/room1.png'
 import roomImg from '../../images/room2.png'
 import userImg from '@/app/images/userImg.webp'
 import { IoLocation } from 'react-icons/io5'
-import NavBar from '../../components/NavBar'
-import HostelFacilities from '@/app/components/HostelFacilities'
+import NavBar from '@/components/nav-bar'
+import HostelFacilities from '@/components/hostel-facilities'
 import moment from 'moment'
-import Rate from '@/app/components/Rate'
+import Rate from '@/components/review-rate'
 import { vehicleRatings } from '@/app/utils/data'
 import {
   Carousel,
@@ -31,8 +31,8 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import { hostelData } from '@/app/utils/data'
-import RecommendedCard from '@/app/components/RecommendedCard'
-import { BookNow } from '@/app/components/BookNow'
+import RecommendedCard from '@/components/recommended-card'
+import { BookNow } from '@/components/book-now'
 
 const HostelDetails: React.FC = () => {
   const [roomType, setRoomType] = useState('1')

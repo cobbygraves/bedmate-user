@@ -10,7 +10,7 @@ import {
   availableRooms,
   availableFacilities,
   availablePrices
-} from '../utils/data'
+} from '@/app/utils/data'
 import { FiFilter } from 'react-icons/fi'
 import {
   Sheet,

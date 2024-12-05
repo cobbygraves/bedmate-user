@@ -4,12 +4,12 @@ import Image from 'next/image'
 import { IoPricetags } from 'react-icons/io5'
 import { FaBed } from 'react-icons/fa'
 import { GoHeart, GoHeartFill } from 'react-icons/go'
-import BedSelect from './BedSelect'
+import BedSelect from './bed-select'
 import { useRouter } from 'next/navigation'
 
 import { IoLocation } from 'react-icons/io5'
 
-interface RecommendedCardProps {
+interface HostelCardProps {
   hostelData: {
     id: number
     name: string
@@ -22,7 +22,7 @@ interface RecommendedCardProps {
   }
 }
 
-export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
+export default function HostelCard({ hostelData }: HostelCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
   const [rooms, setRooms] = useState(hostelData?.rooms)
   const [selectedRoom, setSelectedRoom] = useState(0)
@@ -53,7 +53,7 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
         </div>
 
         <div
-          className='h-[200px] sm:h-[185px] rounded-t-[12px] w-full object-cover relative cursor-pointer'
+          className='h-[202px] rounded-t-[12px] w-full object-cover relative cursor-pointer'
           onClick={() => router.push(`/hostel/${hostelData?.id}`)}
         >
           <Image
@@ -68,14 +68,14 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
 
         <div className='mt-2 px-2 ' onClick={() => {}}>
           <div className='flex gap-4 items-center w-full'>
-            <p className='font-bold sm:text-sm capitalize truncate w-full'>
+            <p className='font-bold text-[24px] capitalize truncate w-full'>
               {hostelData?.name}
             </p>
           </div>
           <div className='space-y-1 mt-1'>
-            <div className='flex items-center justify-between sm:text-sm'>
+            <div className='flex items-center justify-between'>
               <div className='flex gap-x-2 items-center'>
-                <FaBed className='size-5 sm:size-3' color='#808080' />
+                <FaBed size={23} color='#808080' />
                 <div>
                   <BedSelect
                     onSelect={(value: string) => {
@@ -85,12 +85,11 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
                       setSelectedRoom(index || 0)
                     }}
                     rooms={roomsData}
-                    selectHeight='21px'
                   />
                 </div>
               </div>
-              <div className='flex items-center gap-x-1 sm:text-sm'>
-                <IoPricetags className='size-5 sm:size-3' color='#808080' />
+              <div className='flex items-center gap-x-1'>
+                <IoPricetags size={20} color='#808080' />
                 <p className='font-bold'>
                   <span>
                     &#8373; {nbrFormat.format(rooms[selectedRoom]?.price)}
@@ -99,10 +98,10 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
                 </p>
               </div>
             </div>
-            <div className='space-y-1 w-full text-gray-500 sm:text-sm'>
+            <div className='space-y-1 w-full text-gray-500'>
               <div className='flex gap-x-1'>
-                <div className='flex -ml-1 items-center'>
-                  <IoLocation className='size-5 sm:size-3' color='#808080' />
+                <div className='flex -ml-1'>
+                  <IoLocation size={23} color='#808080' />
                   <p className=' pr-1  text-black font-bold'>{campusName}</p>
                 </div>
                 <span className='font-bold'>-</span>

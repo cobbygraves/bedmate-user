@@ -1,5 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
+
+import { availablePrices } from '@/app/utils/data'
 import { IoIosArrowDown } from 'react-icons/io'
 import {
   DropdownMenu,
@@ -8,7 +10,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { availableRooms } from '../utils/data'
 
 interface typeProp {
   value?: any
@@ -17,17 +18,17 @@ interface typeProp {
   border?: string
 }
 
-export default function RoomsFilter({
+export default function PriceFilter({
   value,
   handleClick,
   background,
   border
 }: typeProp) {
-  const [selectedRoom, setSelectedRoom] = useState<any>(null)
+  const [selectedPrice, setSelectedPrice] = useState<any>(null)
 
   useEffect(() => {
     if (!value) {
-      setSelectedRoom(null)
+      setSelectedPrice(null)
     }
   }, [value])
 
@@ -36,12 +37,12 @@ export default function RoomsFilter({
       <DropdownMenu>
         <DropdownMenuTrigger
           className='flex items-center gap-x-2  rounded-md py-1 px-2 text-lg'
-          style={{ border, background }}
+          style={{ background: background, border: border }}
         >
-          <span>Rooms</span> <IoIosArrowDown size={20} color='#484442' />
+          <span>Prices</span> <IoIosArrowDown size={20} color='#484442' />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align='end'>
-          {availableRooms.map((price: any) => (
+        <DropdownMenuContent>
+          {availablePrices.map((price: any) => (
             <DropdownMenuItem
               key={price.label}
               onClick={() => handleClick(price)}
