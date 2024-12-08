@@ -12,11 +12,18 @@ import { RiHomeOfficeLine } from 'react-icons/ri'
 const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
   const [phoneNumber, setPhoneNumber] = useState<any>(null)
   const [pin, setPin] = useState<any>(null)
+  const [confirmPin,setconfirmPin]=useState<any>(null)
   const [loading, setLoading] = useState(false)
+
 
   const handlePinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPin(event.target.value)
   }
+  const handleConfirmPinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setconfirmPin(event.target.value)
+    }
+
+
 
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -122,8 +129,8 @@ const SignUp = ({ onSignIn }: { onSignIn: () => void }) => {
                 </label>
 
                 <input
-                  value={pin}
-                  onChange={handlePinChange}
+                  value={confirmPin}
+                  onChange={handleConfirmPinChange}
                   className='border border-[#939291] rounded-md h-[40px] px-2 w-full'
                   type='password'
                   name='confirm'
