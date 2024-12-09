@@ -97,21 +97,8 @@ const HostelDetails: React.FC = () => {
         {/* Left Section with Collage of Pictures */}
         <div className='lg:w-2/3 space-y-4'>
           <div className='w-full h-[430px]'>
-            <Carousel
-              setApi={setApi}
-              // plugins={[
-              //   Autoplay({
-              //     delay: 2000
-              //   })
-              // ]}
-            >
-              <CarouselPrevious
-                className='z-30 left-7 cursor-pointer bg-white'
-                // onClick={() => {
-                //   console.log('hello')
-                //   api?.scrollPrev()
-                // }}
-              />
+            <Carousel setApi={setApi}>
+              <CarouselPrevious className='z-30 left-7 cursor-pointer bg-white' />
               <CarouselContent>
                 <CarouselItem>
                   <div className='relative h-[430px] w-full'>
