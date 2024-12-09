@@ -1,5 +1,4 @@
 import React, { useState } from 'react' // Ensure useState is imported
-import Image from 'next/image'
 import { FaRegUserCircle } from 'react-icons/fa'
 import { RiHomeOfficeLine } from 'react-icons/ri'
 import UserMenu from './user-menu'

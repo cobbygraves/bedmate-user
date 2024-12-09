@@ -1,20 +1,19 @@
 'use client'
 import React, { useState } from 'react'
-
 import SignUp from '@/components/sign-up'
 import { FaLock } from 'react-icons/fa'
-
+import { useToast } from '@/hooks/use-toast'
 import PhoneInput from 'react-phone-number-input'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
 import { RiHomeOfficeLine } from 'react-icons/ri'
-import { sign } from 'crypto'
 
 const SignIn = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [pin, setPin] = useState('')
   const [loading, setLoading] = useState(false)
   const [signup, setSignup] = useState(false)
+  const { toast } = useToast()
 
   const handlePinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPin(event.target.value)
@@ -125,7 +124,7 @@ const SignIn = () => {
               <span>Don&apos;t have an account?</span>
               <span
                 onClick={() => setSignup(true)}
-                className='text-black font-semibold hover:underline'
+                className='text-black font-semibold hover:underline cursor-pointer'
               >
                 Sign up
               </span>
@@ -161,7 +160,17 @@ const SignIn = () => {
   )
 
   if (signup) {
-    content = <SignUp onSignIn={() => setSignup(false)} />
+    content = (
+      <SignUp
+        onSignIn={() => setSignup(false)}
+        onSignUp={() =>
+          toast({
+            description:
+              'Your account has been created successfully, please login to continue'
+          })
+        }
+      />
+    )
   }
   return <>{content}</>
 }
