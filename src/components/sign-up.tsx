@@ -44,11 +44,10 @@ const SignUp = ({
     if (userData?.response?.data?.error) {
       setError(userData.response.data.error)
     } else {
-      // setError(userData?.response?.data?.error)
       onSignIn()
       onSignUp()
     }
-    // console.log(userData)
+
     setLoading(false)
   }
 
