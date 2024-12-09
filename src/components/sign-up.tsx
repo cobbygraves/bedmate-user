@@ -40,11 +40,13 @@ const SignUp = ({
       email
     }
     const userData = await userSignUp(data)
-    if (userData) {
+    console.log(userData)
+    if (userData?.response?.data?.error) {
+      setError(userData.response.data.error)
+    } else {
+      // setError(userData?.response?.data?.error)
       onSignIn()
       onSignUp()
-    } else {
-      setError(userData?.response?.data?.message)
     }
     // console.log(userData)
     setLoading(false)
