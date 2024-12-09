@@ -26,8 +26,11 @@ const SignUp = ({
   const [error, setError] = useState<string | null>(null)
 
   const handleSignUp = async () => {
+    if (error) {
+      setError(null)
+    }
     if (confirmPin !== pin) return setError('Pin does not match')
-    error && setError(null)
+
     setLoading(true)
     const data = {
       fullName,
