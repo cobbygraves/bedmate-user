@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { IoMdClose } from 'react-icons/io'
+import { LogoutDialog } from './logout-dialog'
 
 const UserMenu = ({
   isOpen,
@@ -57,8 +58,8 @@ const UserMenu = ({
             App Info
           </li>
           <hr />
-          <li className='px-5 cursor-pointer hover:bg-yellow-100 py-2'>
-            Logout
+          <li className='px-1 cursor-pointer hover:bg-yellow-100 py-2'>
+            <LogoutDialog />
           </li>
         </ul>
       </div>

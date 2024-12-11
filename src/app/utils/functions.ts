@@ -27,3 +27,13 @@ export const signUp = async (payload: {
     return error
   }
 }
+
+export const signIn = async (payload: { phone: any; pin: any }) => {
+  try {
+    const { data } = await axios.post(`${SERVER_URL}/user/signin`, payload)
+    // console.log(data)
+    return data
+  } catch (error) {
+    return error
+  }
+}

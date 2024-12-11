@@ -1,13 +1,15 @@
-import React, { useState } from 'react' // Ensure useState is imported
+import React, { useState, useEffect, use } from 'react' // Ensure useState is imported
 import { FaRegUserCircle } from 'react-icons/fa'
 import { RiHomeOfficeLine } from 'react-icons/ri'
 import UserMenu from './user-menu'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [user, setUser] = useState<any | null>(null)
+  const { data: session } = useSession()
 
   const pathname = usePathname()
 
@@ -18,6 +20,14 @@ export default function NavBar() {
   const closeMenu = () => {
     setIsMenuOpen(false)
   }
+
+  useEffect(() => {
+    if (session) {
+      setUser(session.user)
+    } else {
+      setUser(null)
+    }
+  }, [session])
 
   return (
     <nav className='flex items-center justify-between px-4 py-2 bg-hostel-yellow relative'>

@@ -1,19 +1,27 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SignUp from '@/components/sign-up'
 import { FaLock } from 'react-icons/fa'
 import { useToast } from '@/hooks/use-toast'
+import { LoadingButton } from '@/components/loading-button'
 import PhoneInput from 'react-phone-number-input'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
 import { RiHomeOfficeLine } from 'react-icons/ri'
+import { signIn } from 'next-auth/react'
+import { redirect, useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 const SignIn = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [pin, setPin] = useState('')
   const [loading, setLoading] = useState(false)
   const [signup, setSignup] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const { toast } = useToast()
+  const router = useRouter()
+  const { data: session } = useSession()
+  // console.log(session)
 
   const handlePinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPin(event.target.value)
@@ -22,18 +30,17 @@ const SignIn = () => {
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault()
     setLoading(true)
-    // Add sign-in logic here (API call)
-    console.log('Phone Number:', phoneNumber)
-    console.log('PIN:', pin)
-    // Simulating an API call
-    setTimeout(() => {
-      setLoading(false)
-      // Reset phone and pin for demo
-      setPhoneNumber('')
-      setPin('')
-      // Handle success or failure here
-    }, 2000) // Simulate loading for 2 seconds
+    const response = await signIn('credentials', { phone: phoneNumber, pin })
+    if (response?.ok) {
+      window.location.replace('/')
+    }
   }
+
+  useEffect(() => {
+    if (session) {
+      window.location.replace('/')
+    }
+  }, [session])
 
   let content = (
     <div className='min-h-screen flex items-center justify-center bg-hostel-yellow sm:bg-white'>
@@ -111,13 +118,17 @@ const SignIn = () => {
             </div>
 
             {/* Sign In Button */}
-            <button
-              type='submit'
-              className='w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300'
+            {error && <p className='text-red-500 text-center'>{error}</p>}
+            <LoadingButton
+              className={`w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300 ${
+                error ? 'mt-3' : 'mt-5'
+              }`}
               disabled={!phoneNumber || !pin}
+              loading={loading}
+              onClick={handleSignIn}
             >
-              Login
-            </button>
+              Continue
+            </LoadingButton>
 
             {/* Sign Up Link */}
             <p className='text-right text-gray-600 text-sm space-x-1 mt-1'>
