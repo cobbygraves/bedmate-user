@@ -22,8 +22,8 @@ export function ErrorDialog() {
             <span className='font-semibold'>Logout</span>
           </Button>
         </AlertDialogTrigger> */}
-      <AlertDialogContent className='w-[90%] sm:w-[30%] h-[125px] rounded-lg'>
-        <AlertDialogHeader>
+      <AlertDialogContent className='w-[90%] sm:w-[30%] rounded-lg'>
+        <AlertDialogHeader className='flex flex-col items-center'>
           <AlertDialogTitle className='text-2xl text-red-500'>
             Wrong Credentials
           </AlertDialogTitle>
@@ -31,12 +31,12 @@ export function ErrorDialog() {
             Please try again
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter className='flex flex-row justify-end items-center'>
+        <AlertDialogFooter className='flex flex-row justify-center items-center sm:flex sm:justify-center sm:items-center'>
           <AlertDialogAction
             onClick={() => {
               router.push('/sign-in')
             }}
-            className='w-fit mt-0 relative bottom-16 bg-hostel-yellow text-black hover:bg-hostel-yellow/80'
+            className='w-fit mt-0 relative bg-hostel-yellow text-black hover:bg-hostel-yellow/80'
           >
             OK
           </AlertDialogAction>
