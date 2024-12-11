@@ -11,19 +11,18 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { signOut } from 'next-auth/react'
+import { CgLogOut } from 'react-icons/cg'
 
 export function LogoutDialog() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          variant='ghost'
-          className='text-red-500 text-xl hover:bg-yellow-100'
-        >
-          Logout
-        </Button>
+        <div className='text-red-500 text-xl hover:bg-yellow-100 flex gap-x-2 items-center'>
+          <CgLogOut size={30} />
+          <span className='font-semibold'>Logout</span>
+        </div>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className='w-[90%] sm:w-[60%] rounded-lg'>
         <AlertDialogHeader>
           <AlertDialogTitle className='text-2xl text-red-500'>
             Confirm Logout
@@ -32,12 +31,13 @@ export function LogoutDialog() {
             Are you sure you want to logout?
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogFooter className='flex flex-row justify-center items-center gap-x-7'>
+          <AlertDialogCancel className='w-[85px]'>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
               signOut()
             }}
+            className='w-[85px]'
           >
             Continue
           </AlertDialogAction>

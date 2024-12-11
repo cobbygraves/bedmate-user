@@ -70,7 +70,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   basePath: '/api/auth',
   secret: process.env.SECRET,
   pages: {
-    error: '/sign-in'
+    error: '/sign-in-error'
   },
   callbacks: {
     jwt({ token, user }) {

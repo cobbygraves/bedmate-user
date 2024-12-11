@@ -9,7 +9,7 @@ import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
 import { RiHomeOfficeLine } from 'react-icons/ri'
 import { signIn } from 'next-auth/react'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 
 const SignIn = () => {
@@ -17,11 +17,8 @@ const SignIn = () => {
   const [pin, setPin] = useState('')
   const [loading, setLoading] = useState(false)
   const [signup, setSignup] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const { toast } = useToast()
-  const router = useRouter()
   const { data: session } = useSession()
-  // console.log(session)
 
   const handlePinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPin(event.target.value)
@@ -30,10 +27,7 @@ const SignIn = () => {
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault()
     setLoading(true)
-    const response = await signIn('credentials', { phone: phoneNumber, pin })
-    if (response?.ok) {
-      window.location.replace('/')
-    }
+    await signIn('credentials', { phone: phoneNumber, pin })
   }
 
   useEffect(() => {
@@ -118,11 +112,9 @@ const SignIn = () => {
             </div>
 
             {/* Sign In Button */}
-            {error && <p className='text-red-500 text-center'>{error}</p>}
+
             <LoadingButton
-              className={`w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300 ${
-                error ? 'mt-3' : 'mt-5'
-              }`}
+              className={`w-full disabled:bg-gray-500 bg-black text-white py-2 rounded-lg transition-all duration-300 mt-3`}
               disabled={!phoneNumber || !pin}
               loading={loading}
               onClick={handleSignIn}
