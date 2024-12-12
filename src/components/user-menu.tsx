@@ -73,7 +73,7 @@ const UserMenu = ({
           </li>
           <hr />
           <li className=' cursor-pointer hover:bg-yellow-100 py-2 px-5'>
-            <LogoutDialog />
+            <LogoutDialog hideUserMenu={() => closeMenu()} />
           </li>
         </ul>
       </div>

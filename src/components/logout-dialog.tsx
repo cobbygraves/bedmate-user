@@ -9,14 +9,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
 import { signOut } from 'next-auth/react'
 import { CgLogOut } from 'react-icons/cg'
 
-export function LogoutDialog() {
+export function LogoutDialog({ hideUserMenu }: { hideUserMenu: () => void }) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
+      <AlertDialogTrigger asChild onClick={hideUserMenu}>
         <div className='text-red-500 text-xl hover:bg-yellow-100 flex gap-x-2 items-center'>
           <CgLogOut size={30} />
           <span className='font-semibold'>Logout</span>
