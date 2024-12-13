@@ -9,8 +9,8 @@ import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
 import { RiHomeOfficeLine } from 'react-icons/ri'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const SignIn = () => {
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -19,6 +19,7 @@ const SignIn = () => {
   const [signup, setSignup] = useState(false)
   const { toast } = useToast()
   const { data: session } = useSession()
+  const router = useRouter()
 
   const handlePinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPin(event.target.value)
@@ -27,12 +28,27 @@ const SignIn = () => {
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault()
     setLoading(true)
-    await signIn('credentials', { phone: phoneNumber, pin })
+    const resp = await signIn('credentials', {
+      phone: phoneNumber,
+      pin,
+      redirect: false
+    })
+
+    if (resp?.error) {
+      toast({
+        title: 'Invalid mobile number or pin',
+        description: 'Please enter correct credentials',
+        variant: 'destructive'
+      })
+      setLoading(false)
+    } else {
+      router.refresh()
+    }
   }
 
   useEffect(() => {
     if (session) {
-      window.location.replace('/')
+      router.replace('/')
     }
   }, [session])
 
