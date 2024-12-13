@@ -36,8 +36,8 @@ const SignIn = () => {
 
     if (resp?.error) {
       toast({
-        title: 'Invalid mobile number or pin',
-        description: 'Please enter correct credentials',
+        title: 'INVALID CREDENTIALS',
+        description: 'Please check and try again...',
         variant: 'destructive'
       })
       setLoading(false)
