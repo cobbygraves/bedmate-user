@@ -1,14 +1,14 @@
 'use client'
-
+import { Pagination } from 'antd'
 import { useState } from 'react'
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious
-} from '@/components/ui/pagination'
+// import {
+//   Pagination,
+//   PaginationContent,
+//   PaginationItem,
+//   PaginationLink,
+//   PaginationNext,
+//   PaginationPrevious
+// } from '@/components/ui/pagination'
 import MobileFilter from '@/components/mobile-filter'
 
 // import { Pagination } from 'antd'
@@ -27,9 +27,8 @@ const Home = () => {
   const isLarge = useMediaQuery({
     query: '(min-width: 1024px)'
   })
-  const skeletons = Array.from({ length: isLarge ? 20 : 10 })
-  const [isFetching, setIsFetching] = useState(false)
-  const [total, setTotal] = useState(0)
+  const skeletons = Array.from({ length: isLarge ? 20 : 5 })
+  //const [total, setTotal] = useState(0)
 
   const {
     data: hostels,
@@ -39,20 +38,6 @@ const Home = () => {
     queryKey: ['hostels'],
     queryFn: () => getHostels()
   })
-
-  const [pagination, setPagination] = useState({
-    pageSize: isLarge ? 20 : 10,
-    pageIndex: 0
-  })
-
-  //handlePaginationChange
-  const handlePaginationChange = (pNum: number, pSize: number) => {
-    setPagination({
-      ...pagination,
-      pageIndex: pNum - 1,
-      pageSize: pSize
-    })
-  }
 
   return (
     <>
@@ -108,30 +93,15 @@ const Home = () => {
               )}
 
               {/* pagination */}
-              {isFetching ? (
+              {isLoading ? (
                 <></>
               ) : (
-                <div
-                  className={`my-5 flex justify-center sm:justify-end w-full ${
-                    hostels?.length <= 4 && 'absolute bottom-[5vh] right-[5vw]'
-                  }`}
-                >
+                <div className='my-5 flex justify-center sm:justify-end w-full'>
                   {hostels?.length > 0 && (
-                    <Pagination>
-                      <PaginationContent>
-                        <PaginationItem className='cursor-pointer'>
-                          <PaginationPrevious href='#' />
-                        </PaginationItem>
-                        {hostels.map((item: any, i: any) => (
-                          <PaginationItem key={i} className='cursor-pointer'>
-                            <PaginationLink href='#'>{i + 1}</PaginationLink>
-                          </PaginationItem>
-                        ))}
-                        <PaginationItem className='cursor-pointer'>
-                          <PaginationNext href='#' />
-                        </PaginationItem>
-                      </PaginationContent>
-                    </Pagination>
+                    <Pagination
+                      pageSize={isLarge ? 20 : 5}
+                      total={hostels?.length}
+                    />
                   )}
                 </div>
               )}

@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { type CarouselApi } from '@/components/ui/carousel'
 import React, { useState, useEffect } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import room1 from '../../images/room1.png'
 import userImg from '@/app/images/userImg.webp'
 import { IoLocation } from 'react-icons/io5'
 import NavBar from '@/components/nav-bar'
@@ -11,6 +10,7 @@ import HostelFacilities from '@/components/hostel-facilities'
 import moment from 'moment'
 import Rate from '@/components/review-rate'
 import { vehicleRatings } from '@/app/utils/data'
+import { useMediaQuery } from 'react-responsive'
 import {
   Carousel,
   CarouselContent,
@@ -50,6 +50,10 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
   const [checkOut, setCheckOut] = useState<
     string | number | readonly string[] | undefined
   >('')
+
+  const isLarge = useMediaQuery({
+    query: '(min-width: 1024px)'
+  })
 
   const {
     data: hostel,
@@ -160,8 +164,10 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
               <p className='text-black font-medium text-lg'>{hostel?.campus}</p>
             </div>
 
-            <div className='flex items-center gap-x-1'>
-              <IoLocation size={27} className='text-gray-500' />
+            <div className='flex gap-x-1'>
+              <IoLocation
+                className={`text-gray-500 ${isLarge ? 'size-7' : 'size-9'}`}
+              />
               <p className='text-black font-medium text-lg'>
                 {hostel?.location}
               </p>
