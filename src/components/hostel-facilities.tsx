@@ -7,10 +7,7 @@ import { BiCctv } from 'react-icons/bi'
 
 const hostelFacilities = ['WIFI', 'AC', 'DSTV', 'HOT_TAB', 'CCTV']
 
-const HostelFacilities = ({ hostelId }: { hostelId?: string }) => {
-  const [facilities, setFacilities] = useState<string[] | null>(
-    hostelFacilities
-  )
+const HostelFacilities = ({ facilities }: { facilities: string[] }) => {
   return (
     <div>
       <p className='text-xl font-semibold'>Facilities</p>

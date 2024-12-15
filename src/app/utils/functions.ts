@@ -37,3 +37,23 @@ export const signIn = async (payload: { phone: any; pin: any }) => {
     return error
   }
 }
+
+export const getHostels = async () => {
+  try {
+    const { data } = await axios.get(`${SERVER_URL}/hostel`)
+    // console.log(data)
+    return data
+  } catch (error) {
+    return error
+  }
+}
+
+export const getHostel = async (id: string) => {
+  try {
+    const { data } = await axios.get(`${SERVER_URL}/hostel/${id}`)
+    // console.log(data)
+    return data
+  } catch (error) {
+    return error
+  }
+}

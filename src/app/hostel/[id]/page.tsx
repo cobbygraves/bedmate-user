@@ -4,7 +4,6 @@ import { type CarouselApi } from '@/components/ui/carousel'
 import React, { useState, useEffect } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import room1 from '../../images/room1.png'
-import roomImg from '../../images/room2.png'
 import userImg from '@/app/images/userImg.webp'
 import { IoLocation } from 'react-icons/io5'
 import NavBar from '@/components/nav-bar'
@@ -33,8 +32,10 @@ import {
 import { hostelData } from '@/app/utils/data'
 import RecommendedCard from '@/components/recommended-card'
 import { BookNow } from '@/components/book-now'
+import { useQuery } from '@tanstack/react-query'
+import { getHostel } from '@/app/utils/functions'
 
-const HostelDetails: React.FC = () => {
+const HostelDetails = ({ params }: { params: { id: string } }) => {
   const [roomType, setRoomType] = useState('1')
   const [price, setPrice] = useState('GHC10,000')
   const [isFavorited, setIsFavorited] = useState(false)
@@ -49,6 +50,15 @@ const HostelDetails: React.FC = () => {
   const [checkOut, setCheckOut] = useState<
     string | number | readonly string[] | undefined
   >('')
+
+  const {
+    data: hostel,
+    isLoading,
+    isSuccess
+  } = useQuery({
+    queryKey: ['hostel', params.id],
+    queryFn: () => getHostel(params.id)
+  })
 
   useEffect(() => {
     if (!api) {
@@ -103,21 +113,9 @@ const HostelDetails: React.FC = () => {
                 <CarouselItem>
                   <div className='relative h-[430px] w-full'>
                     <Image
-                      src={room1}
+                      src={hostel?.image_url}
                       alt='Hostel Picture'
                       className='rounded-lg shadow-md'
-                      fill
-                      objectFit='cover'
-                      objectPosition='center'
-                    />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className='relative h-[400px] w-full'>
-                    <Image
-                      src={roomImg}
-                      alt='Room Picture'
-                      className='rounded-lg shadow-md object-cover'
                       fill
                       objectFit='cover'
                       objectPosition='center'
@@ -131,9 +129,7 @@ const HostelDetails: React.FC = () => {
           </div>
           {/* Vehicle Name & Favourite Button */}
           <div className='flex justify-between items-center gap-x-3'>
-            <p className='font-bold text-3xl'>
-              Hillside <span>Hostel</span>
-            </p>
+            <p className='font-bold text-3xl'>{hostel?.name}</p>
             {isFavorited ? (
               <button
                 onClick={() => toggleFavorite()}
@@ -161,15 +157,13 @@ const HostelDetails: React.FC = () => {
           <div className='space-y-1'>
             <div className='flex items-center gap-x-1'>
               <IoSchool size={27} className='text-gray-500' />
-              <p className='text-black font-medium text-lg'>
-                University of Cape-Coast
-              </p>
+              <p className='text-black font-medium text-lg'>{hostel?.campus}</p>
             </div>
 
             <div className='flex items-center gap-x-1'>
               <IoLocation size={27} className='text-gray-500' />
               <p className='text-black font-medium text-lg'>
-                Behind the gateway library
+                {hostel?.location}
               </p>
             </div>
           </div>
@@ -177,22 +171,11 @@ const HostelDetails: React.FC = () => {
           {/*Description */}
           <div>
             <h3 className='text-xl font-semibold'>Description</h3>
-            <p>
-              This is a detailed description of the hostel, providing insights
-              into the amenities available for guests. The hostel features
-              comfortable dormitory-style rooms, as well as private
-              accommodations. Guests can enjoy a fully equipped kitchen, a cozy
-              common room for socializing, and complimentary Wi-Fi throughout
-              the property. Located in a vibrant neighborhood, the hostel is
-              within walking distance of local attractions, cafes, and public
-              transportation, making it an ideal base for exploring the city.
-              Our friendly staff are available 24/7 to assist with any inquiries
-              and to ensure your stay is as enjoyable as possible.
-            </p>
+            <p>{hostel?.description}</p>
           </div>
           <hr className='border-[2px] border-gray-300' />
           {/* Facilities */}
-          <HostelFacilities />
+          <HostelFacilities facilities={hostel?.facilities} />
           <hr className='border-[2px] border-gray-300' />
           {vehicleRatings?.length > 0 && (
             <>
@@ -269,16 +252,24 @@ const HostelDetails: React.FC = () => {
               {/* Room Type Selection */}
               <div>
                 <p className='font-medium text-gray-500 mb-1'>Room type</p>
-                <Select value={roomType} onValueChange={handleRoomTypeChange}>
+                <Select
+                  value={roomType}
+                  onValueChange={handleRoomTypeChange}
+                  defaultValue={hostel?.rooms[0].value}
+                >
                   <SelectTrigger className='w-full bg-white h-10'>
                     <SelectValue placeholder='Select room' />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      {/* <SelectLabel>Select room</SelectLabel> */}
-                      <SelectItem value='1'>1 in a room</SelectItem>
+                      {hostel?.rooms.map((room: any) => (
+                        <SelectItem key={room.name} value={room.name}>
+                          {room.name}
+                        </SelectItem>
+                      ))}
+                      {/* <SelectItem value='1'>1 in a room</SelectItem>
                       <SelectItem value='2'>2 in a room</SelectItem>
-                      <SelectItem value='3'>3 in a room</SelectItem>
+                      <SelectItem value='3'>3 in a room</SelectItem> */}
                     </SelectGroup>
                   </SelectContent>
                 </Select>

@@ -15,12 +15,13 @@ import MobileFilter from '@/components/mobile-filter'
 import HostelCard from '@/components/hostel-card'
 import { useMediaQuery } from 'react-responsive'
 import HostelCardSkeleton from '@/components/hostel-card-skeleton'
-import { hostelData } from './utils/data'
 import NavBar from '@/components/nav-bar'
 import FacilitiesFilters from '@/components/facilities-filters'
 // import { FiFilter } from 'react-icons/fi'
 import RoomsFilter from '@/components/rooms-filter'
 import PriceFilter from '@/components/price-filter'
+import { useQuery } from '@tanstack/react-query'
+import { getHostels } from '@/app/utils/functions'
 
 const Home = () => {
   const isLarge = useMediaQuery({
@@ -28,8 +29,16 @@ const Home = () => {
   })
   const skeletons = Array.from({ length: isLarge ? 20 : 10 })
   const [isFetching, setIsFetching] = useState(false)
-  const [hostels, sethostels] = useState<any>(null)
   const [total, setTotal] = useState(0)
+
+  const {
+    data: hostels,
+    isLoading,
+    isSuccess
+  } = useQuery({
+    queryKey: ['hostels'],
+    queryFn: () => getHostels()
+  })
 
   const [pagination, setPagination] = useState({
     pageSize: isLarge ? 20 : 10,
@@ -80,19 +89,19 @@ const Home = () => {
             {/* item list */}
             <div className='lg:px-[3rem] px-[1.5rem]'>
               {/* item */}
-              {isFetching ? (
+              {isLoading ? (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
                   {skeletons.map((item, i) => (
                     <HostelCardSkeleton key={i} />
                   ))}
                 </div>
-              ) : hostels?.length === 0 && !isFetching ? (
+              ) : hostels?.length === 0 && isSuccess ? (
                 <div className='flex justify-center items-center h-full'>
                   <p className='text-2xl font-extralight'>No result found</p>
                 </div>
               ) : (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5'>
-                  {hostelData?.map((item: any, i: any) => (
+                  {hostels?.map((item: any, i: any) => (
                     <HostelCard key={item.id} hostelData={item} />
                   ))}
                 </div>
@@ -104,17 +113,16 @@ const Home = () => {
               ) : (
                 <div
                   className={`my-5 flex justify-center sm:justify-end w-full ${
-                    hostelData?.length <= 4 &&
-                    'absolute bottom-[5vh] right-[5vw]'
+                    hostels?.length <= 4 && 'absolute bottom-[5vh] right-[5vw]'
                   }`}
                 >
-                  {hostelData?.length > 0 && (
+                  {hostels?.length > 0 && (
                     <Pagination>
                       <PaginationContent>
                         <PaginationItem className='cursor-pointer'>
                           <PaginationPrevious href='#' />
                         </PaginationItem>
-                        {hostelData.map((item: any, i: any) => (
+                        {hostels.map((item: any, i: any) => (
                           <PaginationItem key={i} className='cursor-pointer'>
                             <PaginationLink href='#'>{i + 1}</PaginationLink>
                           </PaginationItem>
