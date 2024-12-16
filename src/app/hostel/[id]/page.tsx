@@ -8,6 +8,7 @@ import { IoLocation } from 'react-icons/io5'
 import NavBar from '@/components/nav-bar'
 import HostelFacilities from '@/components/hostel-facilities'
 import moment from 'moment'
+import { Skeleton } from "@/components/ui/skeleton"
 import Rate from '@/components/review-rate'
 import { vehicleRatings } from '@/app/utils/data'
 import { useMediaQuery } from 'react-responsive'
@@ -111,25 +112,28 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
         {/* Left Section with Collage of Pictures */}
         <div className='lg:w-2/3 space-y-4'>
           <div className='w-full h-[430px]'>
-            <Carousel setApi={setApi}>
-              <CarouselPrevious className='z-30 left-7 cursor-pointer bg-white' />
-              <CarouselContent>
-                <CarouselItem>
-                  <div className='relative h-[430px] w-full'>
-                    <Image
-                      src={hostel?.image_url}
-                      alt='Hostel Picture'
-                      className='rounded-lg shadow-md'
-                      fill
-                      objectFit='cover'
-                      objectPosition='center'
-                    />
-                  </div>
-                </CarouselItem>
-              </CarouselContent>
-
-              <CarouselNext className='z-30 right-7 cursor-pointer bg-white' />
-            </Carousel>
+            {
+              hostel?.image_url?(<Carousel setApi={setApi}>
+                <CarouselPrevious className='z-30 left-7 cursor-pointer bg-white' />
+                <CarouselContent>
+                  <CarouselItem>
+                    <div className='relative h-[430px] w-full'>
+                      <Image
+                        src={hostel?.image_url}
+                        alt='Hostel Picture'
+                        className='rounded-lg shadow-md'
+                        fill
+                        objectFit='cover'
+                        objectPosition='center'
+                      />
+                    </div>
+                  </CarouselItem>
+                </CarouselContent>
+  
+                <CarouselNext className='z-30 right-7 cursor-pointer bg-white' />
+              </Carousel>):( <Skeleton className="h-[430px] w-full rounded-xl" />)
+            }
+            
           </div>
           {/* Vehicle Name & Favourite Button */}
           <div className='flex justify-between items-center gap-x-3'>
