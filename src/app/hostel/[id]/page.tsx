@@ -278,9 +278,6 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                           {room.name}
                         </SelectItem>
                       ))}
-                      {/* <SelectItem value='1'>1 in a room</SelectItem>
-                      <SelectItem value='2'>2 in a room</SelectItem>
-                      <SelectItem value='3'>3 in a room</SelectItem> */}
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -364,7 +361,8 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
           price,
           onCheckInChange: setCheckIn,
           onCheckOutChange: setCheckOut,
-          onFullnameChange: setFullname
+          onFullnameChange: setFullname,
+          changeRoomType: handleRoomTypeChange
         }}
       />
     </div>

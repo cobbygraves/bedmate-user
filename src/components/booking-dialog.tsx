@@ -1,5 +1,7 @@
-import { Button } from '@/components/ui/button'
+import { useQuery } from '@tanstack/react-query'
+import { getHostel } from '@/app/utils/functions'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { useParams } from 'next/navigation'
 import {
   Select,
   SelectContent,
@@ -34,6 +36,15 @@ export default function BookingDialog({
   onCheckOutChange: (value: string) => void
   onFullnameChange: (value: string) => void
 }) {
+  const params = useParams()
+  const {
+    data: hostel,
+    isLoading,
+    isSuccess
+  } = useQuery({
+    queryKey: ['hostel', params.id],
+    queryFn: () => getHostel(params.id)
+  })
   return (
     <Dialog open={showBooking} onOpenChange={handleShowBooking}>
       <DialogTrigger asChild>
@@ -51,14 +62,17 @@ export default function BookingDialog({
               <p className='font-medium text-gray-500 mb-1'>Room type</p>
               <Select value={roomType} onValueChange={handleRoomTypeChange}>
                 <SelectTrigger className='w-full bg-white h-10'>
-                  <SelectValue placeholder='Select room' />
+                  <SelectValue placeholder='Select room'>
+                    {roomType}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    {/* <SelectLabel>Select room</SelectLabel> */}
-                    <SelectItem value='1'>1 in a room</SelectItem>
-                    <SelectItem value='2'>2 in a room</SelectItem>
-                    <SelectItem value='3'>3 in a room</SelectItem>
+                    {hostel?.rooms.map((room: any) => (
+                      <SelectItem key={room.name} value={room.name}>
+                        {room.name}
+                      </SelectItem>
+                    ))}
                   </SelectGroup>
                 </SelectContent>
               </Select>

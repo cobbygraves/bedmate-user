@@ -10,7 +10,8 @@ export function BookNow({
   handleShowBooking,
   onCheckInChange,
   onCheckOutChange,
-  onFullnameChange
+  onFullnameChange,
+  changeRoomType
 }: {
   checkIn: string | number | readonly string[] | undefined
   checkOut: string | number | readonly string[] | undefined
@@ -22,6 +23,7 @@ export function BookNow({
   onCheckInChange: (value: string) => void
   onCheckOutChange: (value: string) => void
   onFullnameChange: (value: string) => void
+  changeRoomType: (value: string) => void
 }) {
   return (
     <div className='flex flex-col items-center justify-center bg-hostel-yellow shadow-[0_5px_10px_black] size-[75px]  sticky bottom-[3vh] text-black left-[77%] sm:left-[85%] lg:hidden z-50 p-2 rounded-[50%] cursor-pointer font-bold'>
@@ -36,6 +38,7 @@ export function BookNow({
         onFullnameChange={onFullnameChange}
         roomType={roomType}
         price={price}
+        handleRoomTypeChange={changeRoomType}
       />
     </div>
   )

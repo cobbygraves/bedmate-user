@@ -48,7 +48,7 @@ export const getHostels = async () => {
   }
 }
 
-export const getHostel = async (id: string) => {
+export const getHostel = async (id: string | string[]) => {
   try {
     const { data } = await axios.get(`${SERVER_URL}/hostel/${id}`)
     // console.log(data)
