@@ -1,6 +1,7 @@
 'use client'
 // import { store, persistor } from '../redux/store'
 import { useState } from 'react'
+import { ConfigProvider } from 'antd'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 // import { Provider } from 'react-redux'
@@ -14,7 +15,11 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     // <Provider store={store}>
     //   <PersistGate loading={null} persistor={persistor}>
     <QueryClientProvider client={client}>
-      <SessionProvider>{children}</SessionProvider>
+      <SessionProvider>
+        <ConfigProvider theme={{ token: { colorPrimary: '#f9e10f' } }}>
+          {children}
+        </ConfigProvider>
+      </SessionProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
     //   </PersistGate>

@@ -36,7 +36,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getHostel } from '@/app/utils/functions'
 
 const HostelDetails = ({ params }: { params: { id: string } }) => {
-  const [roomType, setRoomType] = useState('1')
+  const [roomType, setRoomType] = useState('1 bed')
   const [price, setPrice] = useState('GHC10,000')
   const [isFavorited, setIsFavorited] = useState(false)
   const [api, setApi] = React.useState<CarouselApi>()
@@ -159,15 +159,15 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
           </div>
           {/* Campus & Location */}
           <div className='space-y-1'>
-            <div className='flex items-center gap-x-1'>
-              <IoSchool size={27} className='text-gray-500' />
+            <div className='flex gap-x-1'>
+              <IoSchool
+                className={`text-gray-500 ${isLarge ? 'size-7' : 'size-9'}`}
+              />
               <p className='text-black font-medium text-lg'>{hostel?.campus}</p>
             </div>
 
-            <div className='flex gap-x-1'>
-              <IoLocation
-                className={`text-gray-500 ${isLarge ? 'size-7' : 'size-9'}`}
-              />
+            <div className='flex'>
+              <IoLocation className={`text-gray-500 size-8`} />
               <p className='text-black font-medium text-lg'>
                 {hostel?.location}
               </p>
@@ -258,13 +258,11 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
               {/* Room Type Selection */}
               <div>
                 <p className='font-medium text-gray-500 mb-1'>Room type</p>
-                <Select
-                  value={roomType}
-                  onValueChange={handleRoomTypeChange}
-                  defaultValue={hostel?.rooms[0].value}
-                >
+                <Select value={roomType} onValueChange={handleRoomTypeChange}>
                   <SelectTrigger className='w-full bg-white h-10'>
-                    <SelectValue placeholder='Select room' />
+                    <SelectValue placeholder='Select room'>
+                      {roomType}
+                    </SelectValue>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
