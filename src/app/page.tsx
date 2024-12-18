@@ -38,7 +38,7 @@ const Home = () => {
     queryKey: ['hostels'],
     queryFn: () => getHostels()
   })
-
+  console.log(hostels)
   return (
     <>
       <div className='h-screen overflow-hidden bg-[#F5F5F5]'>

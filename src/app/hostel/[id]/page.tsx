@@ -8,7 +8,7 @@ import { IoLocation } from 'react-icons/io5'
 import NavBar from '@/components/nav-bar'
 import HostelFacilities from '@/components/hostel-facilities'
 import moment from 'moment'
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from '@/components/ui/skeleton'
 import Rate from '@/components/review-rate'
 import { vehicleRatings } from '@/app/utils/data'
 import { useMediaQuery } from 'react-responsive'
@@ -112,8 +112,8 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
         {/* Left Section with Collage of Pictures */}
         <div className='lg:w-2/3 space-y-4'>
           <div className='w-full h-[430px]'>
-            {
-              hostel?.image_url?(<Carousel setApi={setApi}>
+            {hostel?.image_url ? (
+              <Carousel setApi={setApi}>
                 <CarouselPrevious className='z-30 left-7 cursor-pointer bg-white' />
                 <CarouselContent>
                   <CarouselItem>
@@ -129,11 +129,12 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                     </div>
                   </CarouselItem>
                 </CarouselContent>
-  
+
                 <CarouselNext className='z-30 right-7 cursor-pointer bg-white' />
-              </Carousel>):( <Skeleton className="h-[430px] w-full rounded-xl" />)
-            }
-            
+              </Carousel>
+            ) : (
+              <Skeleton className='h-[430px] w-full rounded-xl' />
+            )}
           </div>
           {/* Vehicle Name & Favourite Button */}
           <div className='flex justify-between items-center gap-x-3'>
@@ -167,7 +168,9 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
               <IoSchool
                 className={`text-gray-500 ${isLarge ? 'size-7' : 'size-9'}`}
               />
-              <p className='text-black font-medium text-lg'>{hostel?.campus}</p>
+              <p className='text-black font-medium text-lg'>
+                {hostel?.campus?.name}
+              </p>
             </div>
 
             <div className='flex'>

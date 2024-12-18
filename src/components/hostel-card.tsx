@@ -19,6 +19,7 @@ interface HostelCardProps {
     image_url: string
     capacity: number
     location: string
+    campus: { code: string; name: string }
   }
 }
 
@@ -26,8 +27,8 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
   const [rooms, setRooms] = useState(hostelData?.rooms)
   const [selectedRoom, setSelectedRoom] = useState(0)
-  const campusName = hostelData?.location.split('-')[0]
-  const campusAddress = hostelData?.location.split('-')[1]
+  // const campusName = hostelData?.location.split('-')[0]
+  // const campusAddress = hostelData?.location.split('-')[1]
   const nbrFormat = new Intl.NumberFormat()
   const router = useRouter()
 
@@ -35,6 +36,8 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
     value: room.name,
     lable: room.name
   }))
+
+  // console.log(hostelData)
   return (
     <>
       <div className='rounded-[12px] w-full shadow-xl lg:mb-0 bg-white hover:bg-gray-200 pb-3'>
@@ -102,10 +105,12 @@ export default function HostelCard({ hostelData }: HostelCardProps) {
               <div className='flex gap-x-1'>
                 <div className='flex -ml-1'>
                   <IoLocation size={23} color='#808080' />
-                  <p className=' pr-1  text-black font-bold'>{campusName}</p>
+                  <p className=' pr-1  text-black font-bold'>
+                    {hostelData?.campus?.code}
+                  </p>
                 </div>
                 <span className='font-bold'>-</span>
-                <p className='line-clamp-1'>{campusAddress}</p>
+                <p className='line-clamp-1'>{hostelData?.location}</p>
               </div>
             </div>
           </div>
