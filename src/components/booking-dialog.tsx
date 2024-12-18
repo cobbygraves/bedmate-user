@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getHostel } from '@/app/utils/functions'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import moment from 'moment'
 import { useParams } from 'next/navigation'
 import {
   Select,
@@ -29,11 +30,11 @@ export default function BookingDialog({
   showBooking: boolean
   handleShowBooking: (value: boolean) => void
   fullname: string
-  checkIn: string | number | readonly string[] | undefined
-  checkOut: string | number | readonly string[] | undefined
+  checkIn: Date | null
+  checkOut: Date | null
   price: string
-  onCheckInChange: (value: string) => void
-  onCheckOutChange: (value: string) => void
+  onCheckInChange: (value: Date | null) => void
+  onCheckOutChange: (value: Date | null) => void
   onFullnameChange: (value: string) => void
 }) {
   const params = useParams()
@@ -97,8 +98,8 @@ export default function BookingDialog({
                 <input
                   type='date'
                   className='block w-full mt-1 border border-gray-300 rounded-md shadow-sm h-10 px-3 cursor-pointer'
-                  value={checkIn}
-                  onChange={(e) => onCheckInChange(e.target.value)}
+                  value={moment(checkIn).format('YYYY-MM-DD')}
+                  onChange={(e) => onCheckInChange(new Date(e.target.value))}
                 />
               </label>
               <label className='block w-full'>
@@ -109,7 +110,7 @@ export default function BookingDialog({
                   type='date'
                   className='block w-full mt-1 border border-gray-300 rounded-md shadow-sm h-10 px-3 disabled:bg-gray-300'
                   disabled
-                  value={checkOut}
+                  value={moment(checkIn).add(7, 'month').format('YYYY-MM-DD')}
                 />
               </label>
             </div>
@@ -117,7 +118,7 @@ export default function BookingDialog({
             {/* Price Display */}
             <div className='flex gap-x-3'>
               <span className='text-gray-500 font-medium'>Price/year:</span>
-              <span className='font-bold'>{price}</span>
+              <span className='font-bold'>&#8373;{price}</span>
             </div>
 
             {/* Booking Button */}

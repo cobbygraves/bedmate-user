@@ -13,15 +13,15 @@ export function BookNow({
   onFullnameChange,
   changeRoomType
 }: {
-  checkIn: string | number | readonly string[] | undefined
-  checkOut: string | number | readonly string[] | undefined
+  checkIn: Date | null
+  checkOut: Date | null
   price: string
   roomType: string
   fullname: string
   showBooking: boolean
   handleShowBooking: (value: boolean) => void
-  onCheckInChange: (value: string) => void
-  onCheckOutChange: (value: string) => void
+  onCheckInChange: (value: Date | null) => void
+  onCheckOutChange: (value: Date | null) => void
   onFullnameChange: (value: string) => void
   changeRoomType: (value: string) => void
 }) {

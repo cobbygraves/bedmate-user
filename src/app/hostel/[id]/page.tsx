@@ -35,22 +35,19 @@ import RecommendedCard from '@/components/recommended-card'
 import { BookNow } from '@/components/book-now'
 import { useQuery } from '@tanstack/react-query'
 import { getHostel } from '@/app/utils/functions'
+import { set } from 'lodash'
 
 const HostelDetails = ({ params }: { params: { id: string } }) => {
-  const [roomType, setRoomType] = useState('1 bed')
-  const [price, setPrice] = useState('GHC10,000')
+  const [roomType, setRoomType] = useState('')
+  const [price, setPrice] = useState('0.00')
   const [isFavorited, setIsFavorited] = useState(false)
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [fullname, setFullname] = useState('')
   const [readMoreReview, setReadMoreReviews] = useState(false)
   const [showBooking, setShowBooking] = useState(false)
-  const [checkIn, setCheckIn] = useState<
-    string | number | readonly string[] | undefined
-  >('')
-  const [checkOut, setCheckOut] = useState<
-    string | number | readonly string[] | undefined
-  >('')
+  const [checkIn, setCheckIn] = useState<Date | null>(null)
+  const [checkOut, setCheckOut] = useState<Date | null>(null)
 
   const isLarge = useMediaQuery({
     query: '(min-width: 1024px)'
@@ -76,12 +73,30 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
     setRoomType(value)
 
     // Update the price based on the selected room type
-    if (value === '1') {
-      setPrice('GHC10,000')
-    } else if (value === '2') {
-      setPrice('GHC8,000')
-    } else {
-      setPrice('GHC5,000')
+    if (value === '1 bed') {
+      const roomDetails = hostel?.rooms?.find(
+        (room: any) => room.name === '1 bed'
+      )
+      setPrice(roomDetails?.price)
+      setRoomType(roomDetails?.name)
+    } else if (value === '2 beds') {
+      const roomDetails = hostel?.rooms?.find(
+        (room: any) => room.name === '2 beds'
+      )
+      setPrice(roomDetails?.price)
+      setRoomType(roomDetails?.name)
+    } else if (value === '3 beds') {
+      const roomDetails = hostel?.rooms?.find(
+        (room: any) => room.name === '3 beds'
+      )
+      setPrice(roomDetails?.price)
+      setRoomType(roomDetails?.name)
+    } else if (value === '4 beds') {
+      const roomDetails = hostel?.rooms?.find(
+        (room: any) => room.name === '4 beds'
+      )
+      setPrice(roomDetails?.price)
+      setRoomType(roomDetails?.name)
     }
   }
 
@@ -302,8 +317,8 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                   <input
                     type='date'
                     className='block w-full mt-1 border border-gray-300 rounded-md shadow-sm h-10 px-3 cursor-pointer'
-                    value={checkIn}
-                    onChange={(e) => setCheckIn(e.target.value)}
+                    value={moment(checkIn).format('YYYY-MM-DD')} // Use checkIn directly here, not checkIn}
+                    onChange={(e) => setCheckIn(new Date(e.target.value))}
                   />
                 </label>
                 <label className='block w-full'>
@@ -314,7 +329,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                     type='date'
                     className='block w-full mt-1 border border-gray-300 rounded-md shadow-sm h-10 px-3 disabled:bg-gray-300'
                     disabled
-                    value={checkOut}
+                    value={moment(checkIn).add(7, 'month').format('YYYY-MM-DD')}
                   />
                 </label>
               </div>
@@ -322,7 +337,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
               {/* Price Display */}
               <div className='flex gap-x-3'>
                 <span className='text-gray-500 font-medium'>Price/year:</span>
-                <span className='font-bold'>{price}</span>
+                <span className='font-bold'>&#8373;{price}</span>
               </div>
 
               {/* Booking Button */}
