@@ -3,14 +3,16 @@ import Image from 'next/image'
 import { type CarouselApi } from '@/components/ui/carousel'
 import React, { useState, useEffect } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import userImg from '@/app/images/userImg.webp'
 import { IoLocation } from 'react-icons/io5'
 import NavBar from '@/components/nav-bar'
 import HostelFacilities from '@/components/hostel-facilities'
 import moment from 'moment'
 import { Skeleton } from '@/components/ui/skeleton'
-import Rate from '@/components/review-rate'
-import { vehicleRatings } from '@/app/utils/data'
+import {
+  getHostelReviews,
+  getHostel,
+  getRecommendedHostels
+} from '@/app/utils/functions'
 import { useMediaQuery } from 'react-responsive'
 import {
   Carousel,
@@ -30,12 +32,11 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { hostelData } from '@/app/utils/data'
 import RecommendedCard from '@/components/recommended-card'
 import { BookNow } from '@/components/book-now'
 import { useQuery } from '@tanstack/react-query'
-import { getHostel } from '@/app/utils/functions'
-import { set } from 'lodash'
+import ReviewItem from '@/components/review-item'
+import RecommendedCardSkeleton from '@/components/recommended-card-skeleton'
 
 const HostelDetails = ({ params }: { params: { id: string } }) => {
   const [roomType, setRoomType] = useState('')
@@ -53,14 +54,28 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
     query: '(min-width: 1024px)'
   })
 
+  const skeletons = Array.from({ length: 2 })
+
   const {
     data: hostel,
-    isLoading,
-    isSuccess
+    isSuccess,
+    isLoading
   } = useQuery({
     queryKey: ['hostel', params.id],
     queryFn: () => getHostel(params.id)
   })
+
+  const { data: hostelReviews, isLoading: isLoadingReviews } = useQuery({
+    queryKey: ['hostel-reviews', hostel?._id],
+    queryFn: () => getHostelReviews(hostel?._id),
+    enabled: isSuccess
+  })
+
+  const { data: recommendedHostels, isLoading: isLoadingRecommended } =
+    useQuery({
+      queryKey: ['recommended-hostels', params.id],
+      queryFn: () => getRecommendedHostels(params.id)
+    })
 
   useEffect(() => {
     if (!api) {
@@ -68,7 +83,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
     }
     setCurrent(api.selectedScrollSnap())
   }, [api])
-  console.log(current)
+  //console.log(current)
   const handleRoomTypeChange = (value: string) => {
     setRoomType(value)
 
@@ -103,10 +118,10 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
   const toggleFavorite = () => {
     setIsFavorited(!isFavorited) // Toggle favorite state
   }
-
-  let reviews = vehicleRatings
+  // console.log(hostelReviews)
+  let reviews = hostelReviews
   if (!readMoreReview) {
-    reviews = vehicleRatings?.slice(0, 2)
+    reviews = hostelReviews?.slice(0, 2)
   }
 
   return (
@@ -153,7 +168,12 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
           </div>
           {/* Vehicle Name & Favourite Button */}
           <div className='flex justify-between items-center gap-x-3'>
-            <p className='font-bold text-3xl'>{hostel?.name}</p>
+            {isLoading ? (
+              <Skeleton className='h-7 w-[300px] sm:w-full' />
+            ) : (
+              <p className='font-bold text-3xl'>{hostel?.name}</p>
+            )}
+
             {isFavorited ? (
               <button
                 onClick={() => toggleFavorite()}
@@ -183,29 +203,47 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
               <IoSchool
                 className={`text-gray-500 ${isLarge ? 'size-7' : 'size-9'}`}
               />
-              <p className='text-black font-medium text-lg'>
-                {hostel?.campus?.name}
-              </p>
+
+              {isLoading ? (
+                <Skeleton className='h-4 w-[250px]' />
+              ) : (
+                <p className='text-black font-medium text-lg'>
+                  {hostel?.campus?.name}
+                </p>
+              )}
             </div>
 
             <div className='flex'>
               <IoLocation className={`text-gray-500 size-8`} />
-              <p className='text-black font-medium text-lg'>
-                {hostel?.location}
-              </p>
+              {isLoading ? (
+                <Skeleton className='h-4 w-[250px]' />
+              ) : (
+                <p className='text-black font-medium text-lg'>
+                  {hostel?.location}
+                </p>
+              )}
             </div>
           </div>
           <hr className='border-[2px] border-gray-300' />
           {/*Description */}
           <div>
             <h3 className='text-xl font-semibold'>Description</h3>
-            <p>{hostel?.description}</p>
+            {isLoading ? (
+              <div className='w-full space-y-1'>
+                <Skeleton className='h-3 w-full rounded-xl' />
+                <Skeleton className='h-3 w-full rounded-xl' />
+                <Skeleton className='h-3 w-full rounded-xl' />
+                <Skeleton className='h-3 w-full rounded-xl' />
+              </div>
+            ) : (
+              <p>{hostel?.description}</p>
+            )}
           </div>
           <hr className='border-[2px] border-gray-300' />
           {/* Facilities */}
           <HostelFacilities facilities={hostel?.facilities} />
           <hr className='border-[2px] border-gray-300' />
-          {vehicleRatings?.length > 0 && (
+          {reviews?.length > 0 ? (
             <>
               {/* reviews */}
               <div className='w-full bg-white rounded-[12px]'>
@@ -219,33 +257,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                           i === reviews.length - 1 && 'mb-0'
                         }`}
                       >
-                        <div>
-                          <Image
-                            className='object-cover rounded-[16px]'
-                            src={userImg}
-                            alt='user'
-                            height={48}
-                            width={48}
-                          />
-                        </div>
-
-                        <div className='w-full'>
-                          <p className='text-base font-semibold text-black'>
-                            {item?.creator?.name}
-                          </p>
-
-                          <div className='mt-y flex gap-2'>
-                            <Rate rating={item?.ratings} />
-                          </div>
-
-                          <p className=' text-base font-[400] text-defaultGray'>
-                            {item?.comment}
-                          </p>
-
-                          <p className='text-base font-[700] text-grayLight'>
-                            {moment(item?.created_at).format('DD/MM/YYYY')}
-                          </p>
-                        </div>
+                        <ReviewItem review={item} />
                       </div>
                     ))
                   ) : (
@@ -256,7 +268,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                     </div>
                   )}
                 </div>
-                {vehicleRatings?.length >= 3 ? (
+                {reviews?.length >= 3 ? (
                   <button
                     className='rounded-lg text-defaultRed px-2'
                     onClick={() => setReadMoreReviews((prev) => !prev)}
@@ -268,6 +280,11 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                 )}
               </div>
             </>
+          ) : (
+            <div className='space-y-2'>
+              <h3 className='text-xl font-semibold'>Reviews</h3>
+              <p className='font-extralight'>Not yet reviewed</p>
+            </div>
           )}
           <hr className='border-[2px] border-gray-300 sm:hidden' />
         </div>
@@ -288,7 +305,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      {hostel?.rooms.map((room: any) => (
+                      {hostel?.rooms?.map((room: any) => (
                         <SelectItem key={room.name} value={room.name}>
                           {room.name}
                         </SelectItem>
@@ -350,18 +367,32 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
           {/* Recommended Hostels */}
-          <div>
-            <h3 className='text-xl font-semibold mt-0 sm:mt-3 mb-3'>
-              Recommended Hostels
-            </h3>
-            <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
-              {hostelData
-                ?.slice(0, hostelData?.length - 1)
-                .map((item: any, i: any) => (
-                  <RecommendedCard key={item.id} hostelData={item} />
+          {isLoadingRecommended ? (
+            <div>
+              <h3 className='text-xl font-semibold mt-0 sm:mt-3 mb-3'>
+                Recommended Hostels
+              </h3>
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+                {skeletons.map((item, i) => (
+                  <RecommendedCardSkeleton key={i} />
                 ))}
+              </div>
             </div>
-          </div>
+          ) : (
+            recommendedHostels?.length > 0 && (
+              <div>
+                <h3 className='text-xl font-semibold mt-0 sm:mt-3 mb-3'>
+                  Recommended Hostels
+                </h3>
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+                  {recommendedHostels?.length > 0 &&
+                    recommendedHostels.map((item: any, i: any) => (
+                      <RecommendedCard key={item.id} hostelData={item} />
+                    ))}
+                </div>
+              </div>
+            )
+          )}
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { SERVER_URL } from './constants'
+import { getSession } from 'next-auth/react'
 
 export const validateEmail = (value: string) => {
   // Regular expression for basic email validation
@@ -57,3 +58,40 @@ export const getHostel = async (id: string | string[]) => {
     return error
   }
 }
+
+export const getHostelReviews = async (hostelId: string) => {
+  try {
+    const { data } = await axios.get(`${SERVER_URL}/review/${hostelId}`)
+    console.log(data)
+    return data
+  } catch (error) {
+    return error
+  }
+}
+
+export const getRecommendedHostels = async (hostelId: string) => {
+  try {
+    const { data } = await axios.get(
+      `${SERVER_URL}/hostel/${hostelId}/recommended`
+    )
+    // console.log(data)
+    return data
+  } catch (error) {
+    return error
+  }
+}
+
+// export const bookNow = async (payload: any) => {
+//   const session:any = await getSession()
+//   try {
+//     const { data } = await axios.post(`${SERVER_URL}/booking`, payload, {
+//       headers: {
+//         Authorization: `Bearer ${session?.user?.accessToken}`
+//       }
+//     })
+//     // console.log(data)
+//     return data
+//   } catch (error) {
+//     return error
+//   }
+// }

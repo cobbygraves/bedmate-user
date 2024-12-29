@@ -1,14 +1,5 @@
 'use client'
 import { Pagination } from 'antd'
-import { useState } from 'react'
-// import {
-//   Pagination,
-//   PaginationContent,
-//   PaginationItem,
-//   PaginationLink,
-//   PaginationNext,
-//   PaginationPrevious
-// } from '@/components/ui/pagination'
 import MobileFilter from '@/components/mobile-filter'
 
 // import { Pagination } from 'antd'
@@ -29,7 +20,6 @@ const Home = () => {
   })
   const skeletons = Array.from({ length: isLarge ? 20 : 5 })
   //const [total, setTotal] = useState(0)
-
   const {
     data: hostels,
     isLoading,
@@ -38,7 +28,7 @@ const Home = () => {
     queryKey: ['hostels'],
     queryFn: () => getHostels()
   })
-  console.log(hostels)
+
   return (
     <>
       <div className='h-screen overflow-hidden bg-[#F5F5F5]'>

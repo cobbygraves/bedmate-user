@@ -18,6 +18,7 @@ interface RecommendedCardProps {
     rating: number
     image_url: string
     capacity: number
+    campus: { code: string; name: string }
     location: string
   }
 }
@@ -53,7 +54,7 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
         </div>
 
         <div
-          className='h-[200px] sm:h-[185px] rounded-t-[12px] w-full object-cover relative cursor-pointer'
+          className='h-[185px] sm:h-[150px] rounded-t-[12px] w-full object-cover relative cursor-pointer'
           onClick={() => router.push(`/hostel/${hostelData?.id}`)}
         >
           <Image
@@ -68,14 +69,14 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
 
         <div className='mt-2 px-2 ' onClick={() => {}}>
           <div className='flex gap-4 items-center w-full'>
-            <p className='font-bold sm:text-sm capitalize truncate w-full'>
+            <p className='font-bold text-[20px] capitalize truncate w-full'>
               {hostelData?.name}
             </p>
           </div>
           <div className='space-y-1 mt-1'>
             <div className='flex items-center justify-between sm:text-sm'>
               <div className='flex gap-x-2 items-center'>
-                <FaBed className='size-5 sm:size-3' color='#808080' />
+                <FaBed size={20} color='#808080' />
                 <div>
                   <BedSelect
                     onSelect={(value: string) => {
@@ -90,7 +91,7 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
                 </div>
               </div>
               <div className='flex items-center gap-x-1 sm:text-sm'>
-                <IoPricetags className='size-5 sm:size-3' color='#808080' />
+                <IoPricetags size={20} color='#808080' />
                 <p className='font-bold'>
                   <span>
                     &#8373; {nbrFormat.format(rooms[selectedRoom]?.price)}
@@ -99,14 +100,16 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
                 </p>
               </div>
             </div>
-            <div className='space-y-1 w-full text-gray-500 sm:text-sm'>
+            <div className='space-y-1 w-full text-gray-500'>
               <div className='flex gap-x-1'>
-                <div className='flex -ml-1 items-center'>
-                  <IoLocation className='size-5 sm:size-3' color='#808080' />
-                  <p className=' pr-1  text-black font-bold'>{campusName}</p>
+                <div className='flex -ml-1'>
+                  <IoLocation size={20} color='#808080' />
+                  <p className=' pr-1  text-black font-bold'>
+                    {hostelData?.campus?.code}
+                  </p>
                 </div>
                 <span className='font-bold'>-</span>
-                <p className='line-clamp-1'>{campusAddress}</p>
+                <p className='line-clamp-1'>{hostelData?.location}</p>
               </div>
             </div>
           </div>
