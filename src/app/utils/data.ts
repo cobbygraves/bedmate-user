@@ -116,10 +116,6 @@ export const availableRooms = [
   {
     name: '4 beds',
     label: '4 beds'
-  },
-  {
-    name: 'Self-Contained',
-    label: 'Self-Contained'
   }
 ]
 
@@ -143,6 +139,10 @@ export const availableFacilities = [
   {
     name: 'CCTV',
     label: 'CCTV'
+  },
+  {
+    name: 'Shuttle Service',
+    label: 'Shuttle Service'
   }
 ]
 

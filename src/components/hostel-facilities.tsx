@@ -3,6 +3,7 @@ import { TbAirConditioning } from 'react-icons/tb'
 import { ImTv } from 'react-icons/im'
 import { FaHotTub } from 'react-icons/fa'
 import { BiCctv } from 'react-icons/bi'
+import { LiaBusSolid } from 'react-icons/lia'
 import { Skeleton } from './ui/skeleton'
 
 // const hostelFacilities = ['WIFI', 'AC', 'DSTV', 'HOT_TAB', 'CCTV']
@@ -27,6 +28,13 @@ const HostelFacilities = ({ facilities }: { facilities: string[] }) => {
                     <div key={facility} className='flex gap-3 items-center'>
                       <CiWifiOn />
                       <p>Wifi</p>
+                    </div>
+                  )
+                case 'SHUTTLE':
+                  return (
+                    <div key={facility} className='flex gap-3 items-center'>
+                      <LiaBusSolid />
+                      <p>Shuttle Service</p>
                     </div>
                   )
                 case 'AC':
