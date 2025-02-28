@@ -14,28 +14,35 @@ interface RecommendedCardProps {
     id: number
     name: string
     price: number
-    rooms: { name: string; price: number; capacity: number }[]
-    rating: number
-    image_url: string
-    capacity: number
-    campus: { code: string; name: string }
+    description: string
+    rooms: { type: string; price: string }[]
+    rating?: number
+    cover_image: {
+      url: string
+      mime: string
+    }
+    other_images: [{ url: string; mime: string }]
     location: string
+    campus: { code: string; name: string }
+    facilities: { name: string; code: string }[]
   }
 }
 
 export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
+  const modifiedRoomData = hostelData?.rooms.map((room, index) => ({
+    id: index + 1,
+    label: room.type,
+    value: room.price
+  }))
+
   const [isFavorite, setIsFavorite] = useState(false)
-  const [rooms, setRooms] = useState(hostelData?.rooms)
+  const [rooms, setRooms] = useState(modifiedRoomData)
   const [selectedRoom, setSelectedRoom] = useState(0)
   const campusName = hostelData?.location.split('-')[0]
   const campusAddress = hostelData?.location.split('-')[1]
   const nbrFormat = new Intl.NumberFormat()
   const router = useRouter()
 
-  const roomsData = hostelData?.rooms.map((room) => ({
-    value: room.name,
-    lable: room.name
-  }))
   return (
     <>
       <div className='rounded-[12px] w-full shadow-xl lg:mb-0 bg-white hover:bg-gray-200 pb-3'>
@@ -58,7 +65,7 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
           onClick={() => router.push(`/hostel/${hostelData?.id}`)}
         >
           <Image
-            src={hostelData?.image_url}
+            src={hostelData?.cover_image.url}
             alt='hostel-image'
             fill
             sizes='100%'
@@ -81,11 +88,11 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
                   <BedSelect
                     onSelect={(value: string) => {
                       const index = rooms.findIndex(
-                        (room) => room.name === value
+                        (room) => room.value === value
                       )
                       setSelectedRoom(index || 0)
                     }}
-                    rooms={roomsData}
+                    rooms={rooms}
                     selectHeight='21px'
                   />
                 </div>
@@ -94,7 +101,8 @@ export default function RecommendedCard({ hostelData }: RecommendedCardProps) {
                 <IoPricetags size={20} color='#808080' />
                 <p className='font-bold'>
                   <span>
-                    &#8373; {nbrFormat.format(rooms[selectedRoom]?.price)}
+                    &#8373;{' '}
+                    {nbrFormat.format(parseFloat(rooms[selectedRoom]?.value))}
                   </span>
                   <span className='text-gray-500 font-normal'>/year</span>
                 </p>
