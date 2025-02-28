@@ -15,7 +15,7 @@ const BedSelect = ({
 }: {
   selectHeight?: string
   onSelect: (value: string) => void
-  rooms: { value: string; lable: string }[]
+  rooms: { value: string; label: string }[]
 }) => {
   const handleChange = (value: string) => {
     console.log(`selected ${value}`)
@@ -32,7 +32,7 @@ const BedSelect = ({
         <SelectContent>
           {rooms.map((room) => (
             <SelectItem key={room.value} value={room.value}>
-              {room.lable}
+              {room.label}
             </SelectItem>
           ))}
         </SelectContent>
