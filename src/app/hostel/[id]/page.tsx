@@ -65,7 +65,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
     queryFn: () => getHostel(params.id)
   })
 
-  let hostelImages: any[] = []
+  const hostelImages: any[] = []
   if (hostel && hostel?.cover_image) {
     hostelImages.push(hostel?.cover_image)
   }
