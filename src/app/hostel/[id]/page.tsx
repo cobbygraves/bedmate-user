@@ -65,6 +65,14 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
     queryFn: () => getHostel(params.id)
   })
 
+  let hostelImages: any[] = []
+  if (hostel && hostel?.cover_image) {
+    hostelImages.push(hostel?.cover_image)
+  }
+  if (hostel && hostel?.other_images) {
+    hostelImages.push(...hostel?.other_images)
+  }
+
   const { data: hostelReviews, isLoading: isLoadingReviews } = useQuery({
     queryKey: ['hostel-reviews', hostel?._id],
     queryFn: () => getHostelReviews(hostel?._id),
@@ -90,28 +98,28 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
     // Update the price based on the selected room type
     if (value === '1 bed') {
       const roomDetails = hostel?.rooms?.find(
-        (room: any) => room.name === '1 bed'
+        (room: any) => room.type === '1 bed'
       )
       setPrice(roomDetails?.price)
-      setRoomType(roomDetails?.name)
+      setRoomType(roomDetails?.type)
     } else if (value === '2 beds') {
       const roomDetails = hostel?.rooms?.find(
-        (room: any) => room.name === '2 beds'
+        (room: any) => room.type === '2 beds'
       )
       setPrice(roomDetails?.price)
-      setRoomType(roomDetails?.name)
+      setRoomType(roomDetails?.type)
     } else if (value === '3 beds') {
       const roomDetails = hostel?.rooms?.find(
-        (room: any) => room.name === '3 beds'
+        (room: any) => room.type === '3 beds'
       )
       setPrice(roomDetails?.price)
-      setRoomType(roomDetails?.name)
+      setRoomType(roomDetails?.type)
     } else if (value === '4 beds') {
       const roomDetails = hostel?.rooms?.find(
-        (room: any) => room.name === '4 beds'
+        (room: any) => room.type === '4 beds'
       )
       setPrice(roomDetails?.price)
-      setRoomType(roomDetails?.name)
+      setRoomType(roomDetails?.type)
     }
   }
 
@@ -123,7 +131,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
   if (!readMoreReview) {
     reviews = hostelReviews?.slice(0, 2)
   }
-
+  //console.log(hostel)
   return (
     <div>
       {/* Navbar Section */}
@@ -142,14 +150,28 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
         {/* Left Section with Collage of Pictures */}
         <div className='lg:w-2/3 space-y-4'>
           <div className='w-full h-[430px]'>
-            {hostel?.image_url ? (
+            {hostelImages?.length > 0 ? (
               <Carousel setApi={setApi}>
                 <CarouselPrevious className='z-30 left-7 cursor-pointer bg-white' />
                 <CarouselContent>
-                  <CarouselItem>
+                  {hostelImages.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <div className='relative h-[430px] w-full'>
+                        <Image
+                          src={image?.url}
+                          alt='Hostel Picture'
+                          className='rounded-lg shadow-md'
+                          fill
+                          objectFit='cover'
+                          objectPosition='center'
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                  {/* <CarouselItem>
                     <div className='relative h-[430px] w-full'>
                       <Image
-                        src={hostel?.image_url}
+                        src={hostelImages[0]?.url}
                         alt='Hostel Picture'
                         className='rounded-lg shadow-md'
                         fill
@@ -157,7 +179,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                         objectPosition='center'
                       />
                     </div>
-                  </CarouselItem>
+                  </CarouselItem> */}
                 </CarouselContent>
 
                 <CarouselNext className='z-30 right-7 cursor-pointer bg-white' />
@@ -306,8 +328,8 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                   <SelectContent>
                     <SelectGroup>
                       {hostel?.rooms?.map((room: any) => (
-                        <SelectItem key={room.name} value={room.name}>
-                          {room.name}
+                        <SelectItem key={room.type} value={room.type}>
+                          {room.type}
                         </SelectItem>
                       ))}
                     </SelectGroup>

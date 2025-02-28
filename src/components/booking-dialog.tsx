@@ -69,9 +69,9 @@ export default function BookingDialog({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    {hostel?.rooms.map((room: any) => (
-                      <SelectItem key={room.name} value={room.name}>
-                        {room.name}
+                    {hostel?.rooms?.map((room: any) => (
+                      <SelectItem key={room.type} value={room.type}>
+                        {room.type}
                       </SelectItem>
                     ))}
                   </SelectGroup>
