@@ -11,6 +11,7 @@ declare module 'next-auth' {
       /** The user's postal address. */
       id: any
       phone: any
+      accessToken: any
       /**
        * By default, TypeScript merges new interface properties and overwrites existing ones.
        * In this case, the default session user properties will be overwritten,
@@ -26,6 +27,8 @@ declare module 'next-auth' {
   interface JWT {
     /** OpenID ID Token */
     id: string
+    accessToken: string
+    phone: string
   }
 }
 
@@ -35,7 +38,10 @@ type User = {
   email: string
   name: string
   image: string
+  accessToken: string
 }
+
+let loginUser: User | null = null
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -48,22 +54,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         pin: { label: 'Pin', type: 'password' }
       },
       authorize: async (credentials) => {
-        let user: User | null = null
-
         const loginData = {
           phone: credentials?.phone,
           pin: credentials?.pin
         }
 
         // logic to verify if the user exists
-        user = await getUserFromDb(loginData)
+        loginUser = await getUserFromDb(loginData)
 
-        if (!user) {
+        if (!loginUser) {
           throw new Error('Invalid Credentials')
         }
 
         // return user object with their profile data
-        return user
+        return loginUser
       }
     })
   ],
@@ -75,11 +79,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user) {
         // User is available during sign-in
         token.id = user.id
+        token.accessToken = loginUser?.accessToken
+        token.phone = loginUser?.phone
       }
       return token
     },
     session({ session, token }) {
       session.user.id = token.id
+      session.user.accessToken = token.accessToken
+      session.user.phone = token.phone
       return session
     }
   }

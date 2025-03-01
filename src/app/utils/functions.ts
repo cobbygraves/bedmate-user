@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { SERVER_URL } from './constants'
-import { getSession } from 'next-auth/react'
+// import { getSession } from 'next-auth/react'
 
 export const validateEmail = (value: string) => {
   // Regular expression for basic email validation
