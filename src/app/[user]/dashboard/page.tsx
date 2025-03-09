@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 import NavBar from '@/components/nav-bar'
 import Link from 'next/link'
 import { IoIosArrowBack } from 'react-icons/io'
@@ -12,7 +12,8 @@ export default function Dashboard() {
   const router = useRouter()
   useEffect(() => {
     if (!session) {
-      router.push('/sign-in')
+      signOut({ redirectTo: '/sign-in' })
+      // router.push('/sign-in')
     }
   }, [session, router])
   return (

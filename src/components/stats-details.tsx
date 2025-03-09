@@ -6,6 +6,8 @@ import { bookings } from '@/app/utils/data'
 import { Input } from 'antd'
 import { CiSearch } from 'react-icons/ci'
 import { useMediaQuery } from 'react-responsive'
+import FavouriteHotels from './FavouriteHostels'
+import Messages from './Messages'
 export default function StatsDetails() {
   const [active, setActive] = useState('Bookings')
   const isLarge = useMediaQuery({
@@ -64,8 +66,8 @@ export default function StatsDetails() {
         {active === 'Bookings' && (
           <DataTable columns={columns} data={bookings} />
         )}
-        {active === 'Favorites' && <div>This is the Favourite page</div>}
-        {active === 'Messages' && <div>This is the Messages page</div>}
+        {active === 'Favorites' && <FavouriteHotels />}
+        {active === 'Messages' && <Messages />}
       </div>
     </div>
   )

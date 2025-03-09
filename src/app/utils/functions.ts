@@ -143,12 +143,12 @@ export const isFavouritedHostel = async (
   const accessToken = session?.user?.accessToken
   try {
     const { data } = await axios.get(
-      `${SERVER_URL}/favourite/${userOBJId}/is-in-favourite/${hostelOBJId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      }
+      `${SERVER_URL}/favourite/${userOBJId}/is-in-favourite/${hostelOBJId}`
+      // {
+      //   headers: {
+      //     Authorization: `Bearer ${accessToken}`
+      //   }
+      // }
     )
     // console.log(data)
     return data
