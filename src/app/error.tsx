@@ -2,7 +2,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 
-export default function ErrorBoundary({}: {}) {
+export default function ErrorBoundary() {
   return (
     <div className='flex flex-col justify-center items-center h-screen overflow-hidden w-screen gap-y-3'>
       <p className='font-medium text-3xl'>

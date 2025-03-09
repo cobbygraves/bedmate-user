@@ -50,7 +50,7 @@ const SignIn = () => {
     if (session) {
       router.replace('/')
     }
-  }, [session])
+  }, [session, router])
 
   let content = (
     <div className='min-h-screen flex items-center justify-center bg-hostel-yellow sm:bg-white'>

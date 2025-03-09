@@ -103,7 +103,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
       setIsFavorited(favourited)
     }
     getFavouriteHostel()
-  }, [params.id])
+  }, [params.id, session?.user?._id, hostel?._id])
 
   useEffect(() => {
     if (!api) {
