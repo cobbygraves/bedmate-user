@@ -37,18 +37,27 @@ import { BookNow } from '@/components/book-now'
 import { useQuery } from '@tanstack/react-query'
 import ReviewItem from '@/components/review-item'
 import RecommendedCardSkeleton from '@/components/recommended-card-skeleton'
+import {
+  addFavouriteHostel,
+  removeFavouriteHostel,
+  isFavouritedHostel
+} from '@/app/utils/functions'
+import { useSession } from 'next-auth/react'
 
 const HostelDetails = ({ params }: { params: { id: string } }) => {
   const [roomType, setRoomType] = useState('')
   const [price, setPrice] = useState('0.00')
-  const [isFavorited, setIsFavorited] = useState(false)
+
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [fullname, setFullname] = useState('')
+  const [isFavorited, setIsFavorited] = useState(false)
   const [readMoreReview, setReadMoreReviews] = useState(false)
   const [showBooking, setShowBooking] = useState(false)
   const [checkIn, setCheckIn] = useState<Date | null>(null)
   const [checkOut, setCheckOut] = useState<Date | null>(null)
+
+  const { data: session } = useSession()
 
   const isLarge = useMediaQuery({
     query: '(min-width: 1024px)'
@@ -84,6 +93,17 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
       queryKey: ['recommended-hostels', params.id],
       queryFn: () => getRecommendedHostels(params.id)
     })
+
+  useEffect(() => {
+    const getFavouriteHostel = async () => {
+      const favourited = await isFavouritedHostel(
+        hostel?._id,
+        session?.user?._id
+      )
+      setIsFavorited(favourited)
+    }
+    getFavouriteHostel()
+  }, [params.id])
 
   useEffect(() => {
     if (!api) {
@@ -124,6 +144,14 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
   }
 
   const toggleFavorite = () => {
+    if (isFavorited) {
+      removeFavouriteHostel(hostel?._id, session?.user?._id)
+    } else {
+      addFavouriteHostel({
+        hostel: hostel?._id,
+        user: session?.user?._id
+      })
+    }
     setIsFavorited(!isFavorited) // Toggle favorite state
   }
   // console.log(hostelReviews)
@@ -131,7 +159,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
   if (!readMoreReview) {
     reviews = hostelReviews?.slice(0, 2)
   }
-  //console.log(hostel)
+  // console.log(hostel)
   return (
     <div>
       {/* Navbar Section */}

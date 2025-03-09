@@ -16,9 +16,9 @@ import { getHostels } from '@/app/utils/functions'
 
 const Home = () => {
   const isLarge = useMediaQuery({
-    query: '(min-width: 1024px)'
+    query: '(min-width: 1280px)'
   })
-  const skeletons = Array.from({ length: isLarge ? 12 : 3 })
+  const skeletons = Array.from({ length: isLarge ? 8 : 4 })
   //const [total, setTotal] = useState(0)
   const {
     data: hostels,

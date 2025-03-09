@@ -6,6 +6,7 @@ import { MdOutlineDashboard } from 'react-icons/md'
 import { IoSettingsOutline } from 'react-icons/io5'
 import { MdOutlineInfo } from 'react-icons/md'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 const UserMenu = ({
   isOpen,
@@ -17,7 +18,7 @@ const UserMenu = ({
   const menuRef = useRef<any | null>(null)
   const { data: session } = useSession()
 
-  // Close the menu when clicking outside of it
+  //console.log(session)
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -50,9 +51,14 @@ const UserMenu = ({
         </div>
         <hr className='border mt-4 mb-1 border-black' />
         <ul className='space-y-1 text-xl'>
-          <li className='px-5 cursor-pointer hover:bg-yellow-100 py-2 flex gap-x-2 items-center'>
-            <MdOutlineDashboard size={30} />
-            <span className='font-semibold'>Dashboard</span>
+          <li>
+            <Link
+              href={`/${session?.user?.id}/dashboard`}
+              className='px-5 cursor-pointer hover:bg-yellow-100 py-2 flex gap-x-2 items-center'
+            >
+              <MdOutlineDashboard size={30} />
+              <span className='font-semibold'>Dashboard</span>
+            </Link>
           </li>
           <hr />
           <li className='px-5 cursor-pointer hover:bg-yellow-100 py-2 flex gap-x-2 items-center'>

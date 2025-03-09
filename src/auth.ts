@@ -9,6 +9,7 @@ declare module 'next-auth' {
   interface Session {
     user: {
       /** The user's postal address. */
+      _id: any
       id: any
       phone: any
       accessToken: any
@@ -26,6 +27,7 @@ declare module 'next-auth' {
   /** Returned by the `jwt` callback and `auth`, when using JWT sessions */
   interface JWT {
     /** OpenID ID Token */
+    _id: string
     id: string
     accessToken: string
     phone: string
@@ -33,6 +35,7 @@ declare module 'next-auth' {
 }
 
 type User = {
+  _id: string
   id: string
   phone: string
   email: string
@@ -61,6 +64,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         // logic to verify if the user exists
         loginUser = await getUserFromDb(loginData)
+        // console.log(loginUser)
 
         if (!loginUser) {
           throw new Error('Invalid Credentials')
@@ -78,6 +82,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     jwt({ token, user }) {
       if (user) {
         // User is available during sign-in
+        token._id = loginUser?._id
         token.id = user.id
         token.accessToken = loginUser?.accessToken
         token.phone = loginUser?.phone
@@ -85,6 +90,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token
     },
     session({ session, token }) {
+      session.user._id = token._id
       session.user.id = token.id
       session.user.accessToken = token.accessToken
       session.user.phone = token.phone
