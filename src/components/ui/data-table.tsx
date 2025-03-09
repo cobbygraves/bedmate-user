@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button'
 import { MdArrowBackIos } from 'react-icons/md'
 import { MdArrowForwardIos } from 'react-icons/md'
+import { useMediaQuery } from 'react-responsive'
 
 import {
   ColumnDef,
@@ -38,6 +39,10 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel()
   })
   const numberOfPages = table.getPageOptions()
+  const isLarge = useMediaQuery({
+    query: '(min-width: 1280px)'
+  })
+
   return (
     <>
       <div className='bg-white rounded-xl mt-5 p-2 sm:p-5 w-full shadow-lg border border-gray-300'>
@@ -96,19 +101,19 @@ export function DataTable<TData, TValue>({
           size='sm'
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className='bg-oya-red text-white cursor-pointer hover:bg-oya-red hover:text-white w-fit'
+          className='bg-hostel-yellow  cursor-pointer hover:bg-hostel-yellow hover: w-fit'
         >
-          <MdArrowBackIos className='size-5 text-white' />{' '}
-          <span>Prev page</span>
+          <MdArrowBackIos className='size-5 ' />{' '}
+          {isLarge && <span>Prev page</span>}
         </Button>
         {numberOfPages.map((page) => (
           <button
             key={page}
             className={`size-7 p-1 rounded ${
               page === table.getState().pagination.pageIndex
-                ? 'bg-oya-red text-white'
+                ? 'bg-hostel-yellow '
                 : 'bg-gray-300'
-            } text-white cursor-pointer`}
+            }  cursor-pointer`}
             onClick={() => table.setPageIndex(page)}
           >
             {page + 1}
@@ -119,10 +124,10 @@ export function DataTable<TData, TValue>({
           size='sm'
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
-          className='bg-oya-red text-white cursor-pointer hover:bg-oya-red hover:text-white w-fit'
+          className='bg-hostel-yellow  cursor-pointer hover:bg-hostel-yellow hover: w-fit'
         >
-          <span>Next page</span>{' '}
-          <MdArrowForwardIos className='size-5 text-white' />
+          {isLarge && <span>Next page</span>}
+          <MdArrowForwardIos className='size-5 ' />
         </Button>
       </div>
     </>
