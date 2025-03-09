@@ -18,7 +18,7 @@ const Home = () => {
   const isLarge = useMediaQuery({
     query: '(min-width: 1280px)'
   })
-  const skeletons = Array.from({ length: isLarge ? 8 : 4 })
+  const skeletons = Array.from({ length: 12 })
   //const [total, setTotal] = useState(0)
   const {
     data: hostels,
@@ -64,17 +64,19 @@ const Home = () => {
             {/* item list */}
             <div className='lg:px-[3rem] px-[1.5rem]'>
               {/* item */}
-              {isLoading ? (
+              {isLoading && (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
                   {skeletons.map((item, i) => (
                     <HostelCardSkeleton key={i} />
                   ))}
                 </div>
-              ) : hostels?.length === 0 && isSuccess ? (
+              )}
+              {hostels?.length === 0 && isSuccess && (
                 <div className='flex justify-center items-center h-full'>
                   <p className='text-2xl font-extralight'>No result found</p>
                 </div>
-              ) : (
+              )}
+              {hostels?.length > 0 && (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
                   {hostels?.map((item: any, i: any) => (
                     <HostelCard key={item.id} hostelData={item} />

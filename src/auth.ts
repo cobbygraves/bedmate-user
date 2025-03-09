@@ -77,7 +77,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   basePath: '/api/auth',
   secret: process.env.SECRET,
-
   callbacks: {
     jwt({ token, user }) {
       if (user) {

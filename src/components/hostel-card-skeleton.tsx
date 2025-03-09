@@ -7,7 +7,7 @@ export default function HostelCardSkeleton() {
         {/* heart */}
         <div className='h-[36px] w-[36px] rounded-[8px] shadow-sm flex justify-center items-center absolute right-3 top-3 bg-gray-300'></div>
 
-        <div className='h-[202px] rounded-t-[12px] w-full bg-gray-200' />
+        <div className='h-[202px] rounded-t-[12px] w-full bg-gray-200'></div>
 
         <div className='mt-[11px] px-[10px]'>
           <div className='flex gap-[17px] items-center w-full'>
