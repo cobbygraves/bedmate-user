@@ -223,28 +223,31 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
             ) : (
               <p className='font-bold text-3xl'>{hostel?.name}</p>
             )}
+            {session?.user && (
+              <>
+                {isFavorited ? (
+                  <button
+                    onClick={() => toggleFavorite()}
+                    className='border-[1px] rounded-[8px] border-hostel-yellow text-gray-700 py-[4px] px-[12px] flex gap-2 items-center'
+                  >
+                    <AiFillHeart className='text-hostel-yellow text-[25px]' />
+                    <p className='hidden sm:block text-[16px] font-medium'>
+                      Remove from favorites
+                    </p>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => toggleFavorite()}
+                    className='border-[1px] rounded-[8px] border-hostel-yellow text-gray-700  py-[4px] px-[12px] flex gap-2 items-center'
+                  >
+                    <AiOutlineHeart className='text-hostel-yellow text-[25px]' />
 
-            {isFavorited ? (
-              <button
-                onClick={() => toggleFavorite()}
-                className='border-[1px] rounded-[8px] border-hostel-yellow text-gray-700 py-[4px] px-[12px] flex gap-2 items-center'
-              >
-                <AiFillHeart className='text-hostel-yellow text-[25px]' />
-                <p className='hidden sm:block text-[16px] font-medium'>
-                  Remove from favorites
-                </p>
-              </button>
-            ) : (
-              <button
-                onClick={() => toggleFavorite()}
-                className='border-[1px] rounded-[8px] border-hostel-yellow text-gray-700  py-[4px] px-[12px] flex gap-2 items-center'
-              >
-                <AiOutlineHeart className='text-hostel-yellow text-[25px]' />
-
-                <p className='hidden sm:block text-[16px] font-medium'>
-                  Add to favorites
-                </p>
-              </button>
+                    <p className='hidden sm:block text-[16px] font-medium'>
+                      Add to favorites
+                    </p>
+                  </button>
+                )}
+              </>
             )}
           </div>
           {/* Campus & Location */}
