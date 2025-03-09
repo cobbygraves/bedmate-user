@@ -103,8 +103,7 @@ export function DataTable<TData, TValue>({
           disabled={!table.getCanPreviousPage()}
           className='bg-hostel-yellow  cursor-pointer hover:bg-hostel-yellow hover: w-fit'
         >
-          <MdArrowBackIos className='size-5 ' />{' '}
-          {isLarge && <span>Prev page</span>}
+          <MdArrowBackIos className='size-5 ' /> {isLarge && <span>Prev</span>}
         </Button>
         {numberOfPages.map((page) => (
           <button
@@ -126,7 +125,7 @@ export function DataTable<TData, TValue>({
           disabled={!table.getCanNextPage()}
           className='bg-hostel-yellow  cursor-pointer hover:bg-hostel-yellow hover: w-fit'
         >
-          {isLarge && <span>Next page</span>}
+          {isLarge && <span>Next</span>}
           <MdArrowForwardIos className='size-5 ' />
         </Button>
       </div>
