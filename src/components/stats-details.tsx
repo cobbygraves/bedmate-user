@@ -5,12 +5,16 @@ import { columns } from '@/components/table-columns/bookings/column'
 import { bookings } from '@/app/utils/data'
 import { Input } from 'antd'
 import { CiSearch } from 'react-icons/ci'
+import { useMediaQuery } from 'react-responsive'
 export default function StatsDetails() {
   const [active, setActive] = useState('Bookings')
+  const isLarge = useMediaQuery({
+    query: '(min-width: 1280px)'
+  })
   return (
     <div className='w-full'>
       <div className='sm:flex items-center w-full'>
-        <div className='flex items-center gap-x-5 w-full sm:w-[70%]'>
+        <div className='flex items-center gap-x-1 md:gap-x-5 w-full sm:w-[70%]'>
           <Button
             variant='ghost'
             onClick={() => setActive('Bookings')}
@@ -19,6 +23,7 @@ export default function StatsDetails() {
             }`}
           >
             Bookings
+            {!isLarge && <span className=' sm:hidden'> ( 20 )</span>}
           </Button>
           <Button
             variant='ghost'
@@ -28,6 +33,7 @@ export default function StatsDetails() {
             }`}
           >
             Favorites
+            {!isLarge && <span className=' sm:hidden'> ( 3 )</span>}
           </Button>
           <Button
             variant='ghost'
@@ -36,7 +42,7 @@ export default function StatsDetails() {
               active === 'Messages' && 'bg-hostel-yellow text-black '
             }`}
           >
-            Messages
+            Messages {!isLarge && <span className=' sm:hidden'> ( 17 )</span>}
           </Button>
         </div>
         <Input

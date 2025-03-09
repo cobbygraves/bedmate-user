@@ -28,7 +28,7 @@ export default function Dashboard() {
         <p className='text-[18px] font-[600]'>Back</p>
       </Link>
 
-      <div className='grid grid-cols-1 gap-5 sm:grid-cols-3 px-5 sm:px-10 mt-5'>
+      <div className='sm:grid grid-cols-1 gap-5 sm:grid-cols-3 px-5 sm:px-10 mt-5 hidden'>
         <StatsCard
           title='Booking Requests'
           subTitle='bookings made'

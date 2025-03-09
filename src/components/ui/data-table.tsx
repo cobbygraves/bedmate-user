@@ -40,7 +40,7 @@ export function DataTable<TData, TValue>({
   const numberOfPages = table.getPageOptions()
   return (
     <>
-      <div className='bg-white rounded-xl mt-5 p-5 w-full shadow-lg border border-gray-300'>
+      <div className='bg-white rounded-xl mt-5 p-2 sm:p-5 w-full shadow-lg border border-gray-300'>
         <Table>
           <TableHeader className='bg-gray-100'>
             {table.getHeaderGroups().map((headerGroup) => (
