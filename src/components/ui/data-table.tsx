@@ -40,7 +40,7 @@ export function DataTable<TData, TValue>({
   })
   const numberOfPages = table.getPageOptions()
   const isLarge = useMediaQuery({
-    query: '(min-width: 1280px)'
+    query: '(min-width: 640px)'
   })
 
   return (
