@@ -14,7 +14,7 @@ export default function StatsDetails() {
   return (
     <div className='w-full'>
       <div className='sm:flex items-center w-full'>
-        <div className='flex items-center gap-x-1 md:gap-x-5 w-full sm:w-[70%]'>
+        <div className='grid grid-cols-3 sm:flex items-center sm:gap-x-5 w-full sm:w-[70%]'>
           <Button
             variant='ghost'
             onClick={() => setActive('Bookings')}
@@ -22,8 +22,8 @@ export default function StatsDetails() {
               active === 'Bookings' && 'bg-hostel-yellow text-black '
             }`}
           >
-            Bookings
-            {!isLarge && <span className=' sm:hidden'> ( 20 )</span>}
+            <span className='font-semibold'>Bookings</span>
+            {!isLarge && <span className=' sm:hidden'>( 20 )</span>}
           </Button>
           <Button
             variant='ghost'
@@ -32,8 +32,8 @@ export default function StatsDetails() {
               active === 'Favorites' && 'bg-hostel-yellow text-black '
             }`}
           >
-            Favorites
-            {!isLarge && <span className=' sm:hidden'> ( 3 )</span>}
+            <span className='font-semibold'>Favorites</span>
+            {!isLarge && <span className=' sm:hidden'>( 3 )</span>}
           </Button>
           <Button
             variant='ghost'
@@ -42,7 +42,8 @@ export default function StatsDetails() {
               active === 'Messages' && 'bg-hostel-yellow text-black '
             }`}
           >
-            Messages {!isLarge && <span className=' sm:hidden'> ( 17 )</span>}
+            <span className='font-semibold'>Messages</span>
+            {!isLarge && <span className=' sm:hidden'>( 17 )</span>}
           </Button>
         </div>
         <Input
