@@ -83,7 +83,7 @@ const SignUp = ({
                   *Mobile Number
                 </label>
 
-                <div className='border border-gray-500 rounded-lg px-2 py-1 mt-1 bg-white w-full'>
+                <div className='border border-gray-500 rounded-lg px-2 py-1 bg-white w-full'>
                   <PhoneInput
                     inputclassname='input'
                     defaultCountry='GH'

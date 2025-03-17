@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { getHostel } from '@/app/utils/functions'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { PhoneInput } from './phone-input'
 import moment from 'moment'
 import { useParams } from 'next/navigation'
 import {
@@ -79,6 +80,7 @@ export default function BookingDialog({
               </Select>
             </div>
             {/* Number of Guests */}
+
             <label className='block'>
               <span className='text-gray-500 font-medium'>Full Name</span>
               <input
@@ -86,6 +88,23 @@ export default function BookingDialog({
                 placeholder='Enter your full name'
                 value={fullname}
                 onChange={(e) => onFullnameChange(e.target.value)}
+              />
+            </label>
+
+            <label className='block'>
+              <span className='text-gray-500 font-medium'>Contact Number</span>
+              <PhoneInput
+                defaultCountry='GH'
+                numberInputProps={{
+                  placeholder: 'Enter phone number',
+                  style: { height: 40 }
+                }}
+                // inputComponent={() => (
+                //   <input
+                //     className='border-none bg-white h-10 rounded-r-lg w-full focus:outline-none focus:border-none px-3'
+                //     placeholder='Enter phone number'
+                //   />
+                // )}
               />
             </label>
 

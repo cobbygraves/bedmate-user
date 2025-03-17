@@ -8,6 +8,8 @@ import NavBar from '@/components/nav-bar'
 import HostelFacilities from '@/components/hostel-facilities'
 import moment from 'moment'
 import { Skeleton } from '@/components/ui/skeleton'
+// import PhoneInput from 'react-phone-number-input'
+import { PhoneInput } from '@/components/phone-input'
 import {
   getHostelReviews,
   getHostel,
@@ -56,6 +58,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
   const [showBooking, setShowBooking] = useState(false)
   const [checkIn, setCheckIn] = useState<Date | null>(null)
   const [checkOut, setCheckOut] = useState<Date | null>(null)
+  const [phoneNumber, setPhoneNumber] = useState('')
 
   const { data: session } = useSession()
 
@@ -375,6 +378,25 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                   placeholder='Enter your full name'
                   value={fullname}
                   onChange={(e) => setFullname(e.target.value)}
+                />
+              </label>
+
+              <label className='block'>
+                <span className='text-gray-500 font-medium'>
+                  Contact Number
+                </span>
+                <PhoneInput
+                  defaultCountry='GH'
+                  numberInputProps={{
+                    placeholder: 'Enter phone number',
+                    style: { height: 40 }
+                  }}
+                  // inputComponent={() => (
+                  //   <input
+                  //     className='border-none bg-white h-10 rounded-r-lg w-full focus:outline-none focus:border-none px-3'
+                  //     placeholder='Enter phone number'
+                  //   />
+                  // )}
                 />
               </label>
 
