@@ -8,10 +8,11 @@ import { CiSearch } from 'react-icons/ci'
 import { useMediaQuery } from 'react-responsive'
 import FavouriteHotels from './FavouriteHostels'
 import Messages from './Messages'
+import Bookings from './bookings'
 export default function StatsDetails() {
   const [active, setActive] = useState('Bookings')
   const isLarge = useMediaQuery({
-    query: '(min-width: 1280px)'
+    query: '(min-width: 640px)'
   })
   return (
     <div className='w-full'>
@@ -63,9 +64,10 @@ export default function StatsDetails() {
       </div>
       <hr className='w-full border border-gray-200 mt-5' />
       <div className='mt-5'>
-        {active === 'Bookings' && (
+        {active === 'Bookings' && isLarge && (
           <DataTable columns={columns} data={bookings} />
         )}
+        {active === 'Bookings' && !isLarge && <Bookings />}
         {active === 'Favorites' && <FavouriteHotels />}
         {active === 'Messages' && <Messages />}
       </div>

@@ -2,7 +2,7 @@
 
 import { ColumnDef } from '@tanstack/react-table'
 import { Button } from '@/components/ui/button'
-// import { useDispatch } from 'react-redux'
+import { IoOpenOutline } from 'react-icons/io5'
 import {
   setBookingId,
   setShowBookingDetails
@@ -47,13 +47,14 @@ export const columns: ColumnDef<Booking>[] = [
         <Button variant='ghost' className='size-8 p-0 focus-visible:ring-0'>
           {/* <span className='sr-only'>Open menu</span> */}
           <h3
-            className='text-hostel-yellow font-semibold cursor-pointer'
+            className='text-hostel-yellow cursor-pointer flex items-center gap-x-2'
             onClick={() => {
               store.dispatch(setBookingId(serial))
               store.dispatch(setShowBookingDetails(true))
             }}
           >
-            View
+            <span>View</span>
+            <IoOpenOutline size={25} />
           </h3>
         </Button>
       )

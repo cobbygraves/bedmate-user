@@ -101,28 +101,28 @@ type Booking = {
 export const bookings: Booking[] = [
   {
     id: '728ed52f',
-    code: '293315',
+    code: '2933150234',
     hostel_name: 'ISH',
     room_type: '1 bed',
     date: '14/10/2024'
   },
   {
     id: '728edj9s',
-    code: '144408',
+    code: '1444087302',
     hostel_name: 'Pentagon',
     room_type: '2 beds',
     date: '28/11/2024'
   },
   {
     id: '720d952f',
-    code: '293307',
+    code: '2933074208',
     hostel_name: 'Boys Hill',
     room_type: '3 beds',
     date: '28/11/2024'
   },
   {
     id: '728ed10b',
-    code: '234408',
+    code: '2344083566',
     hostel_name: 'Mega Hill',
     room_type: '4 beds',
     date: '18/11/2024'
