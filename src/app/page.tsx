@@ -37,7 +37,7 @@ const Home = () => {
             <div className='sticky top-0 z-40 bg-white'>
               <NavBar />
               <div className=' font-semibold text-xl text-gray-500 w-full border-b-2 my-3 pb-3'>
-                <div className='lg:px-[3rem] px-[1.5rem] flex justify-between items-center'>
+                <div className='px-3 sm:px-10 flex justify-between items-center'>
                   <p className='w-full'>Available hostels</p>
                   <div className='hidden sm:flex w-full justify-end gap-1 items-center'>
                     <PriceFilter
@@ -62,7 +62,7 @@ const Home = () => {
               </div>
             </div>
             {/* item list */}
-            <div className='lg:px-[3rem] px-[1.5rem]'>
+            <div className='lg:p-10  px-3'>
               {/* item */}
               {isLoading && (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>

@@ -171,13 +171,13 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
       </div>
       <Link
         href={'/'}
-        className='border-none flex gap-x-3 items-center text-gray-500 px-5'
+        className='border-none flex gap-x-3 items-center text-gray-500 px-3 sm:px-10'
       >
         <IoIosArrowBack className='size-5' />
         <p className='text-[18px] font-[600]'>Back</p>
       </Link>
       {/* Main content Section */}
-      <div className='flex flex-col lg:flex-row p-5 space-y-4 lg:space-y-0 lg:space-x-8'>
+      <div className='flex flex-col lg:flex-row p-3 sm:p-10 space-y-4 lg:space-y-0 lg:space-x-8'>
         {/* Left Section with Collage of Pictures */}
         <div className='lg:w-2/3 space-y-4'>
           <div className='w-full h-[430px]'>

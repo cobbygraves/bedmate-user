@@ -16,11 +16,11 @@ export default function StatsDetails() {
   return (
     <div className='w-full'>
       <div className='sm:flex items-center w-full'>
-        <div className='grid grid-cols-3 gap-x-1 sm:flex items-center sm:gap-x-5 w-full sm:w-[70%]'>
+        <div className='grid grid-cols-3 gap-x-2 sm:flex items-center sm:gap-x-5 w-full sm:w-[70%]'>
           <Button
             variant='ghost'
             onClick={() => setActive('Bookings')}
-            className={`hover:bg-hostel-yellow rounded px-1 ${
+            className={`hover:bg-hostel-yellow rounded ${
               active === 'Bookings' && 'bg-hostel-yellow text-black'
             }`}
           >
@@ -30,7 +30,7 @@ export default function StatsDetails() {
           <Button
             variant='ghost'
             onClick={() => setActive('Favorites')}
-            className={`hover:bg-hostel-yellow rounded px-1 ${
+            className={`hover:bg-hostel-yellow rounded ${
               active === 'Favorites' && 'bg-hostel-yellow text-black '
             }`}
           >
@@ -40,7 +40,7 @@ export default function StatsDetails() {
           <Button
             variant='ghost'
             onClick={() => setActive('Messages')}
-            className={`hover:bg-hostel-yellow rounded px-1 ${
+            className={`hover:bg-hostel-yellow rounded ${
               active === 'Messages' && 'bg-hostel-yellow text-black '
             }`}
           >

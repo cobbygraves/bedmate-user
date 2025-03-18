@@ -30,7 +30,7 @@ export default function NavBar() {
   }, [session])
 
   return (
-    <nav className='flex items-center justify-between px-3 py-2 bg-hostel-yellow relative'>
+    <nav className='flex items-center justify-between px-3 sm:px-10 py-2 bg-hostel-yellow relative'>
       {/* Hostel Image (Logo) */}
       <Link href='/' className='flex items-center gap-2'>
         <RiHomeOfficeLine size={50} />
@@ -39,7 +39,7 @@ export default function NavBar() {
 
       {/* Search Bar */}
       {pathname === '/' && (
-        <div className='flex-1 mx-4 text-lg'>
+        <div className='flex-1 mx-3 text-lg'>
           <input
             type='text'
             placeholder='Enter campus or hostel name'
