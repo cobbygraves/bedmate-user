@@ -16,7 +16,7 @@ export default function StatsDetails() {
   return (
     <div className='w-full'>
       <div className='sm:flex items-center w-full'>
-        <div className='grid grid-cols-3 sm:flex items-center sm:gap-x-5 w-full sm:w-[70%]'>
+        <div className='grid grid-cols-3 gap-x-1 sm:flex items-center sm:gap-x-5 w-full sm:w-[70%]'>
           <Button
             variant='ghost'
             onClick={() => setActive('Bookings')}
