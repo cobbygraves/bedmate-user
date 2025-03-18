@@ -46,7 +46,7 @@ export default function Dashboard() {
           value={17}
         />
       </div>
-      <div className='flex items-center justify-between mt-7 px-5 sm:px-10'>
+      <div className='flex items-center justify-between mt-7 px-3 sm:px-10'>
         <StatsDetails />
       </div>
     </div>

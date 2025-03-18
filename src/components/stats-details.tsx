@@ -20,32 +20,32 @@ export default function StatsDetails() {
           <Button
             variant='ghost'
             onClick={() => setActive('Bookings')}
-            className={`hover:bg-hostel-yellow rounded ${
-              active === 'Bookings' && 'bg-hostel-yellow text-black '
+            className={`hover:bg-hostel-yellow rounded px-1 ${
+              active === 'Bookings' && 'bg-hostel-yellow text-black'
             }`}
           >
             <span className='font-semibold'>Bookings</span>
-            {!isLarge && <span className=' sm:hidden'>( 20 )</span>}
+            {!isLarge && <span className=' sm:hidden'>(20)</span>}
           </Button>
           <Button
             variant='ghost'
             onClick={() => setActive('Favorites')}
-            className={`hover:bg-hostel-yellow rounded ${
+            className={`hover:bg-hostel-yellow rounded px-1 ${
               active === 'Favorites' && 'bg-hostel-yellow text-black '
             }`}
           >
             <span className='font-semibold'>Favorites</span>
-            {!isLarge && <span className=' sm:hidden'>( 3 )</span>}
+            {!isLarge && <span className=' sm:hidden'>(3)</span>}
           </Button>
           <Button
             variant='ghost'
             onClick={() => setActive('Messages')}
-            className={`hover:bg-hostel-yellow rounded ${
+            className={`hover:bg-hostel-yellow rounded px-1 ${
               active === 'Messages' && 'bg-hostel-yellow text-black '
             }`}
           >
             <span className='font-semibold'>Messages</span>
-            {!isLarge && <span className=' sm:hidden'>( 17 )</span>}
+            {!isLarge && <span className=' sm:hidden'>(17)</span>}
           </Button>
         </div>
         <Input
