@@ -171,7 +171,7 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
       </div>
       <Link
         href={'/'}
-        className='border-none flex gap-x-3 items-center text-gray-500 px-3 sm:px-10'
+        className='border-none flex gap-x-3 items-center text-gray-500 px-3 sm:px-10 w-fit'
       >
         <IoIosArrowBack className='size-5' />
         <p className='text-[18px] font-[600]'>Back</p>
