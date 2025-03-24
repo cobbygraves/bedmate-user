@@ -36,7 +36,12 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel()
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: 10 //custom default page size
+      }
+    }
   })
   const numberOfPages = table.getPageOptions()
   const isLarge = useMediaQuery({
