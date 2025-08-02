@@ -1,14 +1,11 @@
 'use client'
-import { Pagination } from 'antd'
+import HostelPagination from '@/components/hostel-pagination'
 import MobileFilter from '@/components/mobile-filter'
-
-// import { Pagination } from 'antd'
 import HostelCard from '@/components/hostel-card'
 import { useMediaQuery } from 'react-responsive'
 import HostelCardSkeleton from '@/components/hostel-card-skeleton'
 import NavBar from '@/components/nav-bar'
 import FacilitiesFilters from '@/components/facilities-filters'
-// import { FiFilter } from 'react-icons/fi'
 import RoomsFilter from '@/components/rooms-filter'
 import PriceFilter from '@/components/price-filter'
 import { useQuery } from '@tanstack/react-query'
@@ -90,10 +87,7 @@ const Home = () => {
               ) : (
                 <div className='my-5 flex justify-center sm:justify-end w-full'>
                   {hostels?.length > 0 && (
-                    <Pagination
-                      pageSize={isLarge ? 20 : 5}
-                      total={hostels?.length}
-                    />
+                 <HostelPagination/>
                   )}
                 </div>
               )}

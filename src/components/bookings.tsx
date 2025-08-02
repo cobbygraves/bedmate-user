@@ -1,5 +1,5 @@
 'use client'
-import { Pagination } from 'antd'
+import HostelPagination from './hostel-pagination'
 import BookingCard from './booking-card'
 import { useMediaQuery } from 'react-responsive'
 import { bookings } from '@/app/utils/data'
@@ -26,10 +26,7 @@ const Bookings = () => {
               {/* pagination */}
               {bookings?.length > 0 && (
                 <div className='my-5 flex justify-center sm:justify-end w-full'>
-                  <Pagination
-                    pageSize={isLarge ? 12 : 6}
-                    total={bookings?.length}
-                  />
+                  <HostelPagination />
                 </div>
               )}
             </div>
