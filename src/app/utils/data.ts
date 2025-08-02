@@ -98,6 +98,11 @@ type Booking = {
   date: string
 }
 
+interface Message {
+  id: string
+  message: string
+}
+
 export const bookings: Booking[] = [
   {
     id: '728ed52f',
@@ -127,4 +132,20 @@ export const bookings: Booking[] = [
     room_type: '4 beds',
     date: '18/11/2024'
   }
+]
+
+export const messages: Message[] = [
+  {
+    id: '728ed52f',
+    message: 'Eu duis reprehenderit sunt voluptate pariatur Lorem sit ullamco pariatur sit. Non dolor do laborum esse. Consectetur nisi eiusmod consectetur qui mollit fugiat amet dolore irure voluptate aliqua ullamco ea deserunt. Ad nulla sit labore nulla laboris nostrud ex. Ad aliqua laborum nisi reprehenderit voluptate eu amet pariatur enim occaecat est irure. Veniam nulla irure ea cupidatat occaecat mollit eiusmod commodo.'
+  },
+  {
+    id: '728edj9s',
+    message: 'Excepteur excepteur excepteur enim ad. Dolor labore excepteur amet do. Dolore est exercitation consectetur dolor. Adipisicing in excepteur laborum incididunt.'
+  },
+  {
+    id: '720d952f',
+  message: 'Dolor excepteur excepteur enim. Dolore excepteur ad excepteur. Dolor excepteur excepteur enim. Dolore excepteur ad excepteur. Dolor excepteur excepteur enim. Dolore excepteur ad excepteur.'
+  },
+ 
 ]

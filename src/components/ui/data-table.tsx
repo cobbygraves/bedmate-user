@@ -52,7 +52,7 @@ export function DataTable<TData, TValue>({
     <>
       <div className='bg-white rounded-xl mt-5 p-2 sm:p-5 w-full shadow-lg border border-gray-300'>
         <Table>
-          <TableHeader className='bg-gray-100'>
+          <TableHeader className='bg-gray-300'>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -72,21 +72,58 @@ export function DataTable<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+              table.getRowModel().rows.map((row, index) => {
+                if(index % 2 !== 0) {
+                  return (
+                    <TableRow
+                      key={row.id}
+                      data-state={row.getIsSelected() && 'selected'}
+                      className='bg-gray-100'
+                    >
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  )
+                }else{
+                  return (
+                    <TableRow
+                      key={row.id}
+                      data-state={row.getIsSelected() && 'selected'}
+                      // className='bg-gray-50'
+                    >
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  )
+                }
+                // return (
+                //   <TableRow
+                //     key={row.id}
+                //     data-state={row.getIsSelected() && 'selected'}
+                //   >
+                //     {row.getVisibleCells().map((cell) => (
+                //       <TableCell key={cell.id}>
+                //         {flexRender(
+                //           cell.column.columnDef.cell,
+                //           cell.getContext()
+                //         )}
+                //       </TableCell>
+                //     ))}
+                //   </TableRow>
+                // )
+              })
             ) : (
               <TableRow>
                 <TableCell

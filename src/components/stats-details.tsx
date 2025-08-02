@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { Button } from './ui/button'
 import { DataTable } from '@/components/ui/data-table'
 import { columns } from '@/components/table-columns/bookings/column'
+import { messageColumns } from '@/components/table-columns/messages/column'
 import { bookings } from '@/app/utils/data'
 import { Input } from "@/components/ui/input"
 import { CiSearch } from 'react-icons/ci'
 import { useMediaQuery } from 'react-responsive'
 import FavouriteHotels from './FavouriteHostels'
-import Messages from './Messages'
+// import Messages from './Messages'
+import {messages} from '@/app/utils/data'
 import Bookings from './bookings'
 import { FiFilter } from 'react-icons/fi'
 import { DatePicker } from './date-picker'
@@ -139,7 +141,7 @@ export default function StatsDetails() {
         )}
         {active === 'Bookings' && !isLarge && <Bookings />}
         {active === 'Favorites' && <FavouriteHotels />}
-        {active === 'Messages' && <Messages />}
+        {active === 'Messages' && <DataTable columns={messageColumns} data={messages} />}
       </div>
     </div>
   )

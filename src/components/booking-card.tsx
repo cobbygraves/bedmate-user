@@ -6,14 +6,7 @@ export default function BookingCard({ booking }: { booking: any }) {
   const router = useRouter()
 
   return (
-    <div
-      className='rounded-xl border border-gray-400 shadow-lg p-3 cursor-pointer'
-      //   onClick={() => {
-      //     router.push(
-      //       `/dashboard/bookings/${booking?.id}?code=${booking?.code}`
-      //     )
-      //   }}
-    >
+    <div className='rounded-xl border border-gray-400 shadow-lg p-3 cursor-pointer'>
       <div className='space-y-3'>
         <div className='grid grid-cols-2'>
           <div className=''>
