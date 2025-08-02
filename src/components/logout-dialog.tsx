@@ -34,7 +34,7 @@ export function LogoutDialog({ hideUserMenu }: { hideUserMenu: () => void }) {
           <AlertDialogCancel className='w-[85px]'>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
-              signOut()
+              signOut({ redirectTo: '/' })
             }}
             className='w-[85px]'
           >

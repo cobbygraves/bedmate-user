@@ -391,12 +391,6 @@ const HostelDetails = ({ params }: { params: { id: string } }) => {
                     placeholder: 'Enter phone number',
                     style: { height: 40 }
                   }}
-                  // inputComponent={() => (
-                  //   <input
-                  //     className='border-none bg-white h-10 rounded-r-lg w-full focus:outline-none focus:border-none px-3'
-                  //     placeholder='Enter phone number'
-                  //   />
-                  // )}
                 />
               </label>
 

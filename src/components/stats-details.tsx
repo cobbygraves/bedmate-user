@@ -3,7 +3,7 @@ import { Button } from './ui/button'
 import { DataTable } from '@/components/ui/data-table'
 import { columns } from '@/components/table-columns/bookings/column'
 import { bookings } from '@/app/utils/data'
-import { Input } from 'antd'
+import { Input } from "@/components/ui/input"
 import { CiSearch } from 'react-icons/ci'
 import { useMediaQuery } from 'react-responsive'
 import FavouriteHotels from './FavouriteHostels'
@@ -69,9 +69,9 @@ export default function StatsDetails() {
         </div>
         <div className='flex gap-x-3 items-center w-full sm:justify-end'>
           <Input
-            className='w-full sm:w-[55%] mt-3 sm:mt-0'
-            prefix={<CiSearch size={20} />}
-            style={{ height: 40 }}
+            className='w-full sm:w-[55%] mt-3 sm:mt-0 h-10 rounded-md'
+            // prefix={<CiSearch size={20} />}
+            // style={{ height: 40 }}
             placeholder={
               active === 'Bookings'
                 ? 'Enter booking code'

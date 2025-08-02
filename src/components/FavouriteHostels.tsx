@@ -1,11 +1,11 @@
 'use client'
-import { Pagination } from 'antd'
 import HostelCard from '@/components/hostel-card'
 import { useMediaQuery } from 'react-responsive'
 import HostelCardSkeleton from '@/components/hostel-card-skeleton'
 import { useQuery } from '@tanstack/react-query'
 import { getFavouriteHostels } from '@/app/utils/functions'
 import { useSession } from 'next-auth/react'
+import HostelPagination from './hostel-pagination'
 
 const FavouriteHotels = () => {
   const isLarge = useMediaQuery({
@@ -53,10 +53,11 @@ const FavouriteHotels = () => {
               ) : (
                 <div className='my-5 flex justify-center sm:justify-end w-full'>
                   {data?.length > 0 && (
-                    <Pagination
-                      pageSize={isLarge ? 12 : 6}
-                      total={data?.length}
-                    />
+                    // <Pagination
+                    //   pageSize={isLarge ? 12 : 6}
+                    //   total={data?.length}
+                    // />
+                    <HostelPagination />
                   )}
                 </div>
               )}
