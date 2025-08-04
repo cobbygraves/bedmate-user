@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
 import NavBar from '@/components/nav-bar'
@@ -10,12 +10,25 @@ import StatsDetails from '@/components/stats-details'
 export default function Dashboard() {
   const { data: session } = useSession()
   const router = useRouter()
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!session) {
       signOut({ redirectTo: '/sign-in' })
       // router.push('/sign-in')
     }
   }, [session, router])
+
+  if (!session) {
+    return <div className="flex justify-center items-center h-screen">
+  <div className="text-center">
+    <h1 className="text-3xl font-bold mb-4">403 Forbidden</h1>
+    <p className="text-lg mb-8">You do not have permission to access this page.</p>
+    <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+      <a href="/">Return to Home</a>
+    </button>
+  </div>
+</div> // or a loading spinner, or redirect to sign-in
+  }
+
   return (
     <div>
       <div className='sticky top-0 z-40 bg-white mb-5'>
