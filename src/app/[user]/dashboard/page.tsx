@@ -1,32 +1,30 @@
 'use client'
-import { useLayoutEffect } from 'react'
+
 import { useRouter } from 'next/navigation'
-import { useSession, signOut } from 'next-auth/react'
+import { useSession} from 'next-auth/react'
 import NavBar from '@/components/nav-bar'
 import Link from 'next/link'
 import { IoIosArrowBack } from 'react-icons/io'
 import StatsCard from '@/components/stats-card'
 import StatsDetails from '@/components/stats-details'
 export default function Dashboard() {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
-  useLayoutEffect(() => {
-    if (!session) {
-      signOut({ redirectTo: '/sign-in' })
-      // router.push('/sign-in')
-    }
-  }, [session, router])
 
   if (!session) {
-    return <div className="flex justify-center items-center h-screen">
-  <div className="text-center">
-    <h1 className="text-3xl font-bold mb-4">403 Forbidden</h1>
-    <p className="text-lg mb-8">You do not have permission to access this page.</p>
-    <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-      <a href="/">Return to Home</a>
-    </button>
-  </div>
-</div> // or a loading spinner, or redirect to sign-in
+    return (
+      <div className='flex justify-center items-center h-screen'>
+        <div className='text-center'>
+          <h1 className='text-3xl font-bold mb-4'>403 Forbidden</h1>
+          <p className='text-lg mb-8'>
+            You do not have permission to access this page.
+          </p>
+          <Link href='/sign-in'   className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md' >
+            Return to Sign In
+          </Link>
+        </div>
+      </div>
+    ) // or a loading spinner, or redirect to sign-in
   }
 
   return (
